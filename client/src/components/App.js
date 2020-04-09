@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [bacon, setBacon] = useState(null);
+  const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    fetch('/bacon')
+    fetch('/homePage')
       .then(res => res.json())
-      .then(data => setBacon(data));
+      .then(data => setFeatured(data));
   }, []);
 
-  return <div>{bacon ? bacon : `...where's my stuff?...`}</div>;
+  return <>{featured.map(item => {
+    return <div> {item.name} </div>
+  })}</>
 }
 
 export default App;
