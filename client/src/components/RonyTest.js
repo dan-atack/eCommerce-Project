@@ -4,7 +4,7 @@ function RonyTest() {
     const [featured, setFeatured] = useState([]);
 
     useEffect(() => {
-    fetch('/products/Fitness')
+    fetch('/homePage')
         .then(res => res.json())
         .then(data => setFeatured(data));
     }, []);
