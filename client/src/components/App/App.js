@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
-import GlobalStyles from '../GlobalStyles';
+import GlobalStyles from "../../GlobalStyles";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <PageStructure>
-        <GlobalStyles/>
-        <HeaderWrap><div>head</div></HeaderWrap>
+        <GlobalStyles />
+        <HeaderWrap>
+          <div>head</div>
+        </HeaderWrap>
 
-        <FilterBarWrap><div>filter</div></FilterBarWrap>
+        <FilterBarWrap>
+          <div>filter</div>
+        </FilterBarWrap>
 
         <MainWrap>
           <Switch>
@@ -34,27 +38,30 @@ function App() {
           </Switch>
         </MainWrap>
 
-        <CheckoutBarWrap><div>checkout</div></CheckoutBarWrap>
+        <CheckoutBarWrap>
+          <div>checkout</div>
+        </CheckoutBarWrap>
 
-        <FooterWrap><div>foot</div></FooterWrap>
+        <FooterWrap>
+          <div>foot</div>
+        </FooterWrap>
       </PageStructure>
     </Router>
-    
   );
-}
+};
 
 const PageStructure = styled.div`
-  height:100vh; 
+  height: 100vh;
   /* width:100vh;  */
-  max-height: 100vw;
+  max-height: 100vh;
   position: relative;
   display: grid;
   grid-template-areas:
     "head head head"
     "sideleft main sideright"
     "foot foot foot";
-  grid-template-rows: 1fr 6fr 1fr ;
-  grid-template-columns: 1fr 6fr 2fr ;
+  grid-template-rows: 1fr 6fr 1fr;
+  grid-template-columns: 1fr 6fr 2fr;
 `;
 const HeaderWrap = styled.div`
   grid-area: head;
@@ -76,6 +83,5 @@ const FooterWrap = styled.div`
   grid-area: foot;
   background: grey;
 `;
-
 
 export default App;

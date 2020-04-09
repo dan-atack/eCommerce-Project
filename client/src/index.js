@@ -5,7 +5,7 @@ import RonyTest from "./components/RonyTest";
 
 ReactDOM.render(
   <React.StrictMode>
-    <RonyTest />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
