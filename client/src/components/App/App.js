@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalStyles from "../../GlobalStyles";
+import Category from "../Category";
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
               <div>Search results</div>
             </Route>
             <Route path="/category/:categoryName">
-              <div>Category</div>
+              <Category />
             </Route>
             <Route path="/product/:productId">
               <div>Product details</div>
