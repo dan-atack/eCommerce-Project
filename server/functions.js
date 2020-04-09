@@ -14,7 +14,9 @@ const getFeaturedItems = () => {
     biggestNum = 0;
   };
 
-  //sets 3 random items in the featuredItems array
+  //used to determine the 3 items to be featured
+  let featuredItems = [];
+
   for (let i = 0; i < 3; ++i) {
     featuredItems.push(items[Math.floor(Math.random() * items.length)]);
   }
