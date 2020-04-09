@@ -1,1 +1,3 @@
-console.log("Rony's test")
+const howdy = "howdy";
+
+console.log("Rony's test", howdy)
