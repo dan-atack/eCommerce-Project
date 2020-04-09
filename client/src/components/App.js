@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
+import GlobalStyles from '../GlobalStyles';
+
 function App() {
   return (
     <Router>
       <PageStructure>
-        <HeaderWrap></HeaderWrap>
+        <GlobalStyles/>
+        <HeaderWrap><div>head</div></HeaderWrap>
 
-        <FilterBarWrap></FilterBarWrap>
+        <FilterBarWrap><div>filter</div></FilterBarWrap>
 
         <MainWrap>
           <Switch>
@@ -31,24 +34,48 @@ function App() {
           </Switch>
         </MainWrap>
 
-        <CheckoutBarWrap></CheckoutBarWrap>
+        <CheckoutBarWrap><div>checkout</div></CheckoutBarWrap>
 
-        <FooterWrap></FooterWrap>
+        <FooterWrap><div>foot</div></FooterWrap>
       </PageStructure>
     </Router>
+    
   );
 }
 
 const PageStructure = styled.div`
-  /* height:100vw; 
-  width:100vh; */
+  height:100vh; 
+  /* width:100vh;  */
+  max-height: 100vw;
   position: relative;
   display: grid;
+  grid-template-areas:
+    "head head head"
+    "sideleft main sideright"
+    "foot foot foot";
+  grid-template-rows: 1fr 6fr 1fr ;
+  grid-template-columns: 1fr 6fr 2fr ;
 `;
-const HeaderWrap = styled.div``;
-const FilterBarWrap = styled.div``;
-const MainWrap = styled.div``;
-const CheckoutBarWrap = styled.div``;
-const FooterWrap = styled.div``;
+const HeaderWrap = styled.div`
+  grid-area: head;
+  background: grey;
+`;
+const FilterBarWrap = styled.div`
+  grid-area: sideleft;
+  background: darkgray;
+`;
+const MainWrap = styled.div`
+  grid-area: main;
+  background: whitesmoke;
+`;
+const CheckoutBarWrap = styled.div`
+  grid-area: sideright;
+  background: lightslategrey;
+`;
+const FooterWrap = styled.div`
+  grid-area: foot;
+  background: grey;
+`;
+
 
 export default App;
