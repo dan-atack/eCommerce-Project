@@ -24,7 +24,7 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use('/', express.static(__dirname + '/'))
 
-  // REST endpoints?
-  .get('/bacon', (req, res) => res.status(200).json('🥓'))
+  //contains all the endpoints (for now)
+  .use(require("./endpoints"))
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
