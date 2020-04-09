@@ -17,6 +17,7 @@ const getFeaturedItems = () => {
     //used to determine the 3 items to be featured
     let featuredItems = [];
 
+    //sets 3 random items in the featuredItems array
     for (let i = 0; i < 3; ++i) {
         featuredItems.push(items[Math.floor(Math.random() * (items.length))]);
     }
@@ -51,6 +52,7 @@ const getFeaturedItems = () => {
 
     cleanup();
 
+    //returns an object containing 2 arrays, containing 3 objects of the appropriate items
     return({sale: itemsOnSale, feature: featuredItems});
 }
 
@@ -65,9 +67,13 @@ const sortCategory = (req) => {
 // 'Pets and Animals',
 // 'Gaming'
 
+    //category of items specified in the url
     const {category} = req.params;
+
+    //array of items filtered by category
     let filteredItems = [];
     
+    //sets the items filtered by category in the array
     items.forEach(item => {
         if (item.category === category) filteredItems.push(item);
     })
