@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ProductDetails from "../ProductDetails";
 
 const Category = () => {
   const { categoryName } = useParams();
@@ -21,7 +22,7 @@ const Category = () => {
           <h2>{categoryName}</h2>
           {products.map((product) => {
             // to be changed with item card component
-            return <div>{product.name}</div>;
+            return <ProductDetails product={product} />;
           })}
         </>
       ) : (

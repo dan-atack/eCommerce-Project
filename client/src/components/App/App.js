@@ -5,13 +5,10 @@ import styled from "styled-components";
 import GlobalStyles from "../../GlobalStyles";
 import Category from "../Category";
 // state test components:
-import StateTest from './StateTests/CartStateTest';
-import GetFeatState from './StateTests/CatalogStateTest';
-const App = () => {
-
+import StateTest from "../StateTests/CartStateTest";
+import GetFeatState from "../StateTests/CatalogStateTest";
 
 function App() {
-
   return (
     <Router>
       <PageStructure>
@@ -28,8 +25,8 @@ function App() {
           <Switch>
             <Route exact path="/">
               <div>Home</div>
-              <StateTest/>
-              <GetFeatState/>
+              <StateTest />
+              <GetFeatState />
             </Route>
             {/* use queries instead of params here */}
             <Route path="/search">
@@ -57,7 +54,7 @@ function App() {
       </PageStructure>
     </Router>
   );
-};
+}
 
 const PageStructure = styled.div`
   height: 100vh;
