@@ -7,14 +7,18 @@ const getFeaturedItems = () => {
     let biggestNum = 0;
     let itemToDisplay;
 
-    //used to determine the 3 items to be featured
-    const featuredItems = randomize();
-
-    //function to flush the values of the variables to avoid repeating code
+    //function to flush the values of the variables
     const cleanup = () => {
         itemsOnSale.push(itemToDisplay);
         itemToDisplay = "";
         biggestNum = 0;
+    }
+    
+    //used to determine the 3 items to be featured
+    let featuredItems = [];
+
+    for (let i = 0; i < 3; ++i) {
+        featuredItems.push(items[Math.floor(Math.random() * (items.length))]);
     }
 
     //first place, highest stock
@@ -47,7 +51,7 @@ const getFeaturedItems = () => {
 
     cleanup();
 
-    return(itemsOnSale);
+    return({sale: itemsOnSale, feature: featuredItems});
 }
 
 //function that will sort the data by category specified by the user
