@@ -1,6 +1,6 @@
 Project notes
 
-- Features - Filters
+- Features
 
   - Boolean for checkbox (sidebar)
     - worn on
@@ -38,3 +38,10 @@ Project notes
     - Cart
     - Product component
     - Nav
+
+Stretch
+
+- UGLY toggle single pixel
+- User login
+- search bar predictive / by category
+- sidebar filters open/close
