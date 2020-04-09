@@ -13,7 +13,7 @@ export const testState = item => ({
 
 export const getFeatItems = items => ({
     type: 'GET_FEATURED_ITEMS',
-    items
+    items,
 })
 
 // MORE ACTIONS GO HERE :)

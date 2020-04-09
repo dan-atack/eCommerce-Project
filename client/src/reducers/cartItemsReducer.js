@@ -7,7 +7,7 @@ export default function cartItemsReducer(state = initialState, action) {
         case 'ADD_TEST_ITEM_TO_CART_STATE': {
             return {
                 ...state,
-                [action.item.id]: {
+                items: {
                     ...action.item,
                     quantity: 1,
                 }

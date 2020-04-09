@@ -4,8 +4,14 @@ import styled from "styled-components";
 
 import GlobalStyles from "../../GlobalStyles";
 import Category from "../Category";
-
+// state test components:
+import StateTest from './StateTests/CartStateTest';
+import GetFeatState from './StateTests/CatalogStateTest';
 const App = () => {
+
+
+function App() {
+
   return (
     <Router>
       <PageStructure>
@@ -22,6 +28,8 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <div>Home</div>
+              <StateTest/>
+              <GetFeatState/>
             </Route>
             {/* use queries instead of params here */}
             <Route path="/search">

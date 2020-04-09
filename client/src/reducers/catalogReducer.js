@@ -8,7 +8,7 @@ export default function catalogReducer(state = initialState, action) {
         case 'GET_FEATURED_ITEMS': {
             return {
                 ...state,
-                [action.items]: {
+                catalogueItems: {
                     ...action.items
                 }
             }
