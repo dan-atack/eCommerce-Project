@@ -1,17 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CartItem from '../CartItem';
 
-import testCartItems from './test-cart-items';
-
 const CartBar = () => {
-  //test data
-  const cartItems = testCartItems;
 
-  // const dispatch = useDispatch();
-  //const cartItems = useSelector((state) => state.cartItems.items) //if not array, change to array: Object.values(state)
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => Object.values(state.cartItems)) //if not array, change to array: Object.values(state)
 
   //totals up all prices*quantities
   const total = cartItems.reduce((sum, item) => {

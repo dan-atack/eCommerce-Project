@@ -1,4 +1,4 @@
-// This button will bring in items from the server and store them in the 'catalog' side of the state.
+// No longer a button but a function which will run automatically at the outset?!
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';

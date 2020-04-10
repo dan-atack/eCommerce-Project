@@ -5,10 +5,16 @@
 //     item,
 // });
 
-export const testState = item => ({
+export const addItemToCart = item => ({
     // type tells the dispatcher what to do:
-    type: 'ADD_TEST_ITEM_TO_CART_STATE',
+    type: 'ADD_ITEM_TO_CART',
     item,
+});
+
+export const setQty = (id, amt) => ({
+    type: 'SET_QUANTITY',
+    id,
+    amt,
 });
 
 export const getFeatItems = items => ({

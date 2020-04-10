@@ -2,18 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 // import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setQty } from '../../actions';
 
 const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
 
-  // const dispatch = useDispatch();
-  
-  //state for amount so that amount changes are visibly rendered
-    const [amount, setAmount] = React.useState(quantity);
-  //triggers rerender on quantity change in Redux
-    React.useEffect(()=>{
-      console.log('quantity change ', quantity);
-      setAmount(parseInt(quantity));
-    }, [quantity])
+
+  const dispatch = useDispatch();
+  let amount = quantity;
 
   return (
     <StyledDiv>
@@ -22,7 +18,7 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
         <Title>
           <StyledLink to={`/product/${id}`} >{name}</StyledLink>
           <StyledButton
-            onCLick={() => {
+            onClick={() => {
               //dispatch remove item from cart
             }}
           >
@@ -35,8 +31,9 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
             onClick={() => {
               //stops increasing beyond stock levels (Maxspan appears when at max)
               if(amount < stock){
-                setAmount(n => n + 1);
-                //also dispatch quantity increase (id)
+                amount ++;
+                console.log(amount);
+                dispatch(setQty(id, amount))
               }
             }}
           >▲</StyledButton>
@@ -44,8 +41,8 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
           onClick={() => {
             //stops decreasing below 1
             if(amount > 0){
-              setAmount(n => n - 1);
-              //also dispatch quantity decrease (id)
+              amount --;
+              dispatch(setQty(id, amount))
             }
           }}
           >▼</StyledButton>

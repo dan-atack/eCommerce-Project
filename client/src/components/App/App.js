@@ -5,8 +5,11 @@ import styled from "styled-components";
 import GlobalStyles from "../../GlobalStyles";
 import Category from "../Category";
 // state test components:
-import StateTest from "../StateTests/CartStateTest";
-import GetFeatState from "../StateTests/CatalogStateTest";
+// import GetFeatState from "../StateTests/CatalogStateTest";
+// new catalog item component will use featured items data to populate main page and contains button to add to cart (all in state):
+import CatalogItem from '../CatalogItem';
+// use test item data to populate 'catalogue':
+import testCartItems from '../CartBar/test-cart-items';
 
 import CartBar from '../CartBar';
 
@@ -27,8 +30,21 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <div>Home</div>
-              <StateTest />
-              <GetFeatState />
+              {testCartItems.map(item => {
+                return (
+                  <CatalogItem
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  price={item.price}
+                  body_location={item.body_location}
+                  category={item.category}
+                  imageSrc={item.imageSrc}
+                  numInStock={item.numInStock}
+                  companyId={item.companyId}
+                  />
+                )
+              })}
             </Route>
             {/* use queries instead of params here */}
             <Route path="/search">

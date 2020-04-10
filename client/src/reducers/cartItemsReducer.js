@@ -1,15 +1,25 @@
-const initialState = {
-    items: [],
-};
+// After some deliberation, I think it would be best for the items list to be an object; that way you can query it by name/id etc...
+const initialState = {};
 
 export default function cartItemsReducer(state = initialState, action) {
     switch(action.type) {
-        case 'ADD_TEST_ITEM_TO_CART_STATE': {
+        case 'ADD_ITEM_TO_CART': {
+            let qty = 0;
+            state[action.item.id] ? qty = (state[action.item.id].quantity + 1) : qty = 1;
+            return {
+                ...state, 
+                [action.item.id]: {
+                    ...action.item,
+                    quantity: qty,
+                }
+            }
+        }
+        case 'SET_QUANTITY': {
             return {
                 ...state,
-                items: {
-                    ...action.item,
-                    quantity: 1,
+                [action.id]: {
+                    ...state[action.id],
+                    quantity: action.amt,
                 }
             }
         }
