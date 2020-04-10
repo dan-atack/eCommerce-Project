@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // import { useDispatch, useSelector } from 'react-redux';
-
+import { Link } from "react-router-dom";
 
 const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
 
@@ -19,11 +19,21 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
     <StyledDiv>
       <img src={imageSrc} alt='item'/>
       <InfoDiv>
-        <Title>{name}<StyledButton>X</StyledButton></Title>
+        <Title>
+          <StyledLink to={`/product/${id}`} >{name}</StyledLink>
+          <StyledButton
+            onCLick={() => {
+              //dispatch remove item from cart
+            }}
+          >
+            X
+          </StyledButton>
+        </Title>
         <p>
           Quantity: <span>{amount}</span>
           <StyledButton
             onClick={() => {
+              //stops increasing beyond stock levels (Maxspan appears when at max)
               if(amount < stock){
                 setAmount(n => n + 1);
                 //also dispatch quantity increase (id)
@@ -32,12 +42,16 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
           >▲</StyledButton>
           <StyledButton
           onClick={() => {
+            //stops decreasing below 1
             if(amount > 0){
               setAmount(n => n - 1);
               //also dispatch quantity decrease (id)
             }
           }}
           >▼</StyledButton>
+          <MaxSpan>
+            {(amount==stock)? 'max' : '' }
+          </MaxSpan>
         </p>
         <p>@ {price}</p>
       </InfoDiv>
@@ -69,7 +83,6 @@ const InfoDiv = styled.div`
     margin-right: .5rem;
     text-decoration: underline;
   }
-  
 `;
 const Title = styled.p`
   display: flex;
@@ -77,6 +90,15 @@ const Title = styled.p`
   border-bottom: 1px solid gray;
   font-size: .70rem;
 `;
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+//need to make some standardized button css or component
 const StyledButton = styled.button`
   border-radius: 50%;
   height: .8rem;
@@ -90,7 +112,15 @@ const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  &:hover{
+    cursor: pointer;
+  }
 `;
-
+//if keeping; alter so does not push "quantity" over on appearance
+const MaxSpan = styled.span`
+  font-size: .5rem;
+  text-decoration: none;
+  color: maroon;
+`;
 
 export default CartItem;

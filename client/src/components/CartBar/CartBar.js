@@ -20,6 +20,7 @@ const CartBar = () => {
     return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
   }, 0)
 
+  //add loading screen later?
   return (
     <StyledDiv styles={{display: cartItems.length? 'flex': 'hidden'}}>
       <div>
@@ -89,7 +90,7 @@ const ItemCount = styled.div`
     margin: 0 .15rem;
   }
 `;
-///note to self: make standardized button component to reuse everwhere
+///note to self: make standardized button component to reuse everwhere or standardize look in globalstyles
 const ClearButton = styled.button`
   border-radius: 10px;
   margin: 0 1rem;
@@ -98,6 +99,9 @@ const ClearButton = styled.button`
   background: maroon;
   color: lightgray;
   border: none;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 const CartItems = styled.div`
   max-height: 65vh;
@@ -121,7 +125,9 @@ const CheckoutButton = styled.button`
   color: whitesmoke;
   background: maroon;
   border: none;
-
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 export default CartBar;
