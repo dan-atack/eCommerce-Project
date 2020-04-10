@@ -10,10 +10,12 @@ import Category from "../Category";
 import CatalogItem from '../CatalogItem';
 // use test item data to populate 'catalogue':
 import testCartItems from '../CartBar/test-cart-items';
+import CatalogStateTest from '../StateTests/CatalogStateTest';
 
 import CartBar from '../CartBar';
 
 const App = () => {
+
   return (
     <Router>
       <PageStructure>
@@ -29,6 +31,7 @@ const App = () => {
         <MainWrap>
           <Switch>
             <Route exact path="/">
+              <CatalogStateTest/>
               <div>Home</div>
               {testCartItems.map(item => {
                 return (

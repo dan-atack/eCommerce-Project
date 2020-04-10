@@ -5,7 +5,10 @@ export default function cartItemsReducer(state = initialState, action) {
     switch(action.type) {
         case 'ADD_ITEM_TO_CART': {
             let qty = 0;
-            state[action.item.id] ? qty = (state[action.item.id].quantity + 1) : qty = 1;
+            // clicking add to cart repeatedly increases qty:
+            qty = (state[action.item.id]) ? qty = (state[action.item.id].quantity + 1) : qty = 1;
+            // make sure clicking add to cart cannot exceed product availability:
+            if (state[action.item.id] && (qty >= state[action.item.id].numInStock)) qty = state[action.item.id].numInStock;            
             return {
                 ...state, 
                 [action.item.id]: {

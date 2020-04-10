@@ -1,1 +1,1 @@
-export { default } from './GetFeatState';
+export { default } from './CatalogStateTest';

@@ -17,8 +17,8 @@ export const setQty = (id, amt) => ({
     amt,
 });
 
-export const getFeatItems = items => ({
-    type: 'GET_FEATURED_ITEMS',
+export const getInitItems = items => ({
+    type: 'GET_INITIAL_ITEMS',
     items,
 })
 

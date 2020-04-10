@@ -1,15 +1,19 @@
 const initialState = {
-    catalogueItems: [],
+    featuredItems: {},
+    saleItems: {},
     status: 'idle',
 };
 
 export default function catalogReducer(state = initialState, action) {
     switch(action.type) {
-        case 'GET_FEATURED_ITEMS': {
+        case 'GET_INITIAL_ITEMS': {
             return {
                 ...state,
-                catalogueItems: {
-                    ...action.items
+                featuredItems: {
+                    ...action.items.feature
+                },
+                saleItems: {
+                    ...action.items.sale
                 }
             }
         }
