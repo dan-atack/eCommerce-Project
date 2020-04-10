@@ -47,7 +47,7 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
           }}
           >▼</StyledButton>
           <MaxSpan>
-            {(amount==stock)? 'max' : '' }
+            {(amount===stock)? 'max' : '' }
           </MaxSpan>
         </p>
         <p>@ {price}</p>
