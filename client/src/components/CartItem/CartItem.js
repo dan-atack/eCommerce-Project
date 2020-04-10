@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setQty } from '../../actions';
+import { setQty, removeItem } from '../../actions';
 
 const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
 
@@ -19,7 +19,7 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
           <StyledLink to={`/product/${id}`} >{name}</StyledLink>
           <StyledButton
             onClick={() => {
-              //dispatch remove item from cart
+              dispatch(removeItem(id))
             }}
           >
             X

@@ -26,6 +26,15 @@ export default function cartItemsReducer(state = initialState, action) {
                 }
             }
         }
+        case 'REMOVE_ITEM': {
+            // We cannot alter the state directly; instead we must always return a new state, based on a copy we make of the original:
+            let stateCopy = {...state};
+            delete stateCopy[action.id];
+            return stateCopy;
+        }
+        case 'CLEAR_CART': {
+            return {};
+        }
         default: {
             return state;
         }      

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import { clearCart } from '../../actions';
 
 import CartItem from '../CartItem';
 
@@ -25,7 +26,7 @@ const CartBar = () => {
         <ItemCount>
           <p><span>{cartItems.length}</span>Items</p>
           <ClearButton
-            onClick={()=>console.log('dispatch clear-items')}
+            onClick={()=>dispatch(clearCart())}
           >
             Clear Cart
           </ClearButton>

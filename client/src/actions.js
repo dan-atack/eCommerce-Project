@@ -20,6 +20,15 @@ export const setQty = (id, amt) => ({
 export const getInitItems = items => ({
     type: 'GET_INITIAL_ITEMS',
     items,
+});
+
+export const removeItem = id => ({
+    type: 'REMOVE_ITEM',
+    id,
 })
+
+export const clearCart = () => ({
+    type: 'CLEAR_CART',
+});
 
 // MORE ACTIONS GO HERE :)
