@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalStyles from "../../GlobalStyles";
+import CheckoutModal from '../CheckoutModal';
 import Category from "../Category";
 // state test components:
 // import GetFeatState from "../StateTests/CatalogStateTest";
@@ -20,6 +21,7 @@ const App = () => {
     <Router>
       <PageStructure>
         <GlobalStyles />
+        <CheckoutModal/>
         <HeaderWrap>
           <div>head</div>
         </HeaderWrap>
