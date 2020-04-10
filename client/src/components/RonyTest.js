@@ -6,24 +6,24 @@ function RonyTest() {
     const [companyItems, setCompanyItems] = useState([]);
 
     useEffect(() => {
-    fetch('/products/sort/Jawbone')
+    fetch('/products/search/fitness')
         .then(res => res.json())
         .then(data => {
             // const {sale, feature} = data;
             // setOnSale(sale);
             // setFeatured(feature);
 
-            // setCompanyItems(data);
+            setCompanyItems(data);
             // console.log(data);
         });
     }, []);
 
-    return <div>hi</div>
+    // return <div>hi</div>
 
-    // return <>
-    // {companyItems.map(item => {
-    //     return <div key={Math.random() * 1000000000}> {item.name} </div>
-    // })}</>
+    return <>
+    {companyItems.map(item => {
+        return <div key={Math.random() * 1000000000}> {item.name} </div>
+    })}</>
 }
 
 export default RonyTest;
