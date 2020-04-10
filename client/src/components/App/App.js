@@ -8,7 +8,9 @@ import Category from "../Category";
 import StateTest from "../StateTests/CartStateTest";
 import GetFeatState from "../StateTests/CatalogStateTest";
 
-function App() {
+import CartBar from '../CartBar';
+
+const App = () => {
   return (
     <Router>
       <PageStructure>
@@ -45,7 +47,7 @@ function App() {
         </MainWrap>
 
         <CheckoutBarWrap>
-          <div>checkout</div>
+          <CartBar />
         </CheckoutBarWrap>
 
         <FooterWrap>
@@ -59,7 +61,7 @@ function App() {
 const PageStructure = styled.div`
   height: 100vh;
   /* width:100vh;  */
-  max-height: 100vh;
+  /* max-height: 100vh; */
   position: relative;
   display: grid;
   grid-template-areas:

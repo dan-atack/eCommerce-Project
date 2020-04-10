@@ -63,6 +63,8 @@ export default createGlobalStyle`
     color: black;
     font-family: sans-serif;
   }
-
+  button {
+    font-family: sans-serif;
+  }
 
 `;
