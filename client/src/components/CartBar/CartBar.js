@@ -52,6 +52,7 @@ const CartBar = () => {
       <Total>
         <p>Total: <span>${total.toFixed(2)}</span></p>
         <CheckoutButton
+          disabled={!(cartItems.length > 0)}
           onClick={()=> {
             //open modal
             //update some purchasing state.status to 'checkout'?
