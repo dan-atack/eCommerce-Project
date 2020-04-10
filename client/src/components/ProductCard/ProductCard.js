@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const ProductDetails = ({ product }) => {
+const ProductCard = ({ product }) => {
   return (
     <Wrapper to={`/product/${product.id}`}>
       <img src={product.imageSrc} />
@@ -26,4 +26,4 @@ const Wrapper = styled(Link)`
     transform: scale(1.01);
   }
 `;
-export default ProductDetails;
+export default ProductCard;

@@ -5,30 +5,34 @@
 //     item,
 // });
 
-export const addItemToCart = item => ({
-    // type tells the dispatcher what to do:
-    type: 'ADD_ITEM_TO_CART',
-    item,
+export const addItemToCart = (item) => ({
+  // type tells the dispatcher what to do:
+  type: "ADD_ITEM_TO_CART",
+  item,
 });
 
 export const setQty = (id, amt) => ({
-    type: 'SET_QUANTITY',
-    id,
-    amt,
+  type: "SET_QUANTITY",
+  id,
+  amt,
 });
 
-export const getInitItems = items => ({
-    type: 'GET_INITIAL_ITEMS',
-    items,
+export const getInitItems = (items) => ({
+  type: "GET_INITIAL_ITEMS",
+  items,
 });
 
-export const removeItem = id => ({
-    type: 'REMOVE_ITEM',
-    id,
-})
+export const removeItem = (id) => ({
+  type: "REMOVE_ITEM",
+  id,
+});
 
 export const clearCart = () => ({
-    type: 'CLEAR_CART',
+  type: "CLEAR_CART",
+});
+export const filterItems = (filters) => ({
+  type: "FILTER_ITEMS",
+  filters,
 });
 
 // MORE ACTIONS GO HERE :)

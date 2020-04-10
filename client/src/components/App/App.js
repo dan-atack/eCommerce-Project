@@ -8,15 +8,15 @@ import Category from "../Category";
 // state test components:
 // import GetFeatState from "../StateTests/CatalogStateTest";
 // new catalog item component will use featured items data to populate main page and contains button to add to cart (all in state):
-import CatalogItem from '../CatalogItem';
+import CatalogItem from "../CatalogItem";
 // use test item data to populate 'catalogue':
-import testCartItems from '../CartBar/test-cart-items';
-import CatalogStateTest from '../StateTests/CatalogStateTest';
+import testCartItems from "../CartBar/test-cart-items";
+import CatalogStateTest from "../StateTests/CatalogStateTest";
+import FilterBar from "../FilterBar";
 
-import CartBar from '../CartBar';
+import CartBar from "../CartBar";
 
 const App = () => {
-
   return (
     <Router>
       <PageStructure>
@@ -27,28 +27,28 @@ const App = () => {
         </HeaderWrap>
 
         <FilterBarWrap>
-          <div>filter</div>
+          <FilterBar />
         </FilterBarWrap>
 
         <MainWrap>
           <Switch>
             <Route exact path="/">
-              <CatalogStateTest/>
+              <CatalogStateTest />
               <div>Home</div>
-              {testCartItems.map(item => {
+              {testCartItems.map((item) => {
                 return (
                   <CatalogItem
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  price={item.price}
-                  body_location={item.body_location}
-                  category={item.category}
-                  imageSrc={item.imageSrc}
-                  numInStock={item.numInStock}
-                  companyId={item.companyId}
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    price={item.price}
+                    body_location={item.body_location}
+                    category={item.category}
+                    imageSrc={item.imageSrc}
+                    numInStock={item.numInStock}
+                    companyId={item.companyId}
                   />
-                )
+                );
               })}
             </Route>
             {/* use queries instead of params here */}
@@ -77,7 +77,7 @@ const App = () => {
       </PageStructure>
     </Router>
   );
-}
+};
 
 const PageStructure = styled.div`
   height: 100vh;
