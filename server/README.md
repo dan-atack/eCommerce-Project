@@ -8,13 +8,13 @@ the "/products/:category" endpoint will serve to sort through the list of items 
 
 the "/products/sort/:companyName" endpoint will sort through all the products based on a specified company name. It will go through the "companies.json" data file, match the company name to the user's choice and then pull the company's ID and use that to filter through the "items.json" data file for the specific items sold by that company.
 
+the "/products/search/:userInput" endpoint will sort through the products based on the user's search query in the search bar. It will return all items related to the query.
+
+the "/purchase" endpoint will receive an object from the front end based on the contents of the user's cart once they have confirmed the purchase and will modify existing stock based on this information.
 
 
 
-
-
-
-// backup
+Categories : 
 // 'Fitness',
 // 'Medical',
 // 'Lifestyle',

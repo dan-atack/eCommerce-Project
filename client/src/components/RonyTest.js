@@ -6,17 +6,46 @@ function RonyTest() {
     const [companyItems, setCompanyItems] = useState([]);
 
     useEffect(() => {
-    fetch('/products/search/fitness')
-        .then(res => res.json())
-        .then(data => {
-            // const {sale, feature} = data;
-            // setOnSale(sale);
-            // setFeatured(feature);
+    // fetch('/products/search/fitness')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         // const {sale, feature} = data;
+    //         // setOnSale(sale);
+    //         // setFeatured(feature);
 
-            setCompanyItems(data);
-            // console.log(data);
-        });
+    //         setCompanyItems(data);
+    //         // console.log(data);
+    //     });
+
+    const test = {order:{
+        cartItems: [
+            { 
+                "quantity": '2',
+                "name": "Belkin GS5 Sport Fit Armband, Black F8M918B1C00",
+                "price": "$24.99",
+                "body_location": "Arms",
+                "category": "Fitness",
+                "id": 6544,
+                "imageSrc": "data:image/jpeg",
+                "numInStock": 9,
+                "companyId": 16384
+            },
+        ],
+    }, };
+
+    fetch("/purchase", {
+        method: "POST",
+        body: JSON.stringify(test),
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        }
+    })
+        .then(res => res.json())
+        .then(data => console.log(data))
     }, []);
+
+    
 
     // return <div>hi</div>
 
