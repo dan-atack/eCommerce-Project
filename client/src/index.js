@@ -11,13 +11,9 @@ const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-<<<<<<< Updated upstream
     <Provider store={store}>
-      <App />
+      <RonyTest />
     </Provider>
-=======
-    <RonyTest />
->>>>>>> Stashed changes
   </React.StrictMode>,
   document.getElementById("root")
 );
