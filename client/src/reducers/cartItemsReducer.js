@@ -10,8 +10,9 @@ export default function cartItemsReducer(state = initialState, action) {
         ? (qty = state[action.item.id].quantity + 1)
         : (qty = 1);
       // make sure clicking add to cart cannot exceed product availability:
-      if (state[action.item.id] && qty >= state[action.item.id].numInStock)
+      if (state[action.item.id] && qty >= state[action.item.id].numInStock) {
         qty = state[action.item.id].numInStock;
+      }
       return {
         ...state,
         [action.item.id]: {

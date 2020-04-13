@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-
+import { useSelector, useDispatch } from 'react-redux';
 import GlobalStyles from "../../GlobalStyles";
 import CheckoutModal from '../CheckoutModal';
 import Category from "../Category";
-// state test components:
-// import GetFeatState from "../StateTests/CatalogStateTest";
-// new catalog item component will use featured items data to populate main page and contains button to add to cart (all in state):
-import CatalogItem from "../CatalogItem";
-// use test item data to populate 'catalogue':
-import testCartItems from "../CartBar/test-cart-items";
-import CatalogStateTest from "../StateTests/CatalogStateTest";
+// get feature/sale item data into state:
+import FetchInitItems from '../StateTests/FetchInitItems';
+import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from "../FilterBar";
-
+import ItemCard from '../ItemCard';
+// Product details is in PAGES directory:
+import ProductDetails from '../../pages/ProductDetails';
 import CartBar from "../CartBar";
 
 const App = () => {
+
+  // GET INITIAL ITEMS FROM SERVER INTO STATE, THEN FROM STATE INTO AN ARRAY THAT WE CAN MAP:
+  FetchInitItems();
+  let catalogItems = useSelector(parseInitialItems);
+  let loadStatus = useSelector(displayLoadState);
+  
+
   return (
     <Router>
       <PageStructure>
@@ -33,23 +38,47 @@ const App = () => {
         <MainWrap>
           <Switch>
             <Route exact path="/">
-              <CatalogStateTest />
-              <div>Home</div>
-              {testCartItems.map((item) => {
-                return (
-                  <CatalogItem
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    price={item.price}
-                    body_location={item.body_location}
-                    category={item.category}
-                    imageSrc={item.imageSrc}
-                    numInStock={item.numInStock}
-                    companyId={item.companyId}
-                  />
-                );
-              })}
+              <h2>Home</h2>
+              <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{display: 'flex', flexDirection: 'column'}}>Sale Items:
+                  {(loadStatus == 'complete') ? catalogItems.saleItems.map((item) => {
+                    return (
+                      <ItemCard
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      price={item.price}
+                      body_location={item.body_location}
+                      category={item.category}
+                      imageSrc={item.imageSrc}
+                      numInStock={item.numInStock}
+                      companyId={item.companyId}
+                      />
+                    );
+                  }) :
+                  <>
+                  </>}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'column'}}>Sale Items:
+                  {(loadStatus == 'complete') ? catalogItems.featuredItems.map((item) => {
+                    return (
+                      <ItemCard
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      price={item.price}
+                      body_location={item.body_location}
+                      category={item.category}
+                      imageSrc={item.imageSrc}
+                      numInStock={item.numInStock}
+                      companyId={item.companyId}
+                      />
+                    );
+                  }) :
+                  <>
+                  </>}
+                </div>
+              </div>
             </Route>
             {/* use queries instead of params here */}
             <Route path="/search">
@@ -59,7 +88,7 @@ const App = () => {
               <Category />
             </Route>
             <Route path="/product/:productId">
-              <div>Product details</div>
+              <ProductDetails></ProductDetails>
             </Route>
             <Route path="/seller/:sellerId">
               <div>Store</div>

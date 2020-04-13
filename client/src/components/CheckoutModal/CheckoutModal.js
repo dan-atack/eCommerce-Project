@@ -47,7 +47,7 @@ const CheckoutModal = () => {
   return (
     <Dialog
     open={false} 
-    onClose={console.log('cancelBookingProcess')}
+    //onClose={console.log('cancelBookingProcess')}
     >
       <Container className={classes.container}>
         <Title>Checkout</Title>
