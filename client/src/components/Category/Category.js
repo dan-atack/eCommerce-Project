@@ -26,7 +26,7 @@ const Category = () => {
           })}
         </>
       ) : (
-        ""
+        <Spinner size={50} />
       )}
     </>
   );
