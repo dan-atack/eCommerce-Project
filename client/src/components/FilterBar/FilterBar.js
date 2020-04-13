@@ -77,7 +77,7 @@ const FilterBar = () => {
         {Object.keys(filter.bodyLocation).map((location) => {
           const origin = "bodyLocation";
           return (
-            <li>
+            <li key={Math.random() * 10000000}>
               <input
                 type={"checkbox"}
                 name={`${location}`}
@@ -92,7 +92,7 @@ const FilterBar = () => {
       <ul>
         {" "}
         Category
-        <li>
+        <li key={Math.random() * 10000000}>
           <input
             type={"radio"}
             name={`category`}

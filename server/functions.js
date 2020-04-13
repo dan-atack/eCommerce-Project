@@ -1,19 +1,37 @@
 const items = require("./data/items.json");
 const companies = require("./data/companies.json");
-let types = [];
-const makeTypes = () => {
-  items.forEach((item) => {
-    types.push(item.category);
-  });
-};
-makeTypes();
-unique = (value, index, self) => {
-  return self.indexOf(value) === index;
-};
-console.log(types.filter(unique));
 
 // an array that will contain all the orders that have been completed
 let completedOrders = [];
+
+//Paul's code, displays all unique categories
+//
+// let types = [];
+// const makeTypes = () => {
+//   items.forEach((item) => {
+//     types.push(item.category);
+//   });
+// };
+// makeTypes();
+// unique = (value, index, self) => {
+//   return self.indexOf(value) === index;
+// };
+// console.log(types.filter(unique));
+
+
+const orderHistory = (req) => {
+  const {confirmation} = req.params;
+
+  // will be used to determine the position of the desired object in the array
+  let position;
+
+  completedOrders.forEach((order, index) => {
+    if (order.confirmation == confirmation) {
+    }
+  })
+
+  return (completedOrders[position]);
+}
 
 // function that stores a confirmation order and the order details in memory and sends back the confirmation number with a status 200
 const confirmPurchase = (req) => {
@@ -35,6 +53,10 @@ const confirmPurchase = (req) => {
 
   return { confirmation: random, status: 200 };
 };
+
+// ************************************************************************
+// CHANGES REQUIRED WHEN FRONT-END DONE
+// ************************************************************************
 
 // function that returns products related to the user's search query
 const getSearchResults = (req) => {
@@ -132,4 +154,5 @@ module.exports = {
   getCompanyProducts,
   getSearchResults,
   confirmPurchase,
+  orderHistory,
 };

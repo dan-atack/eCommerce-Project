@@ -6,16 +6,16 @@ function RonyTest() {
     const [companyItems, setCompanyItems] = useState([]);
 
     useEffect(() => {
-    // fetch('/products/search/fitness')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         // const {sale, feature} = data;
-    //         // setOnSale(sale);
-    //         // setFeatured(feature);
+    fetch('/history/351433')
+        .then(res => res.json())
+        .then(data => {
+            // const {sale, feature} = data;
+            // setOnSale(sale);
+            // setFeatured(feature);
 
-    //         setCompanyItems(data);
-    //         // console.log(data);
-    //     });
+            // setCompanyItems(data);
+            console.log(data);
+        })
 
     const test = {order:{
         cartItems: [

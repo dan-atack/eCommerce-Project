@@ -12,7 +12,7 @@ the "/products/search/:userInput" endpoint will sort through the products based 
 
 the "/purchase" endpoint will receive an object from the front end based on the contents of the user's cart once they have confirmed the purchase and will modify existing stock based on this information.
 
-
+the "/history/:confirmation" endpoint will receive a confirmation number from the user and filter through an array of past orders to return a specific order with the details of what items were purchased, in what quantity and for how much.
 
 Categories : 
 // 'Fitness',
