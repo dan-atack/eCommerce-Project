@@ -21,12 +21,13 @@ let completedOrders = [];
 
 const orderHistory = (req) => {
   const {confirmation} = req.params;
-
+  console.log('confId ', confirmation)
   // will be used to determine the position of the desired object in the array
   let position;
 
   completedOrders.forEach((order, index) => {
     if (order.confirmation == confirmation) {
+      position = index;
     }
   })
 
@@ -37,7 +38,11 @@ const orderHistory = (req) => {
 const confirmPurchase = (req) => {
   const { order } = req.body;
   const { cartItems } = order;
-
+  //removing the sensitive payment info, replacing with basic confirmation
+  const safeOrder = {
+    ...order, 
+    payment: 'Payment Confirmed',
+  }
   // changes the number in stock of the item(s) purchased
   cartItems.forEach((cartItem) => {
     items.forEach((item) => {
@@ -49,7 +54,7 @@ const confirmPurchase = (req) => {
   // creating a confirmation number which will be sent back to the user and stored in the server memory
   const random = Math.floor(Math.random() * 1000000);
 
-  completedOrders.push({ confirmation: random, order: { order } });
+  completedOrders.push({ confirmation: random, order: safeOrder });
 
   return { confirmation: random, status: 200 };
 };

@@ -21,10 +21,25 @@ export const removeItem = (id) => ({
 export const clearCart = () => ({
   type: "CLEAR_CART",
 });
+/// cart-status actions
+export const startPurchase = () => ({
+  type: "START-PURCHASE-PROCESS",
+});
+export const submitOrder = () => ({
+  type: "SUBMIT-ORDER",
+});
+export const submitOrderError = () => ({
+  type: "SUBMIT-ORDER-ERROR",
+});
+export const submitOrderSuccess = () => ({
+  type: "SUBMIT-ORDER-SUCCESS",
+});
+export const clearPurchase = () => ({
+  type: "CLEAR-PURCHASE",
+});
 
-// CATALOG ACTIONS:
 
-  // function for loading initial items into catalog and sorting them into sale and featured arrays:
+////CATALOG ACTIONS
 export const getInitItems = (items) => ({
   type: "GET_INITIAL_ITEMS",
   items,
@@ -46,5 +61,6 @@ export const filterItems = (filters) => ({
   type: "FILTER_ITEMS",
   filters,
 });
+
 
 // MORE ACTIONS GO HERE :)

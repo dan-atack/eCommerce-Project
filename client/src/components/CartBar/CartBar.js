@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from '../../actions';
+import { clearCart, startPurchase } from '../../actions';
 
+// import Spinner from '../Spinner';
 import CartItem from '../CartItem';
 
 const CartBar = () => {
-
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => Object.values(state.cartItems)) //if not array, change to array: Object.values(state)
+  const cartItems = useSelector((state) => Object.values(state.cartItems.items)) 
+  //changed to array via: Object.values(state)
 
   //totals up all prices*quantities
   const total = cartItems.reduce((sum, item) => {
     //removal of "$" & conversion from string to number. 
-    //Could be done on Redux addition of item?
     return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
   }, 0)
 
@@ -39,7 +39,7 @@ const CartBar = () => {
             id={item.id}
             name={item.name}
             price={item.price}
-            quantity={item.quantity} //created and modified in redux. Cannot exceed numInStock
+            quantity={item.quantity} //created and modified in redux. 
             stock={item.numInStock}
             imageSrc={item.imageSrc}
           />
@@ -51,8 +51,7 @@ const CartBar = () => {
         <CheckoutButton
           disabled={!(cartItems.length > 0)}
           onClick={()=> {
-            //open modal
-            //update some purchasing state.status to 'checkout'?
+            dispatch(startPurchase());//this change in status triggers checkout modal popup
           }}
         >
           Checkout
@@ -125,6 +124,9 @@ const CheckoutButton = styled.button`
   border: none;
   &:hover{
     cursor: pointer;
+  }
+  &:disabled{
+    background: gray;
   }
 `;
 

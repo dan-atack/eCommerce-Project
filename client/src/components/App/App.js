@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from 'react-redux';
 import GlobalStyles from "../../GlobalStyles";
 import CheckoutModal from '../CheckoutModal';
+import OrderInfo from '../OrderInfo';
 import Category from "../Category";
 // get feature/sale item data into state:
 import FetchInitItems from '../StateTests/FetchInitItems';
@@ -92,6 +93,9 @@ const App = () => {
             </Route>
             <Route path="/seller/:sellerId">
               <div>Store</div>
+            </Route>
+            <Route path="/order-confirm/:confirmId">
+              <OrderInfo />
             </Route>
           </Switch>
         </MainWrap>

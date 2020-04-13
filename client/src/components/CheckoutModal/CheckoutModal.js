@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,45 +9,40 @@ import DialogContent from '@material-ui/core/DialogContent';
 
 import ModalContent from './ModalContent';
 import ModalForm from './ModalForm';
+import { clearPurchase, } from '../../actions';
 
-import testCartItems from '../CartBar/test-cart-items';
 
-
+//styles for the modal elements(neccessary for material-ui modal)
 const useStyles = makeStyles({
   container: {
     margin: '0',
     padding: '0',
-    
-  },
-  table: {
-    margin: '1rem 0 2rem 0',
-  },
-  tableRow: {
-    borderBottom: '2px solid lightgray',
-  },
-  text: {
-    margin:'1rem .5rem 0 0',
   },
 });
 
-
 const CheckoutModal = () => {
+  const dispatch = useDispatch();
 
-  const cartItems = testCartItems;
-  // const dispatch = useDispatch();
-  //const cartItems = useSelector((state) => state.cartItems.items) //if not array, change to array: Object.values(state)
+  const cartItems = useSelector((state) => Object.values(state.cartItems.items)); 
+  //changed to array via: Object.values(state)
+  const status = useSelector((state) => state.cartItems.status);
 
   const total = cartItems.reduce((sum, item) => {
     //removal of "$" & conversion from string to number. 
-    //Could be done on Redux addition of item?
     return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
   }, 0)
 
   const classes = useStyles();
+// modal is opened when open prop is true, 
+// checkout button makes status === 'start-purchase'
   return (
     <Dialog
-    open={false} 
-    //onClose={console.log('cancelBookingProcess')}
+    open={
+      status === 'start-purchase'
+      || status === 'submitting-order'
+      || status === 'error'
+    } 
+    onClose={() => {dispatch(clearPurchase())}}
     >
       <Container className={classes.container}>
         <Title>Checkout</Title>
@@ -55,7 +50,7 @@ const CheckoutModal = () => {
         <DialogContent>
           {`${cartItems.length} item(s) Total: $${total}`}
         </DialogContent>
-        <ModalForm cartItems={cartItems} />
+        <ModalForm cartItems={cartItems} total={total} />
       </Container>
     </Dialog>
   )
