@@ -4,23 +4,41 @@ const companies = require("./data/companies.json");
 // an array that will contain all the orders that have been completed
 let completedOrders = [];
 
-//Paul's code, displays all unique categories
-//
-// let types = [];
-// const makeTypes = () => {
-//   items.forEach((item) => {
-//     types.push(item.category);
-//   });
-// };
-// makeTypes();
-// unique = (value, index, self) => {
-//   return self.indexOf(value) === index;
-// };
-// console.log(types.filter(unique));
+// returns the information of the specified item
+const getItemInformation = (req) => {
+  const {itemId} = req.params;
+
+  // wiwll be used to determine the position of the required item
+  let position;
+
+  items.forEach((item, index) => {if (item.id == itemId) position = index})
+
+  return(items[position]);
+}
+
+// returns the categories in an array
+const getCategories = () => {
+  let types = [];
+
+  const makeTypes = () => {
+    items.forEach((item) => {
+      types.push(item.category);
+    });
+  };
+
+  makeTypes();
+
+  unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
+
+  return(types.filter(unique));
+}
 
 
 const orderHistory = (req) => {
   const {confirmation} = req.params;
+<<<<<<< Updated upstream
   console.log('confId ', confirmation)
   // will be used to determine the position of the desired object in the array
   let position;
@@ -30,6 +48,13 @@ const orderHistory = (req) => {
       position = index;
     }
   })
+=======
+
+  // will be used to determine the position of the required object in the array
+  let position;
+
+  completedOrders.forEach((order, index) => {if (order.confirmation == confirmation) position = index})
+>>>>>>> Stashed changes
 
   return (completedOrders[position]);
 }
@@ -160,4 +185,6 @@ module.exports = {
   getSearchResults,
   confirmPurchase,
   orderHistory,
+  getCategories,
+  getItemInformation,
 };

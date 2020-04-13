@@ -5,7 +5,9 @@ const { getFeaturedItems,
         getCompanyProducts,
         getSearchResults,
         confirmPurchase,
-        orderHistory,} = require("./functions");
+        orderHistory,
+        getCategories,
+        getItemInformation,} = require("./functions");
 
 // the endpoint for the home page of the app
 router.get("/homePage", (req, res) => res.send(getFeaturedItems()));
@@ -24,5 +26,11 @@ router.post("/purchase", (req, res) => res.json(confirmPurchase(req)));
 
 // the endpoint for returning the information of a past order based on a confirmation number
 router.get("/history/:confirmation", (req, res) => res.send(orderHistory(req)));
+
+// the endpoint who's only purpose is to return an array of all the available categories
+router.get("/list/categories", (req, res) => res.send(getCategories()));
+
+// the endpoint for returning a specific item's information
+router.get("/item/:itemId", (req, res) => res.send(getItemInformation(req)));
 
 module.exports = router;

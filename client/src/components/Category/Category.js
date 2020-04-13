@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import ProductDetails from "../ProductCard";
 import Spinner from '../Spinner';
 
+import Spinner from "../Spinner";
+
 const Category = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState(null);
@@ -13,7 +15,8 @@ const Category = () => {
       .then((res) => {
         setProducts(res);
       });
-  }, []);
+  }, [categoryName]);
+  
   // conditional rendering based on fetch coming through.
   // Probably want to make a loading component for the else
   return (

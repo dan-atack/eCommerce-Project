@@ -14,6 +14,10 @@ the "/purchase" endpoint will receive an object from the front end based on the 
 
 the "/history/:confirmation" endpoint will receive a confirmation number from the user and filter through an array of past orders to return a specific order with the details of what items were purchased, in what quantity and for how much.
 
+the "/list/categories" endpoint will simply return an array of all the categories once requested.
+
+the "/item/:itemId" endpoint will return the information of the specified item.
+
 Categories : 
 // 'Fitness',
 // 'Medical',

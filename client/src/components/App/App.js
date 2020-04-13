@@ -10,9 +10,13 @@ import Category from "../Category";
 import FetchInitItems from '../StateTests/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from "../FilterBar";
+<<<<<<< Updated upstream
 import ItemCard from '../ItemCard';
 // Product details is in PAGES directory:
 import ProductDetails from '../../pages/ProductDetails';
+=======
+import Navbar from "../Navbar";
+>>>>>>> Stashed changes
 import CartBar from "../CartBar";
 
 const App = () => {
@@ -29,7 +33,7 @@ const App = () => {
         <GlobalStyles />
         <CheckoutModal/>
         <HeaderWrap>
-          <div>head</div>
+          <div><Navbar /></div>
         </HeaderWrap>
 
         <FilterBarWrap>
@@ -94,8 +98,16 @@ const App = () => {
             <Route path="/seller/:sellerId">
               <div>Store</div>
             </Route>
+<<<<<<< Updated upstream
             <Route path="/order-confirm/:confirmId">
               <OrderInfo />
+=======
+            <Route path="/about">
+              <div>About us</div> 
+            </Route>
+            <Route path="/contact">
+              <div>Contact us</div>
+>>>>>>> Stashed changes
             </Route>
           </Switch>
         </MainWrap>
