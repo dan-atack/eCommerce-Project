@@ -4,7 +4,10 @@ import ProductDetails from "../ProductCard";
 import Spinner from '../Spinner';
 <<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
 import Spinner from "../Spinner";
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 

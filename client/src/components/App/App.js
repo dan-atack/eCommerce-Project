@@ -12,7 +12,7 @@ import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from "../FilterBar";
 import ItemCard from '../ItemCard';
 // Product details is in PAGES directory:
-import ProductDetails from '../../pages/ProductDetails';
+import ProductDetails from '../../Pages/ProductDetails';
 import Navbar from "../Navbar";
 import CartBar from "../CartBar";
 
@@ -43,7 +43,7 @@ const App = () => {
               <h2>Home</h2>
               <div style={{display: 'flex', flexDirection: 'row'}}>
                 <div style={{display: 'flex', flexDirection: 'column'}}>Sale Items:
-                  {(loadStatus == 'complete') ? catalogItems.saleItems.map((item) => {
+                  {(loadStatus === 'complete') ? catalogItems.saleItems.map((item) => {
                     return (
                       <ItemCard
                       key={item.id}

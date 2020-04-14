@@ -38,23 +38,13 @@ const getCategories = () => {
 
 const orderHistory = (req) => {
   const {confirmation} = req.params;
-<<<<<<< Updated upstream
-  console.log('confId ', confirmation)
-  // will be used to determine the position of the desired object in the array
-  let position;
-
-  completedOrders.forEach((order, index) => {
-    if (order.confirmation == confirmation) {
-      position = index;
-    }
-  })
-=======
 
   // will be used to determine the position of the required object in the array
   let position;
 
-  completedOrders.forEach((order, index) => {if (order.confirmation == confirmation) position = index})
->>>>>>> Stashed changes
+  completedOrders.forEach((order, index) => {
+    if (order.confirmation == confirmation) position = index
+  })
 
   return (completedOrders[position]);
 }
