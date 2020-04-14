@@ -7,7 +7,8 @@ const { getFeaturedItems,
         confirmPurchase,
         orderHistory,
         getCategories,
-        getItemInformation,} = require("./functions");
+        getItemInformation,
+        getCompanyName,} = require("./functions");
 
 // the endpoint for the home page of the app
 router.get("/homePage", (req, res) => res.send(getFeaturedItems()));
@@ -16,7 +17,10 @@ router.get("/homePage", (req, res) => res.send(getFeaturedItems()));
 router.get("/products/:category", (req, res) => res.send(sortCategory(req)));
 
 // the endpoint for sorting by company name
-router.get("/products/sort/:companyName", (req, res) => res.send(getCompanyProducts(req)));
+router.get("/products/sort/:companyId", (req, res) => res.send(getCompanyProducts(req)));
+
+// the endpoint for returning the company's name based on it's ID
+router.get("/companyName/:companyId", (req, res) => res.send(getCompanyName(req)))
 
 // the endpoint for sorting by user's search query
 router.get("/products/search/:userInput", (req, res) => res.send(getSearchResults(req)));

@@ -14,6 +14,8 @@ import FetchInitItems from '../StateTests/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from '../FilterBar';
 import ItemCard from '../ItemCard';
+import CompanyPage from '../CompanyPage';
+
 // Product details is in PAGES directory:
 import ProductDetails from '../../pages/ProductDetails';
 import Navbar from '../Navbar';
@@ -40,6 +42,7 @@ const App = () => {
 
         <MainWrap>
           <Switch>
+
             <Route exact path='/'>
               <h2>Home</h2>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -47,19 +50,7 @@ const App = () => {
                   Sale Items:
                   {loadStatus === 'complete' ? (
                     catalogItems.saleItems.map((item) => {
-                      return (
-                        <ItemCard
-                          key={item.id}
-                          id={item.id}
-                          name={item.name}
-                          price={item.price}
-                          body_location={item.body_location}
-                          category={item.category}
-                          imageSrc={item.imageSrc}
-                          numInStock={item.numInStock}
-                          companyId={item.companyId}
-                        />
-                      );
+                      return <ItemCard item={item} />
                     })
                   ) : (
                     <></>
@@ -69,19 +60,7 @@ const App = () => {
                   Featured Items:
                   {loadStatus == 'complete' ? (
                     catalogItems.featuredItems.map((item) => {
-                      return (
-                        <ItemCard
-                          key={item.id}
-                          id={item.id}
-                          name={item.name}
-                          price={item.price}
-                          body_location={item.body_location}
-                          category={item.category}
-                          imageSrc={item.imageSrc}
-                          numInStock={item.numInStock}
-                          companyId={item.companyId}
-                        />
-                      );
+                      return <ItemCard item={item} />
                     })
                   ) : (
                     <></>
@@ -93,24 +72,35 @@ const App = () => {
             <Route path='/search'>
               <div>Search results</div>
             </Route>
+
             <Route path='/category/:categoryName'>
               <Category />
             </Route>
+
             <Route path='/product/:productId'>
-              <ProductDetails></ProductDetails>
+              <ProductDetails />
             </Route>
+
             <Route path='/seller/:sellerId'>
               <div>Store</div>
             </Route>
+
             <Route path='/order-confirm/:confirmId'>
               <OrderInfo />
             </Route>
+
             <Route path='/about'>
               <div>About us</div>
             </Route>
+
             <Route path='/contact'>
               <div>Contact us</div>
             </Route>
+
+            <Route path='/company/:companyId'>
+              <CompanyPage />
+            </Route>
+
           </Switch>
         </MainWrap>
 

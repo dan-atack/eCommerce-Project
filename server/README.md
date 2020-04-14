@@ -18,6 +18,8 @@ the "/list/categories" endpoint will simply return an array of all the categorie
 
 the "/item/:itemId" endpoint will return the information of the specified item.
 
+the "/companyName/:companyId" returns a company's name based on its ID.
+
 Categories : 
 // 'Fitness',
 // 'Medical',

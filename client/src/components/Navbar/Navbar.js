@@ -25,7 +25,7 @@ function Navbar() {
             <Link to="/"><NavContent>Home</NavContent></Link>
 
             {/* the dropdown menu. The items are generated separately in another component through array.map() */}
-            {/* had to be done as Dropdown.Toggle instead of DropdownButton to allow for styling */}
+            {/* had to be done as Dropdown.Toggle (old method) instead of DropdownButton (new method) to allow for styling */}
             <Dropdown>
                 <Dropdown.Toggle as={NavContent}>
                     Products

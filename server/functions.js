@@ -96,25 +96,28 @@ const getSearchResults = (req) => {
   return getSearchResults;
 };
 
-// function that returns the products filtered by company name
+// function that returns the products filtered by company ID
 const getCompanyProducts = (req) => {
-  const { companyName } = req.params;
-
-  // will be set to the company's ID from the companies.json file
-  let companyId;
-
-  // uses the company's name to find the company's ID
-  companies.forEach((company) => {
-    if (company.name === companyName) companyId = company.id;
-  });
+  const { companyId } = req.params;
 
   // filters through the items to find those released by that specific company
   let filteredProducts = items.filter((item) => {
-    if (item.companyId === companyId) return item;
+    if (item.companyId == companyId) return item;
   });
 
   return filteredProducts;
 };
+
+// function that returns the company's name based on its ID
+const getCompanyName = (req) => {
+  const { companyId } = req.params;
+
+  let companyName;
+
+  companies.forEach(company => {if (company.id == companyId) companyName = company.name})
+
+  return {companyName: companyName};
+}
 
 // returns an array of the 3 items on special sorted by highest stock and 3 random items as featured items
 const getFeaturedItems = () => {
@@ -177,4 +180,5 @@ module.exports = {
   orderHistory,
   getCategories,
   getItemInformation,
+  getCompanyName,
 };

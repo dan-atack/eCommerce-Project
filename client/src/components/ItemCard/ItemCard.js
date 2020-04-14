@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProductDetails } from '../../actions';
 import AddToCartButton from '../AddToCartButton';
 
-const ItemCard = (props) => {
-
+const ItemCard = ({item}) => {
   const dispatch = useDispatch();
-  const { id, name, price, body_location, category, imageSrc, numInStock, companyId } = props;
+
+  const { id, name, price, body_location, category, imageSrc, numInStock, companyId } = item;
+
   return (
     <Wrapper onClick={() => dispatch(setProductDetails(id))}
     to={`/product/${id}`}>
@@ -18,6 +19,7 @@ const ItemCard = (props) => {
     </Wrapper>
   );
 };
+
 const Wrapper = styled(Link)`
   display: flex;
   flex-direction: column;
