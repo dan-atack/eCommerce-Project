@@ -29,6 +29,7 @@ const Wrapper = styled(Link)`
   text-decoration: none;
   border-radius: 5px;
   transition: 250ms ease-in-out;
+  background: whitesmoke;
   &:hover {
     text-decoration: underline;
     transform: scale(1.01);

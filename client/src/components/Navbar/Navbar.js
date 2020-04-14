@@ -22,38 +22,32 @@ function Navbar() {
     return (
         <NavWrapper>
             <Logo src={logo} alt="logo" />
-            <NavContent><Link to="/">Home</Link></NavContent>
+            <Link to="/"><NavContent>Home</NavContent></Link>
 
             {/* the dropdown menu. The items are generated separately in another component through array.map() */}
             {/* had to be done as Dropdown.Toggle instead of DropdownButton to allow for styling */}
-            <NavContent>
-                <Dropdown>
-                    <Dropdown.Toggle as="div">
-                        Products
-                    </Dropdown.Toggle>
-                        
-                    <Dropdown.Menu>
-                        {categories.map(category => {
-                            return <NavCategory category={category} />
-                        })}
-                    </Dropdown.Menu>
-                </Dropdown>
-            </NavContent>
+            <Dropdown>
+                <Dropdown.Toggle as={NavContent}>
+                    Products
+                </Dropdown.Toggle>
+                    
+                <Dropdown.Menu>
+                    {categories.map(category => {
+                        return <NavCategory category={category} />
+                    })}
+                </Dropdown.Menu>
+            </Dropdown>
 
-            <NavContent><Link to="/order-confirm/">Order History</Link></NavContent>
-            <NavContent><Link to="/About">About Us</Link></NavContent>
-            <NavContent><Link to="/Contact">Contact Us</Link></NavContent>
+            <Link to="/order-confirm/"><NavContent>Order History</NavContent></Link>
         </NavWrapper>
     )
 }
 
 const NavContent = styled.div `
-    position: relative;
-    background: white;
-    margin-top: 47px;
+    background: whitesmoke;
     padding: 10px;
-    /* margin-bottom: 1px; */
     border: red 1px solid;
+    margin: 35px 15px 0px;
 `
 
 const Logo = styled.img `
@@ -64,12 +58,9 @@ const Logo = styled.img `
 
 const NavWrapper = styled.div `
     display: flex;
-    justify-content: space-evenly;
-    align-content: center;
-    bottom: 0;
-    width: 100vw;
-
-    /* background: red; */
+    position: relative;
+    justify-content: flex-end;
+    z-index: 1;
 
     a {
         text-decoration: none;

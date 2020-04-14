@@ -76,6 +76,7 @@ const Header = styled.div`
     0px 4px 4px rgba(0, 0, 0, 0.5), 
     1px 2px 2px rgba(0, 0, 0, 0.75);
   }
+
 `;
 const ItemCount = styled.div`
   display: flex;
@@ -110,10 +111,11 @@ const Total = styled.div`
   bottom: 0;
   margin: 1rem .5rem 1rem 0;
   font-weight: bold;
-  color: whitesmoke;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 `;
 const CheckoutButton = styled.button`
   border-radius: 10px;

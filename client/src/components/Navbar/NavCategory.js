@@ -31,7 +31,7 @@ const Category = styled.div `
     background: whitesmoke;
 
     &:hover {
-        background: gray;
+        background: lightgray;
     }
 `
 
