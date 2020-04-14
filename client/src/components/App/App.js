@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+
 import GlobalStyles from '../../GlobalStyles';
+import Footer from '../Footer';
 import CheckoutModal from '../CheckoutModal';
 import OrderInfo from '../OrderInfo';
 import Category from '../Category';
+
 // get feature/sale item data into state:
 import FetchInitItems from '../StateTests/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
@@ -118,7 +121,7 @@ const App = () => {
         </CheckoutBarWrap>
 
         <FooterWrap>
-          <div>foot</div>
+          <Footer />
         </FooterWrap>
       </PageStructure>
     </Router>
@@ -135,30 +138,30 @@ const PageStructure = styled.div`
     'head head head'
     'sideleft main sideright'
     'foot foot foot';
-  grid-template-rows: 1fr 6fr .1fr;
+  grid-template-rows: 1fr 6fr .3fr;
   grid-template-columns: 1fr 6fr 2fr;
 `;
 const HeaderWrap = styled.div`
   grid-area: head;
-  background: grey;
+  background: #2E4052;
 `;
 const FilterBarWrap = styled.div`
   grid-area: sideleft;
-  background: darkgray;
+  background: #BDD9BF;
 `;
 const MainWrap = styled.div`
   grid-area: main;
-  background: whitesmoke;
   overflow-y: auto;
   overflow-x: hidden;
+  background: #FFC857;
 `;
 const CheckoutBarWrap = styled.div`
   grid-area: sideright;
-  background: lightslategrey;
+  background: whitesmoke;
 `;
 const FooterWrap = styled.div`
   grid-area: foot;
-  background: grey;
+  background: #412234;
 `;
 
 export default App;
