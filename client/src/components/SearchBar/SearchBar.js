@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import SearchList from '../SearchList';
 import { useHistory } from 'react-router-dom';
 
@@ -25,19 +26,42 @@ const SearchBar = () => {
   };
   return (
     <>
-      <form autocomplete="off">
-        <input
+      <StyledForm autocomplete="off">
+        <input type="text" style={{ display: 'none' }} />
+        <input type="password" style={{ display: 'none' }} />
+        <StyledInput
           type="text"
           onChange={(e) => setSearchInput(e.target.value)}
           name="searchTerm"
-        ></input>
-        <button type="submit" onClick={handleSearch}>
+          placeholder="What are you shopping for?"
+        ></StyledInput>
+        <StyledButton type="submit" onClick={handleSearch}>
           Search
-        </button>
-      </form>
+        </StyledButton>
+      </StyledForm>
       <SearchList returnValues={returnValues} />
     </>
   );
 };
 
+const StyledInput = styled.input`
+  width: 75%;
+  padding: 4px;
+  font-size: 1rem;
+  height: 100%;
+  &:focus {
+    outline: none;
+  }
+`;
+const StyledButton = styled.button`
+  width: 15%;
+  padding: 4px;
+  margin-left: 5px;
+  height: 100%;
+`;
+const StyledForm = styled.form`
+  height: 30px;
+  display: flex;
+  align-items: center;
+`;
 export default SearchBar;

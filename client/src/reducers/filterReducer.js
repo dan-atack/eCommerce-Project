@@ -2,17 +2,17 @@ const initialState = { baseItems: [], displayItems: [] };
 
 export default function filterReducer(state = initialState, action) {
   switch (action.type) {
+    // All relevant items post search/category
     case 'SET_SEARCH_RESULTS': {
       console.log(action);
       return { ...state, baseItems: action.products };
     }
+    // Items to display (after filters for example)
     case 'SET_DISPLAY_ITEMS': {
       console.log(action);
       return { ...state, displayItems: action.products };
     }
     case 'FILTER_ITEMS': {
-      // using dummy data
-      console.log(state.displayItems);
       if (state.baseItems) {
         const filteredItems = state.baseItems.filter((item) => {
           // filter out which values are 'true' from the action.filters object.

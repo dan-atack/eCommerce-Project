@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import configureStore from './store';
 import { Provider } from 'react-redux';
-import App from "./components/App";
+import App from './components/App';
 
 // create the store with function exported from reducers file:
 
@@ -14,5 +14,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
