@@ -25,7 +25,7 @@ function CompanyPage() {
             <Router>
             <h2>All products by {name} :</h2>
             {companyItems.map(item => {
-                return <ItemCard item={item} />
+                return <ItemCard product={item} />
             })}
             </Router>
         </div>

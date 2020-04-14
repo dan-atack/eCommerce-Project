@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProductDetails } from '../../actions';
 import AddToCartButton from '../AddToCartButton';
 
-const ItemCard = ({item}) => {
+const ItemCard = ({product}) => {
   const dispatch = useDispatch();
 
-  const { id, name, price, body_location, category, imageSrc, numInStock, companyId } = item;
+  const { id, name, price, body_location, category, imageSrc, numInStock, companyId } = product;
 
   return (
     <Wrapper onClick={() => dispatch(setProductDetails(id))}

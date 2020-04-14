@@ -18,13 +18,14 @@ express()
     );
     next();
   })
+  // present by default
   .use(morgan('tiny'))
   .use(express.static('./server/assets'))
   .use(bodyParser.json())
   .use(express.urlencoded({ extended: false }))
   .use('/', express.static(__dirname + '/'))
 
-  // endpoints
+  // endpoints 2.0!
   .use(require("./endpoints/company-endpoints"))
   .use(require("./endpoints/item-endpoints"))
   .use(require("./endpoints/purchase-endpoints"))

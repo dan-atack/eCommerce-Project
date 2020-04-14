@@ -29,7 +29,7 @@ const SearchResults = () => {
       <div>Results for {searchTerm}</div>
       {displayItems
         ? displayItems.map((item) => {
-            return <ItemCard item={item} />;
+            return <ItemCard product={item} />;
           })
         : ''}
     </>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductDetails from '../ProductCard';
-import Spinner from '../Spinner';
+import ItemCard from '../../components/ItemCard';
+import Spinner from '../../components/Spinner';
 
 const Category = () => {
   const { categoryName } = useParams();
@@ -24,7 +24,7 @@ const Category = () => {
           <h2>{categoryName}</h2>
           {products.map((product) => {
             // to be changed with item card component
-            return <ProductDetails key={product.id} product={product} />;
+            return <ItemCard key={product.id} product={product} />;
           })}
         </>
       ) : (

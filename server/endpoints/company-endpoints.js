@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const {getCompanyProducts, getCompanyName} = require('../functions/company-functions');
 
-// the endpoint for sorting by company name
+// the endpoint for sorting by company Id
 router.get("/products/sort/:companyId", (req, res) => res.send(getCompanyProducts(req)));
 
 // the endpoint for returning the company's name based on it's ID

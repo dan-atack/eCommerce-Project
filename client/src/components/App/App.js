@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
 
 import GlobalStyles from '../../GlobalStyles';
 import Footer from '../Footer';
 import CheckoutModal from '../CheckoutModal';
 import OrderInfo from '../OrderInfo';
-import Category from '../Category';
+import Category from '../../pages/Category';
 
 // get feature/sale item data into state:
-import FetchInitItems from '../StateTests/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from '../FilterBar';
-import ItemCard from '../ItemCard';
 import CompanyPage from '../CompanyPage';
+import Homepage from '../Homepage';
 
 // Product details is in PAGES directory:
 import ProductDetails from '../../pages/ProductDetails';
@@ -25,11 +23,7 @@ import SearchBar from '../SearchBar';
 import SearchResults from '../../pages/SearchResults';
 
 const App = () => {
-  // GET INITIAL ITEMS FROM SERVER INTO STATE, THEN FROM STATE INTO AN ARRAY THAT WE CAN MAP:
-  FetchInitItems();
-  let catalogItems = useSelector(parseInitialItems);
-  let loadStatus = useSelector(displayLoadState);
-
+  
   return (
     <Router>
       <PageStructure>
@@ -47,29 +41,7 @@ const App = () => {
           <SearchBar />
           <Switch>
             <Route exact path="/">
-              <h2>Home</h2>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  Sale Items:
-                  {loadStatus === 'complete' ? (
-                    catalogItems.saleItems.map((item) => {
-                      return <ItemCard item={item} />;
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  Featured Items:
-                  {loadStatus == 'complete' ? (
-                    catalogItems.featuredItems.map((item) => {
-                      return <ItemCard item={item} />;
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </div>
+              <Homepage />
             </Route>
             {/* use queries instead of params here */}
             <Route path="/search/:searchTerm">
