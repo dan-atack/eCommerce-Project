@@ -61,7 +61,7 @@ const App = () => {
                   <>
                   </>}
                 </div>
-                <div style={{display: 'flex', flexDirection: 'column'}}>Sale Items:
+                <div style={{display: 'flex', flexDirection: 'column'}}>Featured Items:
                   {(loadStatus == 'complete') ? catalogItems.featuredItems.map((item) => {
                     return (
                       <ItemCard

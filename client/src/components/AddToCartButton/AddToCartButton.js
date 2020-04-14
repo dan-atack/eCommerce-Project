@@ -15,13 +15,15 @@ function AddToCartButton({item}) {
 };
 
 const StyledButton = styled.button`
-    color: ${COLORS.addToCartPink};
+    color: whitesmoke;
     font-size: 24px;
-    background-color: rgb(224, 60, 96);
+    background-color: ${COLORS.addToCartPink};
     height: 64px;
     width: 174px;
+    margin: 24px;
     border-radius: 8px;
     border: 1px solid ${COLORS.borderNoire};
+    grid-area: buy;
 `
 
 export default AddToCartButton;

@@ -8973,6 +8973,7 @@ prompts@^2.0.1:
     sisteransi "^1.0.3"
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 prop-types-extra@^1.1.0:
   version "1.1.1"
@@ -8982,6 +8983,8 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
