@@ -22,9 +22,9 @@ const Category = () => {
       {products ? (
         <>
           <h2>{categoryName}</h2>
-          {products.map((product) => {
+          {products.map((item) => {
             // to be changed with item card component
-            return <ItemCard key={product.id} product={product} />;
+            return <ItemCard key={item.id} product={item} />;
           })}
         </>
       ) : (

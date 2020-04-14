@@ -23,7 +23,6 @@ import SearchBar from '../SearchBar';
 import SearchResults from '../../pages/SearchResults';
 
 const App = () => {
-  
   return (
     <Router>
       <PageStructure>
@@ -40,39 +39,39 @@ const App = () => {
         <MainWrap>
           <SearchBar />
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <Homepage />
             </Route>
             {/* use queries instead of params here */}
-            <Route path="/search/:searchTerm">
+            <Route path='/search/:searchTerm'>
               <SearchResults />
             </Route>
 
-            <Route path="/category/:categoryName">
+            <Route path='/category/:categoryName'>
               <Category />
             </Route>
 
-            <Route path="/product/:productId">
+            <Route path='/product/:productId'>
               <ProductDetails />
             </Route>
 
-            <Route path="/seller/:sellerId">
+            <Route path='/seller/:sellerId'>
               <div>Store</div>
             </Route>
 
-            <Route path="/order-confirm/:confirmId">
+            <Route path='/order-confirm/:confirmId'>
               <OrderInfo />
             </Route>
 
-            <Route path="/about">
+            <Route path='/about'>
               <div>About us</div>
             </Route>
 
-            <Route path="/contact">
+            <Route path='/contact'>
               <div>Contact us</div>
             </Route>
 
-            <Route path="/company/:companyId">
+            <Route path='/company/:companyId'>
               <CompanyPage />
             </Route>
           </Switch>
@@ -116,6 +115,14 @@ const MainWrap = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   background: #ffc857;
+<<<<<<< Updated upstream
+=======
+  background: whitesmoke;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+>>>>>>> Stashed changes
 `;
 const CheckoutBarWrap = styled.div`
   grid-area: sideright;

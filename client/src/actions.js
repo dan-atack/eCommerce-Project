@@ -48,10 +48,18 @@ export const updateLoadStatus = (status) => ({
   type: 'UPDATE_LOAD_STATUS',
   status,
 });
+export const updateDetailLoadStatus = (status) => ({
+  type: 'UPDATE_DETAIL_LOAD_STATUS',
+  status,
+});
 // load one item's info into 'Product Details' category; used in tandem with a selector to render product info details page:
-export const setProductDetails = (productId) => ({
-  type: 'SET_PRODUCT_DETAILS',
-  productId,
+export const setProductDetailsFromCard = (item) => ({
+  type: 'SET_PRODUCT_DETAILS_FROM_CARD',
+  item,
+});
+export const setProductDetailsFromFetch = (item) => ({
+  type: 'SET_PRODUCT_DETAILS_FROM_FETCH',
+  item,
 });
 
 // FILTER ACTIONS:
