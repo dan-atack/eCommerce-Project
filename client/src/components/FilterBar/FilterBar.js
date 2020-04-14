@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { filterItems } from "../../actions";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { filterItems } from '../../actions';
 
 const FilterBar = () => {
   const dispatch = useDispatch();
@@ -31,12 +31,14 @@ const FilterBar = () => {
     dispatch(filterItems(filter));
   }, [filter]);
   // function to handle checkboxes (body location) filters
-  const handleCheckbox = (e, origin) => {
-    console.log(origin);
+  const handleCheckbox = (e) => {
     const key = e.target.name;
     setFilter({
       ...filter,
-      [origin]: { ...filter[origin], [key]: e.target.checked },
+      bodyLocation: {
+        ...filter['bodyLocation'],
+        [key]: !filter['bodyLocation'][key],
+      },
     });
     return;
   };
@@ -54,7 +56,7 @@ const FilterBar = () => {
   const handleRadio = (e, origin) => {
     const key = e.target.value;
     console.log(key);
-    if (key === "All") {
+    if (key === 'All') {
       setFilter({
         ...filter,
         category: { ...categoryDefault },
@@ -70,19 +72,18 @@ const FilterBar = () => {
   };
   return (
     <div>
-      {" "}
+      {' '}
       <ul>
-        {" "}
+        {' '}
         Body Location
         {Object.keys(filter.bodyLocation).map((location) => {
-          const origin = "bodyLocation";
           return (
             <li key={Math.random() * 10000000}>
               <input
-                type={"checkbox"}
+                type={'checkbox'}
                 name={`${location}`}
-                onChange={(e) => handleCheckbox(e, origin)}
-                checked={filter.bodyLocation.location}
+                onChange={handleCheckbox}
+                checked={filter['bodyLocation'][location]}
               ></input>
               <label for={`${location}`}>{location}</label>
             </li>
@@ -90,24 +91,24 @@ const FilterBar = () => {
         })}
       </ul>
       <ul>
-        {" "}
+        {' '}
         Category
         <li key={Math.random() * 10000000}>
           <input
-            type={"radio"}
+            type={'radio'}
             name={`category`}
             value="All"
             onChange={(e) => handleRadio(e)}
             // checked={true}
           ></input>
-          <label for={"All"}>All</label>
+          <label for={'All'}>All</label>
         </li>
         {Object.keys(filter.category).map((location) => {
-          const origin = "category";
+          const origin = 'category';
           return (
             <li>
               <input
-                type={"radio"}
+                type={'radio'}
                 name={`category`}
                 value={location}
                 onChange={(e) => handleRadio(e, origin)}

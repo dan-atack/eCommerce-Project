@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import SearchList from "../SearchList";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import SearchList from '../SearchList';
+import { useHistory } from 'react-router-dom';
 
 const SearchBar = () => {
   const history = useHistory();
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState('');
   const [returnValues, setReturnValues] = useState(null);
   useEffect(() => {
     if (searchInput.length < 2) {
@@ -25,7 +25,7 @@ const SearchBar = () => {
   };
   return (
     <>
-      <form>
+      <form autocomplete="off">
         <input
           type="text"
           onChange={(e) => setSearchInput(e.target.value)}
