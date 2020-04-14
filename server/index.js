@@ -24,7 +24,9 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use('/', express.static(__dirname + '/'))
 
-  //contains all the endpoints (for now)
-  .use(require("./endpoints"))
+  // endpoints
+  .use(require("./endpoints/company-endpoints"))
+  .use(require("./endpoints/item-endpoints"))
+  .use(require("./endpoints/purchase-endpoints"))
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
