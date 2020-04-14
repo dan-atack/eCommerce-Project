@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductDetails from "../ProductCard";
 import Spinner from '../Spinner';
-<<<<<<< Updated upstream
 
-<<<<<<< Updated upstream
-import Spinner from "../Spinner";
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 const Category = () => {
   const { categoryName } = useParams();

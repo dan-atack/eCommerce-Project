@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import GlobalStyles from "../../GlobalStyles";
+import GlobalStyles from '../../GlobalStyles';
 import CheckoutModal from '../CheckoutModal';
 import OrderInfo from '../OrderInfo';
-import Category from "../Category";
+import Category from '../Category';
 // get feature/sale item data into state:
 import FetchInitItems from '../StateTests/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
-import FilterBar from "../FilterBar";
+import FilterBar from '../FilterBar';
 import ItemCard from '../ItemCard';
 // Product details is in PAGES directory:
 import ProductDetails from '../../Pages/ProductDetails';
-import Navbar from "../Navbar";
-import CartBar from "../CartBar";
+import Navbar from '../Navbar';
+import CartBar from '../CartBar';
 
 const App = () => {
-
   // GET INITIAL ITEMS FROM SERVER INTO STATE, THEN FROM STATE INTO AN ARRAY THAT WE CAN MAP:
   FetchInitItems();
   let catalogItems = useSelector(parseInitialItems);
   let loadStatus = useSelector(displayLoadState);
-  
 
   return (
     <Router>
       <PageStructure>
         <GlobalStyles />
-        <CheckoutModal/>
+        <CheckoutModal />
         <HeaderWrap>
-          <div><Navbar /></div>
+          <div>
+            <Navbar />
+          </div>
         </HeaderWrap>
 
         <FilterBarWrap>
@@ -39,69 +39,75 @@ const App = () => {
 
         <MainWrap>
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <h2>Home</h2>
-              <div style={{display: 'flex', flexDirection: 'row'}}>
-                <div style={{display: 'flex', flexDirection: 'column'}}>Sale Items:
-                  {(loadStatus === 'complete') ? catalogItems.saleItems.map((item) => {
-                    return (
-                      <ItemCard
-                      key={item.id}
-                      id={item.id}
-                      name={item.name}
-                      price={item.price}
-                      body_location={item.body_location}
-                      category={item.category}
-                      imageSrc={item.imageSrc}
-                      numInStock={item.numInStock}
-                      companyId={item.companyId}
-                      />
-                    );
-                  }) :
-                  <>
-                  </>}
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  Sale Items:
+                  {loadStatus === 'complete' ? (
+                    catalogItems.saleItems.map((item) => {
+                      return (
+                        <ItemCard
+                          key={item.id}
+                          id={item.id}
+                          name={item.name}
+                          price={item.price}
+                          body_location={item.body_location}
+                          category={item.category}
+                          imageSrc={item.imageSrc}
+                          numInStock={item.numInStock}
+                          companyId={item.companyId}
+                        />
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
                 </div>
-                <div style={{display: 'flex', flexDirection: 'column'}}>Featured Items:
-                  {(loadStatus == 'complete') ? catalogItems.featuredItems.map((item) => {
-                    return (
-                      <ItemCard
-                      key={item.id}
-                      id={item.id}
-                      name={item.name}
-                      price={item.price}
-                      body_location={item.body_location}
-                      category={item.category}
-                      imageSrc={item.imageSrc}
-                      numInStock={item.numInStock}
-                      companyId={item.companyId}
-                      />
-                    );
-                  }) :
-                  <>
-                  </>}
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  Featured Items:
+                  {loadStatus == 'complete' ? (
+                    catalogItems.featuredItems.map((item) => {
+                      return (
+                        <ItemCard
+                          key={item.id}
+                          id={item.id}
+                          name={item.name}
+                          price={item.price}
+                          body_location={item.body_location}
+                          category={item.category}
+                          imageSrc={item.imageSrc}
+                          numInStock={item.numInStock}
+                          companyId={item.companyId}
+                        />
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </Route>
             {/* use queries instead of params here */}
-            <Route path="/search">
+            <Route path='/search'>
               <div>Search results</div>
             </Route>
-            <Route path="/category/:categoryName">
+            <Route path='/category/:categoryName'>
               <Category />
             </Route>
-            <Route path="/product/:productId">
+            <Route path='/product/:productId'>
               <ProductDetails></ProductDetails>
             </Route>
-            <Route path="/seller/:sellerId">
+            <Route path='/seller/:sellerId'>
               <div>Store</div>
             </Route>
-            <Route path="/order-confirm/:confirmId">
+            <Route path='/order-confirm/:confirmId'>
               <OrderInfo />
             </Route>
-            <Route path="/about">
-              <div>About us</div> 
+            <Route path='/about'>
+              <div>About us</div>
             </Route>
-            <Route path="/contact">
+            <Route path='/contact'>
               <div>Contact us</div>
             </Route>
           </Switch>
@@ -126,10 +132,10 @@ const PageStructure = styled.div`
   position: relative;
   display: grid;
   grid-template-areas:
-    "head head head"
-    "sideleft main sideright"
-    "foot foot foot";
-  grid-template-rows: 1fr 6fr 1fr;
+    'head head head'
+    'sideleft main sideright'
+    'foot foot foot';
+  grid-template-rows: 1fr 6fr .1fr;
   grid-template-columns: 1fr 6fr 2fr;
 `;
 const HeaderWrap = styled.div`
@@ -143,6 +149,8 @@ const FilterBarWrap = styled.div`
 const MainWrap = styled.div`
   grid-area: main;
   background: whitesmoke;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 const CheckoutBarWrap = styled.div`
   grid-area: sideright;
