@@ -6,15 +6,17 @@ let completedOrders = [];
 
 // returns the information of the specified item
 const getItemInformation = (req) => {
-  const {itemId} = req.params;
+  const { itemId } = req.params;
 
   // wiwll be used to determine the position of the required item
   let position;
 
-  items.forEach((item, index) => {if (item.id == itemId) position = index})
+  items.forEach((item, index) => {
+    if (item.id == itemId) position = index;
+  });
 
-  return(items[position]);
-}
+  return items[position];
+};
 
 // returns the categories in an array
 const getCategories = () => {
@@ -32,22 +34,24 @@ const getCategories = () => {
     return self.indexOf(value) === index;
   };
 
-  return(types.filter(unique));
-}
-
+  return types.filter(unique);
+};
 
 const orderHistory = (req) => {
-  const {confirmation} = req.params;
+  const { confirmation } = req.params;
 
   // will be used to determine the position of the required object in the array
   let position;
 
   completedOrders.forEach((order, index) => {
     if (order.confirmation == confirmation) position = index
-  })
 
-  return (completedOrders[position]);
-}
+    if (order.confirmation == confirmation) {
+      position = index;
+    }
+
+  return completedOrders[position];
+};
 
 // function that stores a confirmation order and the order details in memory and sends back the confirmation number with a status 200
 const confirmPurchase = (req) => {
@@ -55,9 +59,9 @@ const confirmPurchase = (req) => {
   const { cartItems } = order;
   //removing the sensitive payment info, replacing with basic confirmation
   const safeOrder = {
-    ...order, 
-    payment: 'Payment Confirmed',
-  }
+    ...order,
+    payment: "Payment Confirmed",
+  };
   // changes the number in stock of the item(s) purchased
   cartItems.forEach((cartItem) => {
     items.forEach((item) => {

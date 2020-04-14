@@ -21,6 +21,9 @@ import ProductDetails from '../../pages/ProductDetails';
 import Navbar from '../Navbar';
 import CartBar from '../CartBar';
 
+import SearchBar from '../SearchBar';
+import SearchResults from '../../pages/SearchResults';
+
 const App = () => {
   // GET INITIAL ITEMS FROM SERVER INTO STATE, THEN FROM STATE INTO AN ARRAY THAT WE CAN MAP:
   FetchInitItems();
@@ -33,7 +36,7 @@ const App = () => {
         <GlobalStyles />
         <CheckoutModal />
         <HeaderWrap>
-            <Navbar />
+          <Navbar />
         </HeaderWrap>
 
         <FilterBarWrap>
@@ -41,16 +44,16 @@ const App = () => {
         </FilterBarWrap>
 
         <MainWrap>
+          <SearchBar />
           <Switch>
-
-            <Route exact path='/'>
+            <Route exact path="/">
               <h2>Home</h2>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   Sale Items:
                   {loadStatus === 'complete' ? (
                     catalogItems.saleItems.map((item) => {
-                      return <ItemCard item={item} />
+                      return <ItemCard item={item} />;
                     })
                   ) : (
                     <></>
@@ -60,7 +63,7 @@ const App = () => {
                   Featured Items:
                   {loadStatus == 'complete' ? (
                     catalogItems.featuredItems.map((item) => {
-                      return <ItemCard item={item} />
+                      return <ItemCard item={item} />;
                     })
                   ) : (
                     <></>
@@ -69,38 +72,37 @@ const App = () => {
               </div>
             </Route>
             {/* use queries instead of params here */}
-            <Route path='/search'>
-              <div>Search results</div>
+            <Route path="/search/:searchTerm">
+              <SearchResults />
             </Route>
 
-            <Route path='/category/:categoryName'>
+            <Route path="/category/:categoryName">
               <Category />
             </Route>
 
-            <Route path='/product/:productId'>
+            <Route path="/product/:productId">
               <ProductDetails />
             </Route>
 
-            <Route path='/seller/:sellerId'>
+            <Route path="/seller/:sellerId">
               <div>Store</div>
             </Route>
 
-            <Route path='/order-confirm/:confirmId'>
+            <Route path="/order-confirm/:confirmId">
               <OrderInfo />
             </Route>
 
-            <Route path='/about'>
+            <Route path="/about">
               <div>About us</div>
             </Route>
 
-            <Route path='/contact'>
+            <Route path="/contact">
               <div>Contact us</div>
             </Route>
 
-            <Route path='/company/:companyId'>
+            <Route path="/company/:companyId">
               <CompanyPage />
             </Route>
-
           </Switch>
         </MainWrap>
 
@@ -126,22 +128,22 @@ const PageStructure = styled.div`
     'head head head'
     'sideleft main sideright'
     'foot foot foot';
-  grid-template-rows: 1fr 6fr .3fr;
+  grid-template-rows: 1fr 6fr 0.3fr;
   grid-template-columns: 1fr 6fr 2fr;
 `;
 const HeaderWrap = styled.div`
   grid-area: head;
-  background: #2E4052;
+  background: #2e4052;
 `;
 const FilterBarWrap = styled.div`
   grid-area: sideleft;
-  background: #BDD9BF;
+  background: #bdd9bf;
 `;
 const MainWrap = styled.div`
   grid-area: main;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #FFC857;
+  background: #ffc857;
 `;
 const CheckoutBarWrap = styled.div`
   grid-area: sideright;
