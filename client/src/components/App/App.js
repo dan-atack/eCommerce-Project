@@ -15,9 +15,15 @@ import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from '../FilterBar';
 import ItemCard from '../ItemCard';
 // Product details is in PAGES directory:
+<<<<<<< Updated upstream
 import ProductDetails from '../../Pages/ProductDetails';
 import Navbar from '../Navbar';
 import CartBar from '../CartBar';
+=======
+import ProductDetails from '../../pages/ProductDetails';
+import Navbar from "../Navbar";
+import CartBar from "../CartBar";
+>>>>>>> Stashed changes
 
 const App = () => {
   // GET INITIAL ITEMS FROM SERVER INTO STATE, THEN FROM STATE INTO AN ARRAY THAT WE CAN MAP:
@@ -151,9 +157,15 @@ const FilterBarWrap = styled.div`
 `;
 const MainWrap = styled.div`
   grid-area: main;
+<<<<<<< Updated upstream
   overflow-y: auto;
   overflow-x: hidden;
   background: #FFC857;
+=======
+  background: whitesmoke;
+  overflow-y:auto;
+  overflow-x: hidden;
+>>>>>>> Stashed changes
 `;
 const CheckoutBarWrap = styled.div`
   grid-area: sideright;

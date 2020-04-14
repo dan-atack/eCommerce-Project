@@ -42,9 +42,13 @@ const orderHistory = (req) => {
   // will be used to determine the position of the required object in the array
   let position;
 
+<<<<<<< Updated upstream
   completedOrders.forEach((order, index) => {
     if (order.confirmation == confirmation) position = index
   })
+=======
+  completedOrders.forEach((order, index) => {if (order.confirmation == confirmation) position = index})
+>>>>>>> Stashed changes
 
   return (completedOrders[position]);
 }

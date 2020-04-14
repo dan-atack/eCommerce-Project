@@ -3,7 +3,14 @@
 // Makes for some fascinating reading on google, and yet provides very little consistent advice :P
 
 export const COLORS = {
+<<<<<<< Updated upstream
   // a soft reddish colour conveys warmth, but too much red is alarming... I'm out of my depth here!
     addToCartPink: 'rgb(224, 60, 96)',
     borderNoire: 'rgb(26, 21, 22)',
 };
+=======
+    // a soft reddish colour conveys warmth, but too much red is alarming... I'm out of my depth here!
+    addToCartPink: 'rgb(224, 60, 96)',
+    borderNoire: 'rgb(26, 21, 22)',
+};
+>>>>>>> Stashed changes
