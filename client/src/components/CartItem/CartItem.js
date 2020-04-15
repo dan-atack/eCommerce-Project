@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setQty, removeItem } from '../../actions';

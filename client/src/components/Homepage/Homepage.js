@@ -52,6 +52,7 @@ const Title = styled.h2`
     0px 4px 4px rgba(0, 0, 0, 0.3), 
     1px 2px 2px rgba(0, 0, 0, 0.5);
 `;
+
 const SubTitle = styled(Title)`
   font-size: 1.2rem;
   text-align: left;
@@ -61,8 +62,8 @@ const ItemDisplay = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  /* div {color: red;} */
 `;
+
 const SaleItems = styled(ItemDisplay)`
   div {
     color: red;

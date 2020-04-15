@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, startPurchase } from '../../actions';
 
-// import Spinner from '../Spinner';
 import CartItem from '../CartItem';
 
 const CartBar = () => {
@@ -17,7 +16,6 @@ const CartBar = () => {
     return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
   }, 0)
 
-  //add loading screen later?
   return (
     <StyledDiv styles={{display: cartItems.length? 'flex': 'hidden'}}>
       <div>
@@ -51,7 +49,7 @@ const CartBar = () => {
         <CheckoutButton
           disabled={!(cartItems.length > 0)}
           onClick={()=> {
-            dispatch(startPurchase());//this change in status triggers checkout modal popup
+            dispatch(startPurchase()); //this change in status triggers checkout modal popup
           }}
         >
           Checkout
@@ -89,12 +87,11 @@ const ItemCount = styled.div`
     margin: 0 .15rem;
   }
 `;
-///note to self: make standardized button component to reuse everwhere or standardize look in globalstyles
+
 const ClearButton = styled.button`
   border-radius: 10px;
   margin: 0 1rem;
   font-size:.75rem;
-  /* font-weight: bold; */
   background: maroon;
   color: lightgray;
   border: none;
