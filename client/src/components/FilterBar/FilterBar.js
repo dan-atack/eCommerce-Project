@@ -80,22 +80,20 @@ const FilterBar = () => {
     });
     return;
   };
+// these states are just used to toggle the filter collapsibles
+  const [catdrop, setCatdrop] = React.useState(false);
+  const [locdrop, setLocdrop] = React.useState(false);
+
   return (
     <StyledDiv>
       <FaFilter/>
-      
-      <p>Category</p>
-      <StyledUl>
-        {/* <li key={Math.random() * 10000000}>
-          <input
-            type={'radio'}
-            name={`category`}
-            value="All"
-            onChange={(e) => handleRadio(e)}
-            // checked={true}
-          ></input>
-          <label for={'All'}>All</label>
-        </li> */}
+      <p>
+        <button
+          onClick={() => setCatdrop(!catdrop)}
+        >
+        {catdrop? '⮛' : '⮚'}</button>Category
+      </p>
+      <StyledUl style={{maxHeight: catdrop? 'fit-content' : 0}} >
         {Object.keys(filter.category).map((location) => {
           const origin = 'category';
           return (
@@ -114,8 +112,12 @@ const FilterBar = () => {
         })}
       </StyledUl>
 
-      <p>Body Location</p>
-      <StyledUl>
+      <p>
+        <button
+          onClick={() => setLocdrop(!locdrop)}
+        >
+        {locdrop? '⮟' : '⮞'}</button>Body Location</p>
+      <StyledUl style={{maxHeight: locdrop? 'fit-content' : 0}} >
         {Object.keys(filter.bodyLocation).map((location) => {
           return (
             <li key={Math.random() * 10000000}>
@@ -137,20 +139,31 @@ const FilterBar = () => {
 };
 
 const StyledDiv = styled.div`
-  width: fit-content;
+  width: 100%;
   font-size: .75rem;
   padding: .25rem;
   p {
     font-weight: bold;
-    margin: .75rem 0 .1rem;
+    font-size: .85rem;
+    margin: .75rem 0 .25rem;
+  }
+  button{
+    background: none;
+    border: none;
   }
 `;
+
 const StyledUl = styled.ul`
+  overflow: hidden;
+  width: 90%;
+  min-width: fit-content;
+  margin: 0 auto;
+  background: whitesmoke;
+  border-radius: 5px;
 `;
 
 
 // ⯈ ⮞ ⮚
-
 // ⯆ ⮟ ⮛
 
 

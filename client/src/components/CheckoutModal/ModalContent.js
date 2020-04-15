@@ -13,7 +13,6 @@ const useStyles = makeStyles({
   container: {
     margin: '0',
     padding: '0',
-    
   },
   table: {
     margin: '1rem 0 2rem 0',
@@ -23,9 +22,6 @@ const useStyles = makeStyles({
   },
   tableRow: {
     borderBottom: '2px solid lightgray',
-  },
-  text: {
-    margin:'1rem .5rem 0 0',
   },
 });
 

@@ -7,7 +7,7 @@ export default createGlobalStyle`
   *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Sans-Serif','Roboto'
+    font-family: 'Poppins', sans-serif;
   }
 
   html, body {
@@ -37,7 +37,7 @@ export default createGlobalStyle`
     padding: 0;
     border: 0;
     vertical-align: baseline;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
@@ -61,10 +61,10 @@ export default createGlobalStyle`
     line-height: 1.25;
     background: whitesmoke;
     color: black;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   button {
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
 `;
