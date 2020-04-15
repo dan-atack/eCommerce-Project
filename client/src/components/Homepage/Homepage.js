@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import FetchInitItems from '../StateFunctions/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
@@ -12,32 +13,61 @@ function Homepage() {
   let loadStatus = useSelector(displayLoadState);
 
   return (
-    <div>
-      <h2>Home</h2>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          Sale Items:
-          {loadStatus === 'complete' ? (
-            catalogItems.saleItems.map((item) => {
-              return <ItemCard product={item} />;
-            })
-          ) : (
-            <></>
-          )}
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          Featured Items:
-          {loadStatus == 'complete' ? (
-            catalogItems.featuredItems.map((item) => {
-              return <ItemCard product={item} />;
-            })
-          ) : (
-            <></>
-          )}
-        </div>
-      </div>
-    </div>
+    <Wrapper>
+      <Title>Home</Title>
+      <SubTitle>Sale!</SubTitle>
+      <SaleItems>
+        {loadStatus === 'complete' ? (
+          catalogItems.saleItems.map((item) => {
+            return <ItemCard product={item} />;
+          })
+        ) : (
+          <></>
+        )}
+      </SaleItems>
+      <SubTitle>Featured!</SubTitle>
+      <ItemDisplay>
+        {loadStatus === 'complete' ? (
+          catalogItems.featuredItems.map((item) => {
+            return <ItemCard product={item} />;
+          })
+        ) : (
+          <></>
+        )}
+      </ItemDisplay>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: 'flex'; 
+  flex-direction: 'column';
+`;
+
+const Title = styled.h2`
+  padding: .5rem 1rem 0;
+  text-align: center;
+  color: whitesmoke;
+  text-shadow: 4px 8px 25px #616161, 
+    0px 4px 4px rgba(0, 0, 0, 0.3), 
+    1px 2px 2px rgba(0, 0, 0, 0.5);
+`;
+const SubTitle = styled(Title)`
+  font-size: 1.2rem;
+  text-align: left;
+`;
+
+const ItemDisplay = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* div {color: red;} */
+`;
+const SaleItems = styled(ItemDisplay)`
+  div {
+    color: red;
+  }
+`;
+
 
 export default Homepage;

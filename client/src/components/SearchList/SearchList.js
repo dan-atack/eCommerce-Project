@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const SearchList = ({ returnValues }) => {
   return (
     <StyledUl>
+      
       {returnValues
         ? returnValues.map((item, id) => {
             return (
@@ -23,11 +24,15 @@ const SearchList = ({ returnValues }) => {
             );
           })
         : ''}
+    
     </StyledUl>
   );
 };
+
+
 const StyledUl = styled.ul`
   width: 95%;
+  
 `;
 const StyledSpan = styled.span`
   font-size: 0.6rem;

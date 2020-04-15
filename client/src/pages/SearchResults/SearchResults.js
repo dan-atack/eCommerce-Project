@@ -27,13 +27,22 @@ const SearchResults = () => {
   return (
     <>
       <div>Results for {searchTerm}</div>
+      <ItemDisplay>
       {displayItems
         ? displayItems.map((item) => {
             return <ItemCard product={item} />;
           })
         : ''}
+      </ItemDisplay>
     </>
   );
 };
+
+const ItemDisplay = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
+
 
 export default SearchResults;

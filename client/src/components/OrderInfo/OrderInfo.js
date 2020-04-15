@@ -78,7 +78,7 @@ const OrderInfo = () => {
     )
   } else {
     return orderInfo? (
-      <>
+      <StyledDiv>
       <h2>Order # {confirmId}</h2>
       {orderInfo.cartItems.map(item => {
         return (
@@ -101,7 +101,7 @@ const OrderInfo = () => {
         <p>Email:<span>{orderInfo.user.email}</span></p>
         <p>Total:<span>${orderInfo.total}</span></p>
       </UserInfo>
-      </>
+      </StyledDiv>
     ) : <Spinner size={40}/>
   }
 };
