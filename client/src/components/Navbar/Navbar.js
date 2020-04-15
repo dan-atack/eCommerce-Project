@@ -48,6 +48,7 @@ const LogoBG = styled.div `
     width: 106px;
     position: absolute;
     left: 0;
+    top: 0;
     transition: background-color 500ms;
     border-radius: 3px;
 
@@ -76,7 +77,6 @@ const Logo = styled.img `
     height: 107px;
     position: absolute;
     left: 0;
-    top: -100%;
 `
 
 const NavWrapper = styled.div `
