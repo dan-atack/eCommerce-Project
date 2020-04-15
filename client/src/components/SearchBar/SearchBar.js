@@ -26,20 +26,22 @@ const SearchBar = () => {
   };
   return (
     <>
-      <StyledForm autocomplete="off">
-        <input type="text" style={{ display: 'none' }} />
-        <input type="password" style={{ display: 'none' }} />
-        <StyledInput
-          type="text"
-          onChange={(e) => setSearchInput(e.target.value)}
-          name="searchTerm"
-          placeholder="What are you shopping for?"
-        ></StyledInput>
-        <StyledButton type="submit" onClick={handleSearch}>
-          Search
-        </StyledButton>
-      </StyledForm>
-      <SearchList returnValues={returnValues} />
+      <Wrapper>
+        <StyledForm autoComplete="off">
+          <SearchBox>
+            <StyledInput
+              type="text"
+              onChange={(e) => setSearchInput(e.target.value)}
+              name="searchTerm"
+              placeholder="What are you shopping for?"
+            />
+            <SearchList returnValues={returnValues} />
+          </SearchBox>
+          <StyledButton type="submit" onClick={handleSearch}>
+            Search
+          </StyledButton>
+        </StyledForm>
+      </Wrapper>
     </>
   );
 };
@@ -63,5 +65,22 @@ const StyledForm = styled.form`
   height: 30px;
   display: flex;
   align-items: center;
+  width: 100%;
+  margin: 4px 8px;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+const SearchBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  &:focus-within > ul {
+    display: block;
+  }
 `;
 export default SearchBar;
