@@ -8,13 +8,13 @@ function NavCategory({category}) {
 
     return (<>
         {/* Link is faster than onClick, used onMouseEnter and state instead */}
-        <Category onMouseEnter={(e) => {
-            setRedirect(e.target.textContent);
-            }}>
-                <Link to={`/category/${redirect}`}>
+        <Link to={`/category/${redirect}`}>
+            <Category onMouseEnter={(e) => {
+                setRedirect(e.target.textContent);
+                }}>
                     <Dropdown.Item as="div">{category}</Dropdown.Item>
-                </Link>
-        </Category>
+            </Category>
+        </Link>
     </>)
 }
 

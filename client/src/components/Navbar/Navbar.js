@@ -21,7 +21,7 @@ function Navbar() {
 
     return (
         <NavWrapper>
-            <Link to="/"><Logo src={logo} alt="logo" /></Link>
+            <Link to="/"><LogoBG><Logo src={logo} alt="logo" /></LogoBG></Link>
             <Link to="/"><NavContent>Home</NavContent></Link>
 
             {/* the dropdown menu. The items are generated separately in another component through array.map() */}
@@ -43,12 +43,27 @@ function Navbar() {
     )
 }
 
+const LogoBG = styled.div `
+    height: 100%;
+    width: 106px;
+    position: absolute;
+    left: 0;
+    transition: background-color 500ms;
+    border-radius: 3px;
+
+    &:hover {
+        border-bottom: crimson solid 2px;
+        background-color: lightgray;
+    }
+`
+
 const NavContent = styled.div `
     padding: 10px;
-    margin: 56px 10px 0px;
-    font-size: 1.2em;
+    margin: 51px 0px 0px;
+    font-size: 1.5em;
     color: lightgray;
     transition: background-color 500ms;
+    border-radius: 3px;
 
     &:hover {
         color: black;
