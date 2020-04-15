@@ -76,14 +76,16 @@ const Logo = styled.img `
     height: 107px;
     position: absolute;
     left: 0;
+    top: -100%;
 `
 
 const NavWrapper = styled.div `
     display: flex;
     position: relative;
     justify-content: flex-end;
+    align-items: flex-end;
     z-index: 1;
-
+    height: 100%;
     a {
         text-decoration: none;
         color: black;
