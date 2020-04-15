@@ -1,13 +1,13 @@
 const router = require("express").Router();
 
-const {getFeaturedItems, 
+const {getHomepage, 
         sortCategory,
         getCategories,
         getItemInformation,
         getSearchResults,} = require('../functions/item-functions')
 
 // the endpoint for the home page of the app
-router.get("/homePage", (req, res) => res.send(getFeaturedItems()));
+router.get("/homepage", (req, res) => res.send(getHomepage()));
 
 // the endpoint for sorting by category
 router.get("/products/:category", (req, res) => res.send(sortCategory(req)));

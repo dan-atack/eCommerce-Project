@@ -1,5 +1,22 @@
 const items = require("../data/items.json");
 
+// customized sort function (code found at https://www.sitepoint.com/sort-an-array-of-objects-in-javascript)
+const sortByStock = (a, b) => {
+    const stockA = a.numInStock;
+    const stockB = b.numInStock;
+
+    let comparison = 0;
+
+    if (stockB > stockA) {
+        comparison = 1;
+    }
+    else {
+        comparison = -1;
+    }
+
+    return comparison
+}
+
 // ****************************************************************** //
 // function that will sort the data by category specified by the user //
 // ****************************************************************** //
@@ -90,49 +107,31 @@ const getCategories = () => {
 // ******************************************************************************************************* //
 // returns an array of the 3 items on special sorted by highest stock and 3 random items as featured items //
 // ******************************************************************************************************* //
-const getFeaturedItems = () => {  
+const getHomepage = () => {  
 
     // constant of how many items we want displayed
     const NUM_OF_ITEMS = 3;
 
-    // will be determined based on the highest number in stock
-    let biggestNum = 0;
+    // cloning the items file so as to not change the order
+    const sortedItems = [...items];
+    
+    sortedItems.sort(sortByStock);
 
-    // the 3 arrays that are used to select the items displayed on the homepage
+    // the arrays that are used to select the items displayed on the homepage
     let itemsOnSale = [];
-    let highestStock = [];
     let featuredItems = [];
 
-    // finds the highest number of items in stock
-    items.forEach((item) => {
-        if (item.numInStock > biggestNum) biggestNum = item.numInStock;
-    });
-
-    // fills up the highestStock array with the items containing the highest stock, and does so until we have at least 4 items
-    // (for randomzied variety)
-    do {
-
-        highestStock = items.filter((item) => {
-            if (item.numInStock === biggestNum) {
-                return item;
-            }
-        });
-
-        --biggestNum;
-
-    } while (highestStock.length <= NUM_OF_ITEMS);
-
-    // sets random items in the featuredItems array and itemsOnSale array
+    // sets random items in the featuredItems array | sets the 3 first items with the highest stock in the itemsOnSale array
     for (let i = 0; i < NUM_OF_ITEMS; ++i) {
         featuredItems.push(items[Math.floor(Math.random() * items.length)]);
-        itemsOnSale.push(highestStock[Math.floor(Math.random() * highestStock.length)]);
+        itemsOnSale.push(sortedItems[i]);
     }
 
     return { sale: itemsOnSale, feature: featuredItems };
 };
 
 module.exports = {
-    getFeaturedItems,
+    getHomepage,
     sortCategory,
     getCategories,
     getItemInformation,
