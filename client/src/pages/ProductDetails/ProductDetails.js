@@ -75,9 +75,9 @@ function ProductDetails() {
           items
         </span>
         <span>Typically worn on: {body_location ? body_location : ''}</span>
-        <Link to={`/company/${companyId ? companyId : ''}`}>
-          Manufactured by: {companyName ? companyName : ''}
-        </Link>
+        <span>Manufactured by: <Link to={`/company/${companyId ? companyId : ''}`}>
+          {companyName ? companyName : ''}
+        </Link></span>
       </DetailBox>
       <PurchaseInfo>
         {(numInStock ? numInStock : 0) > 0 ? (
@@ -119,6 +119,10 @@ const DetailBox = styled.div`
   border-radius: 8px;
   padding: 16px;
   width: 256px;
+
+  a {
+    color: blue;
+  }
 `;
 const BigDiv = styled.div`
   margin: 24px;

@@ -23,17 +23,17 @@ const SearchResults = () => {
     dispatch(searchResults(returnValues));
     dispatch(setDisplayItems(returnValues));
   }, [returnValues]);
-
+  
   return (
     <>
-      <div>Results for {searchTerm}</div>
-      <ItemDisplay>
-      {displayItems
-        ? displayItems.map((item) => {
-            return <ItemCard product={item} />;
-          })
-        : ''}
-      </ItemDisplay>
+      <h2>Results for "{searchTerm}"</h2>
+      {displayItems && <ItemDisplay>
+        {displayItems.length
+          ? displayItems.map((item) => {
+              return <ItemCard product={item} />;
+            })
+          : <h3>No results found</h3>}
+      </ItemDisplay>}
     </>
   );
 };
