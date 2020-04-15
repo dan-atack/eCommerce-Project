@@ -16,8 +16,9 @@ const CartBar = () => {
     return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
   }, 0)
 
+//cart is "hidden" off to the left unless containing items
   return (
-    <StyledDiv styles={{display: cartItems.length? 'flex': 'hidden'}}>
+    <StyledDiv style={{left: (cartItems.length>0)? '0%': '100%'}}>
       <div>
       <Header>
         <h1>Cart</h1>
@@ -60,13 +61,13 @@ const CartBar = () => {
 };
 
 const StyledDiv = styled.div`
-  position: sticky;
-  top: 0;
+  position: relative;
   height:100%;
   flex-direction: column;
   justify-content: space-between;
   padding: .5rem;
-  border-left: 2px solid #ffc857;
+  transition: left ease-in-out .5s ;
+
 `;
 const Header = styled.div`
   h1 {

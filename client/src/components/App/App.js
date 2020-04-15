@@ -119,6 +119,8 @@ const MainWrap = styled.div`
 const CheckoutBarWrap = styled.div`
   grid-area: sideright;
   background: whitesmoke;
+  border-left: 2px solid #ffc857;
+  overflow-x: hidden;
 `;
 const FooterWrap = styled.div`
   grid-area: foot;
