@@ -53,9 +53,9 @@ function ProductDetails() {
   // convert price to numerical value:
   const numericalPrice = Number(price.slice(1));
   //         rhyming string methods! ^
-  return (
+  return (<>
+    <SearchBar />
     <MainBox>
-      <SearchBar />
       <h1 style={{ gridArea: 'name' }}>{name ? name : ''}</h1>
       <BigDiv>
         <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
@@ -97,7 +97,7 @@ function ProductDetails() {
         <button>Can I get a rain check??</button>
       )}
     </MainBox>
-  );
+  </>);
 }
 
 const MainBox = styled.div`
