@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setProductDetailsFromCard } from '../../actions';
+import starburst from '../../assets/starburst.png';
 
 const ItemCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -25,17 +26,48 @@ const ItemCard = ({ product }) => {
     >
       <img src={imageSrc} />
       <div>{name}</div>
+      {product.isOnSale ? (
+        <div style={{ display: 'flex' }}>
+          <StruckThru style={{ position: 'relative', top: 18 }}>
+            {price}
+          </StruckThru>
+          <Special>
+            <span
+              style={{ position: 'relative', top: 14 }}
+            >{`$${product.discountPrice.toFixed(2)}`}</span>
+          </Special>
+        </div>
+      ) : (
+        <span>{price}</span>
+      )}
     </Wrapper>
   );
 };
+
+const Special = styled.div`
+  color: whitesmoke;
+  padding: 4px;
+  z-index: 2;
+  background-image: url(${starburst});
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 72px;
+  width: 96px;
+`;
+
+const StruckThru = styled.span`
+  text-decoration: line-through;
+  color: black;
+  margin-right: 8px;
+`;
 
 const Wrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 200px;
-  height: 300px;
+  width: 240px;
+  height: 360px;
   padding: 10px;
   margin: 10px 0;
   box-shadow: 5px 5px 5px grey, 5px 5px 8px black;
@@ -47,7 +79,6 @@ const Wrapper = styled(Link)`
   transition: 250ms ease-in-out;
   background: whitesmoke;
   &:hover {
-    text-decoration: underline;
     transform: scale(1.01);
   }
 `;

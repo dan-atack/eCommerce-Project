@@ -22,10 +22,17 @@ export default function catalogReducer(state = initialState, action) {
       };
     }
     case 'GET_INITIAL_ITEMS': {
+      // modify price for items on sale:
+      let saleItems = action.items.sale;
+      saleItems.forEach((item) => {
+        // convert price to number, then reduce it by 15%
+        item.discountPrice = Math.round(Number(item.price.slice(1)) * 85) / 100;
+        item.isOnSale = true;
+      });
       return {
         ...state,
         featuredItems: [...action.items.feature],
-        saleItems: [...action.items.sale],
+        saleItems: saleItems,
       };
     }
     case 'SET_PRODUCT_DETAILS_FROM_CARD': {

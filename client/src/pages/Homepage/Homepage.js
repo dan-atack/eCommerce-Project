@@ -42,16 +42,15 @@ function Homepage() {
 }
 
 const Wrapper = styled.div`
-  display: 'flex'; 
+  display: 'flex';
   flex-direction: 'column';
 `;
 
 const Title = styled.h2`
-  padding: .5rem 1rem 0;
+  padding: 0.5rem 1rem 0;
   text-align: center;
   color: whitesmoke;
-  text-shadow: 4px 8px 25px #616161, 
-    0px 4px 4px rgba(0, 0, 0, 0.3), 
+  text-shadow: 4px 8px 25px #616161, 0px 4px 4px rgba(0, 0, 0, 0.3),
     1px 2px 2px rgba(0, 0, 0, 0.5);
 `;
 
@@ -68,9 +67,8 @@ const ItemDisplay = styled.div`
 
 const SaleItems = styled(ItemDisplay)`
   div {
-    color: red;
+    color: black;
   }
 `;
-
 
 export default Homepage;

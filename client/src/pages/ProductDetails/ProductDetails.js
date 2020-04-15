@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, ReactReduxContext } from 'react-redux';
-import { getProductDetails, displayDetailLoadState } from '../../reducers';
+import FetchInitItems from '../../components/StateFunctions/FetchInitItems';
+import { getProductDetails, parseInitialItems } from '../../reducers';
 import Spinner from '../../components/Spinner';
 import { setProductDetailsFromFetch } from '../../actions';
 import AddToCartButton from '../../components/AddToCartButton';
@@ -29,11 +30,30 @@ function ProductDetails() {
       })
       .then((item) => {
         dispatch(setProductDetailsFromFetch(item));
+        // Fetch company name from server AFTER initial fetch finishes:
         getCompanyName(item.companyId);
       });
   }, []);
+  // get item details from state:
   let dataInState = useSelector(getProductDetails);
-  // Fetch company name from HQ:
+  // fetch sale items and check for sale price status in case user loads this page directly:
+  FetchInitItems();
+  // selector must be used outside function call:
+  const inits = useSelector(parseInitialItems);
+  // Determine Discount will return the original price string if item is not on sale, or the discounted value if it is on sale:
+  const determineDiscount = () => {
+    if (inits != undefined) {
+      const thereIsDiscount = inits.saleItems.filter(
+        (item) => item.id == productId
+      );
+      if (thereIsDiscount.length > 0) {
+        return Math.round(Number(thereIsDiscount[0].price.slice(1)) * 85) / 100;
+      } else {
+        return dataInState.price;
+      }
+    }
+  };
+  const discount = determineDiscount();
 
   if (Object.keys(dataInState).length == 0) {
     return <Spinner />;
@@ -63,8 +83,8 @@ function ProductDetails() {
           style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
         >
           This stately item is worn on the{' '}
-          {body_location ? body_location.toLowerCase() : ''}
-          and combines sleekness and power into an elegant
+          {body_location ? body_location.toLowerCase() : ''} and combines
+          sleekness and power into an elegant
           {(numericalPrice ? numericalPrice : 0) < 100
             ? ', and affordable'
             : ''}{' '}
@@ -81,18 +101,31 @@ function ProductDetails() {
           {companyName ? companyName : ''}
         </Link></span>
       </DetailBox>
-      <PurchaseInfo>
-        {(numInStock ? numInStock : 0) > 0 ? (
-          <span>
-            Stock Remaining: {numInStock ? numInStock : 0} starting at{' '}
-            {price ? price : '$0.00'}
-          </span>
+      {
+        // conditional price display for discounted items:
+        discount != price ? (
+          <PurchaseInfo>
+            <span>
+              {numInStock} units available from the INSANELY low price of
+              {` $${discount.toFixed(2)}`}!!!
+            </span>
+          </PurchaseInfo>
         ) : (
-          <span>This item is currently sold out. Sorry about that eh!</span>
-        )}
-      </PurchaseInfo>
+          <PurchaseInfo>
+            {numInStock > 0 ? (
+              <span>
+                {numInStock} units available from the low, low price of {price}
+              </span>
+            ) : (
+              <span>This item is currently sold out. Sorry about that eh!</span>
+            )}
+          </PurchaseInfo>
+        )
+      }
       {numInStock > 0 ? (
-        <AddToCartButton item={dataInState} />
+        <AddToCartButton
+          item={{ ...dataInState, price: `$${discount.toFixed(2)}` }}
+        />
       ) : (
         <button>Can I get a rain check??</button>
       )}
