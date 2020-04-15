@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const SearchList = ({ returnValues }) => {
+const SearchList = ({ returnValues, userInput }) => {
+
   return (
     <StyledUl>
       {returnValues
@@ -12,8 +13,17 @@ const SearchList = ({ returnValues }) => {
                 {id < 9 ? (
                   <StyledLi>
                     <StyledLink key={item.id} to={`/product/${item.id}`}>
-                      {item.name}
+                      {item.name.toLowerCase().includes(userInput.toLowerCase()) ? 
+                      <>
+                      <span>{item.name.slice(0, item.name.toLowerCase().indexOf(userInput.toLowerCase()))}</span>
+                      <span className="bold">
+                        {item.name.slice(item.name.toLowerCase().indexOf(userInput.toLowerCase()),
+                        item.name.toLowerCase().indexOf(userInput.toLowerCase()) + userInput.length)}
+                      </span>
+                      <span>{item.name.slice((item.name.toLowerCase().indexOf(userInput.toLowerCase())) + userInput.length)}</span>
                       <StyledSpan>{` in ${item.category}`}</StyledSpan>
+                      </>
+                      : item.name}
                     </StyledLink>
                   </StyledLi>
                 ) : (
@@ -30,7 +40,6 @@ const SearchList = ({ returnValues }) => {
 const StyledUl = styled.ul`
   width: inherit;
   z-index: 2;
-  /* margin: 0 8px; */
   position: absolute;
   height: 100%;
   top: 35px;
@@ -42,6 +51,11 @@ const StyledSpan = styled.span`
 const StyledLi = styled.li`
   padding: 4px;
   background: white;
+
+  .bold {
+    font-weight: bold;
+  }
+
   &:hover {
     background: hsl(50deg, 100%, 90%);
   }

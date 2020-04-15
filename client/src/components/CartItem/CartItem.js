@@ -45,8 +45,8 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
             }
           }}
           >▼</StyledButton>
-          <MaxSpan>
-            {(amount===stock)? 'max' : '' }
+          <MaxSpan style={{visibility: amount===stock ? "visible" : "hidden"}}>
+            max
           </MaxSpan>
         </p>
         <p>@ {price}</p>
