@@ -1,5 +1,6 @@
-import React, {useEffect, useState, useParams} from 'react'
-import {BrowserRouter as Router} from "react-router-dom"
+import React, {useEffect, useState, useParams} from 'react';
+import {BrowserRouter as Router} from "react-router-dom";
+import styled from "styled-components";
 
 import ItemCard from '../ItemCard';
 
@@ -21,15 +22,21 @@ function CompanyPage() {
     }, [companyId])
 
     return (
-        <div>
+        <CompanyProducts>
             <Router>
             <h2>All products by {name} :</h2>
             {companyItems.map(item => {
                 return <ItemCard product={item} />
             })}
             </Router>
-        </div>
+        </CompanyProducts>
     )
 }
+
+const CompanyProducts = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+`;
 
 export default CompanyPage

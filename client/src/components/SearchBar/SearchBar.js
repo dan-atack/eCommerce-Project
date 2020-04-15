@@ -27,7 +27,7 @@ const SearchBar = () => {
   return (
     <>
       <Wrapper>
-        <StyledForm autocomplete="off">
+        <StyledForm autoComplete="off">
           <SearchBox>
             <StyledInput
               type="text"
@@ -78,6 +78,10 @@ const Wrapper = styled.div`
 const SearchBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* position: relative; */
+  width: 100%;
+  position: relative;
+  &:focus-within > ul {
+    display: block;
+  }
 `;
 export default SearchBar;

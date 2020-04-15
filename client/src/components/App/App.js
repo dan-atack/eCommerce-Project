@@ -44,7 +44,7 @@ const App = () => {
             <Route exact path="/">
               <Homepage />
             </Route>
-            {/* use queries instead of params here */}
+            
             <Route path="/search/:searchTerm">
               <SearchResults />
             </Route>
@@ -93,8 +93,6 @@ const App = () => {
 
 const PageStructure = styled.div`
   height: 100vh;
-  /* width:100vh;  */
-  /* max-height: 100vh; */
   position: relative;
   display: grid;
   grid-template-areas:

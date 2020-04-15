@@ -33,7 +33,8 @@ const StyledUl = styled.ul`
   /* margin: 0 8px; */
   position: absolute;
   height: 100%;
-  bottom: -40px;
+  top: 35px;
+  display: none;
 `;
 const StyledSpan = styled.span`
   font-size: 0.6rem;

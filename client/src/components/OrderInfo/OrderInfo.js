@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 import Spinner from '../Spinner';
@@ -52,9 +52,9 @@ const OrderInfo = () => {
   console.log('fetcho', confirmId);
   const [orderInfo, setOrderInfo] = React.useState(null);
   
-//fetches order info and stores it in state to be used for rendering
-//clearpurchase() sets the state status back to 'idle' (was on 'purchased')
-//may need to add a security measure based on currentuser later?
+  //fetches order info and stores it in state to be used for rendering
+  //clearpurchase() sets the state status back to 'idle' (was on 'purchased')
+  //may need to add a security measure based on currentuser later?
   React.useEffect(()=> {
     //stops fetch if just order search page
     if (confirmId !== 'search')
