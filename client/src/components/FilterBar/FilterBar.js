@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { filterItems } from '../../actions';
+import {FaFilter} from 'react-icons/fa';
 
 const FilterBar = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const FilterBar = () => {
       Torso: false,
     },
     category: {
+      All: true,
       Fitness: false,
       Medical: false,
       Lifestyle: false,
@@ -30,6 +33,7 @@ const FilterBar = () => {
   useEffect(() => {
     dispatch(filterItems(filter));
   }, [filter]);
+
   // function to handle checkboxes (body location) filters
   const handleCheckbox = (e) => {
     const key = e.target.name;
@@ -44,6 +48,7 @@ const FilterBar = () => {
   };
   // reset for categories
   const categoryDefault = {
+    All: true,
     Fitness: false,
     Medical: false,
     Lifestyle: false,
@@ -52,6 +57,7 @@ const FilterBar = () => {
     PetsAndAnimals: false,
     Gaming: false,
   };
+
   // function to handle radio button (category) filters
   const handleRadio = (e, origin) => {
     const key = e.target.value;
@@ -66,34 +72,21 @@ const FilterBar = () => {
     console.log(origin);
     setFilter({
       ...filter,
-      category: { ...categoryDefault, [key]: e.target.checked },
+      category: { 
+        ...categoryDefault, 
+        [key]: e.target.checked, 
+        All: false, 
+      },
     });
     return;
   };
   return (
-    <div>
-      {' '}
-      <ul>
-        {' '}
-        Body Location
-        {Object.keys(filter.bodyLocation).map((location) => {
-          return (
-            <li key={Math.random() * 10000000}>
-              <input
-                type={'checkbox'}
-                name={`${location}`}
-                onChange={handleCheckbox}
-                checked={filter['bodyLocation'][location]}
-              ></input>
-              <label for={`${location}`}>{location}</label>
-            </li>
-          );
-        })}
-      </ul>
-      <ul>
-        {' '}
-        Category
-        <li key={Math.random() * 10000000}>
+    <StyledDiv>
+      <FaFilter/>
+      
+      <p>Category</p>
+      <StyledUl>
+        {/* <li key={Math.random() * 10000000}>
           <input
             type={'radio'}
             name={`category`}
@@ -102,26 +95,58 @@ const FilterBar = () => {
             // checked={true}
           ></input>
           <label for={'All'}>All</label>
-        </li>
+        </li> */}
         {Object.keys(filter.category).map((location) => {
           const origin = 'category';
           return (
             <li>
               <input
                 type={'radio'}
-                name={`category`}
+                name={`${location}`}
+                id={`${location}`}
                 value={location}
                 onChange={(e) => handleRadio(e, origin)}
-                checked={filter.category.location}
+                checked={filter.category[location]}
               ></input>
               <label for={`${location}`}>{location}</label>
             </li>
           );
         })}
-      </ul>
-    </div>
+      </StyledUl>
+
+      <p>Body Location</p>
+      <StyledUl>
+        {Object.keys(filter.bodyLocation).map((location) => {
+          return (
+            <li key={Math.random() * 10000000}>
+              <input
+                type={'checkbox'}
+                name={`${location}`}
+                id={`${location}`}
+                onChange={handleCheckbox}
+                checked={filter['bodyLocation'][location]}
+              ></input>
+              <label for={`${location}`}>{location}</label>
+            </li>
+          );
+        })}
+      </StyledUl>
+
+    </StyledDiv>
   );
 };
+
+const StyledDiv = styled.div`
+  width: fit-content;
+  font-size: .75rem;
+  padding: .25rem;
+  p {
+    font-weight: bold;
+    margin: .75rem 0 .1rem;
+  }
+`;
+const StyledUl = styled.ul`
+`;
 
 
 // ⯈ ⮞ ⮚

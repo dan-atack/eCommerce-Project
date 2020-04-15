@@ -25,7 +25,8 @@ export default function filterReducer(state = initialState, action) {
           // For category
           const categoryFilter = Object.keys(action.filters.category).filter(
             (filter) => {
-              return action.filters.category[filter];
+              //if filter is set to 'All', disregard the 'All' key
+              return action.filters.category[(filter!=='All')? filter: ''];
             }
           );
           // console.log(

@@ -100,7 +100,7 @@ const PageStructure = styled.div`
     'sideleft main sideright'
     'foot foot foot';
   grid-template-rows: 1fr 6fr 0.3fr;
-  grid-template-columns: 1fr 6fr 2fr;
+  grid-template-columns: 1.2fr 6fr 2fr;
 `;
 const HeaderWrap = styled.div`
   grid-area: head;
