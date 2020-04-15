@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import Spinner from '../../components/Spinner';
 
 import ItemCard from '../../components/ItemCard';
 
@@ -32,7 +33,7 @@ const ItemDisplay = () => {
 
   return (
     <>
-      {displayItems && (
+      {displayItems.length > 0 ? (
         <>
           <InfoBox>
             <div>
@@ -44,11 +45,23 @@ const ItemDisplay = () => {
               of {displayItems.length}
             </div>
             <PageSelectBox>
-              <div onClick={() => setCurrentPage(currentPage - 1)}>
-                Previous page
+              <div
+                onClick={() => {
+                  if (currentPage > 0) {
+                    setCurrentPage(currentPage - 1);
+                  }
+                }}
+              >
+                &#8656; Previous page
               </div>
-              <div onClick={() => setCurrentPage(currentPage + 1)}>
-                Next Page
+              <div
+                onClick={() => {
+                  if (currentPage < pages.length - 1) {
+                    setCurrentPage(currentPage + 1);
+                  }
+                }}
+              >
+                Next Page &#8658;
               </div>
             </PageSelectBox>
           </InfoBox>
@@ -58,6 +71,8 @@ const ItemDisplay = () => {
             })}
           </Wrapper>
         </>
+      ) : (
+        <Spinner size={50} />
       )}
     </>
   );
