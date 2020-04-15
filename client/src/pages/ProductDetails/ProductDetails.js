@@ -73,64 +73,76 @@ function ProductDetails() {
   // convert price to numerical value:
   const numericalPrice = Number(price.slice(1));
   //         rhyming string methods! ^
-  return (<>
-    <SearchBar />
-    <MainBox>
-      <h1 style={{ gridArea: 'name' }}>{name ? name : ''}</h1>
-      <BigDiv>
-        <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
-        <div
-          style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
-        >
-          This stately item is worn on the{' '}
-          {body_location ? body_location.toLowerCase() : ''} and combines
-          sleekness and power into an elegant
-          {(numericalPrice ? numericalPrice : 0) < 100
-            ? ', and affordable'
-            : ''}{' '}
-          package.
-        </div>
-      </BigDiv>
-      <DetailBox>
-        <span>
-          Category: {category ? category : ''}
-          items
-        </span>
-        <span>Typically worn on: {body_location ? body_location : ''}</span>
-        <span>Manufactured by: <Link to={`/company/${companyId ? companyId : ''}`}>
-          {companyName ? companyName : ''}
-        </Link></span>
-      </DetailBox>
-      {
-        // conditional price display for discounted items:
-        discount != price ? (
-          <PurchaseInfo>
-            <span>
-              {numInStock} units available from the INSANELY low price of
-              {` $${discount.toFixed(2)}`}!!!
-            </span>
-          </PurchaseInfo>
-        ) : (
-          <PurchaseInfo>
-            {numInStock > 0 ? (
+  return (
+    <>
+      <SearchBar />
+      <MainBox>
+        <h1 style={{ gridArea: 'name' }}>{name ? name : ''}</h1>
+        <BigDiv>
+          <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
+          <div
+            style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
+          >
+            This stately item is worn on the{' '}
+            {body_location ? body_location.toLowerCase() : ''} and combines
+            sleekness and power into an elegant
+            {(numericalPrice ? numericalPrice : 0) < 100
+              ? ', and affordable'
+              : ''}{' '}
+            package.
+          </div>
+        </BigDiv>
+        <DetailBox>
+          <span>
+            Category: {category ? category : ''}
+            items
+          </span>
+          <span>Typically worn on: {body_location ? body_location : ''}</span>
+          <span>
+            Manufactured by:{' '}
+            <Link to={`/company/${companyId ? companyId : ''}`}>
+              {companyName ? companyName : ''}
+            </Link>
+          </span>
+        </DetailBox>
+        {
+          // conditional price display for discounted items:
+          discount != price ? (
+            <PurchaseInfo>
               <span>
-                {numInStock} units available from the low, low price of {price}
+                {numInStock} units available from the INSANELY low price of
+                {` $${discount.toFixed(2)}`}!!!
               </span>
-            ) : (
-              <span>This item is currently sold out. Sorry about that eh!</span>
-            )}
-          </PurchaseInfo>
-        )
-      }
-      {numInStock > 0 ? (
-        <AddToCartButton
-          item={{ ...dataInState, price: `$${discount.toFixed(2)}` }}
-        />
-      ) : (
-        <button>Can I get a rain check??</button>
-      )}
-    </MainBox>
-  </>);
+            </PurchaseInfo>
+          ) : (
+            <PurchaseInfo>
+              {numInStock > 0 ? (
+                <span>
+                  {numInStock} units available from the low, low price of{' '}
+                  {price}
+                </span>
+              ) : (
+                <span>
+                  This item is currently sold out. Sorry about that eh!
+                </span>
+              )}
+            </PurchaseInfo>
+          )
+        }
+        {numInStock > 0 ? (
+          <AddToCartButton
+            item={
+              discount != price
+                ? { ...dataInState, price: `$${discount.toFixed(2)}` }
+                : dataInState
+            }
+          />
+        ) : (
+          <button>Can I get a rain check??</button>
+        )}
+      </MainBox>
+    </>
+  );
 }
 
 const MainBox = styled.div`
