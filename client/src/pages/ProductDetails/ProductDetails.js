@@ -73,6 +73,7 @@ function ProductDetails() {
   // convert price to numerical value:
   const numericalPrice = Number(price.slice(1));
   //         rhyming string methods! ^
+<<<<<<< Updated upstream
   return (
     <>
       <SearchBar />
@@ -98,6 +99,38 @@ function ProductDetails() {
             items
           </span>
           <span>Typically worn on: {body_location ? body_location : ''}</span>
+=======
+  return (<>
+    <SearchBar />
+    <MainBox>
+      <h1 style={{ gridArea: 'name' }}>{name ? name : ''}</h1>
+      <BigDiv>
+        <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
+        <div
+          style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
+        >
+          This stately item is worn on the{' '}
+          {body_location ? body_location.toLowerCase() : ''}
+          and combines sleekness and power into an elegant
+          {(numericalPrice ? numericalPrice : 0) < 100
+            ? ', and affordable'
+            : ''}{' '}
+          package.
+        </div>
+      </BigDiv>
+      <DetailBox>
+        <span>
+          Category: {category ? category : ''}
+          items
+        </span>
+        <span>Typically worn on: {body_location ? body_location : ''}</span>
+        <span>Manufactured by: <Link to={`/company/${companyId ? companyId : ''}`}>
+          {companyName ? companyName : ''}
+        </Link></span>
+      </DetailBox>
+      <PurchaseInfo>
+        {(numInStock ? numInStock : 0) > 0 ? (
+>>>>>>> Stashed changes
           <span>
             Manufactured by:{' '}
             <Link to={`/company/${companyId ? companyId : ''}`}>
@@ -140,9 +173,20 @@ function ProductDetails() {
         ) : (
           <button>Can I get a rain check??</button>
         )}
+<<<<<<< Updated upstream
       </MainBox>
     </>
   );
+=======
+      </PurchaseInfo>
+      {numInStock > 0 ? (
+        <AddToCartButton item={dataInState} />
+      ) : (
+        <button>Can I get a rain check??</button>
+      )}
+    </MainBox>
+  </>);
+>>>>>>> Stashed changes
 }
 
 const MainBox = styled.div`
