@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchResults, setDisplayItems } from '../../actions';
 import ItemCard from '../../components/ItemCard';
+import SearchBar from '../../components/SearchBar';
 
 const SearchResults = () => {
   let displayItems = useSelector((state) => state.filters.displayItems);
@@ -26,6 +27,7 @@ const SearchResults = () => {
   
   return (
     <>
+      <SearchBar />
       <h2>Results for "{searchTerm}"</h2>
       {displayItems && <ItemDisplay>
         {displayItems.length

@@ -14,14 +14,13 @@ import Category from '../../pages/Category';
 import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from '../FilterBar';
 import CompanyPage from '../CompanyPage';
-import Homepage from '../Homepage';
+import Homepage from '../../pages/Homepage';
 
 // Product details is in PAGES directory:
 import ProductDetails from '../../pages/ProductDetails';
 import Navbar from '../Navbar';
 import CartBar from '../CartBar';
 
-import SearchBar from '../SearchBar';
 import SearchResults from '../../pages/SearchResults';
 
 const App = () => {
@@ -39,7 +38,6 @@ const App = () => {
         </FilterBarWrap>
 
         <MainWrap>
-          <SearchBar />
           <Switch>
             <Route exact path="/">
               <Homepage />

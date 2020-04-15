@@ -8,6 +8,7 @@ import Spinner from '../../components/Spinner';
 import { setProductDetailsFromFetch } from '../../actions';
 import AddToCartButton from '../../components/AddToCartButton';
 import { COLORS } from '../../constants';
+import SearchBar from '../../components/SearchBar';
 
 function ProductDetails() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function ProductDetails() {
   //         rhyming string methods! ^
   return (
     <MainBox>
+      <SearchBar />
       <h1 style={{ gridArea: 'name' }}>{name ? name : ''}</h1>
       <BigDiv>
         <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />

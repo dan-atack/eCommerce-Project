@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchResults, setDisplayItems } from '../../actions';
+import SearchBar from '../../components/SearchBar';
 
 import ItemCard from '../../components/ItemCard';
 import Spinner from '../../components/Spinner';
@@ -31,6 +32,7 @@ const Category = () => {
     <>
       {products ? (
         <>
+          <SearchBar />
           <Title>{categoryName}</Title>
           <ItemDisplay>
             {displayItems

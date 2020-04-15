@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import FetchInitItems from '../StateFunctions/FetchInitItems';
+import FetchInitItems from '../../components/StateFunctions/FetchInitItems';
 import { parseInitialItems, displayLoadState } from '../../reducers';
+import SearchBar from '../../components/SearchBar';
 
-import ItemCard from '../ItemCard';
+import ItemCard from '../../components/ItemCard';
 
 function Homepage() {
   // GET INITIAL ITEMS FROM SERVER INTO STATE, THEN FROM STATE INTO AN ARRAY THAT WE CAN MAP:
@@ -14,6 +15,7 @@ function Homepage() {
 
   return (
     <Wrapper>
+      <SearchBar />
       <Title>Home</Title>
       <SubTitle>Sale!</SubTitle>
       <SaleItems>
