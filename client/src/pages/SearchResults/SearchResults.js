@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchResults, setDisplayItems } from '../../actions';
-import ItemCard from '../../components/ItemCard';
 import SearchBar from '../../components/SearchBar';
+import ItemDisplay from '../../components/ItemDisplay';
 
 const SearchResults = () => {
   let displayItems = useSelector((state) => state.filters.displayItems);
@@ -24,27 +24,14 @@ const SearchResults = () => {
     dispatch(searchResults(returnValues));
     dispatch(setDisplayItems(returnValues));
   }, [returnValues]);
-  
+
   return (
     <>
       <SearchBar />
       <h2>Results for "{searchTerm}"</h2>
-      {displayItems && <ItemDisplay>
-        {displayItems.length
-          ? displayItems.map((item) => {
-              return <ItemCard product={item} />;
-            })
-          : <h3>No results found</h3>}
-      </ItemDisplay>}
+      {displayItems && <ItemDisplay />}
     </>
   );
 };
-
-const ItemDisplay = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-`;
-
 
 export default SearchResults;
