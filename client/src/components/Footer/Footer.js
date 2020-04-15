@@ -17,6 +17,7 @@ const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  color: gray;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;

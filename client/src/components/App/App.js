@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import GlobalStyles from '../../GlobalStyles';
 import Footer from '../Footer';
+import AboutUs from '../../pages/AboutUs';
+import ContactUs from '../../pages/ContactUs';
 import CheckoutModal from '../CheckoutModal';
 import OrderInfo from '../OrderInfo';
 import Category from '../../pages/Category';
@@ -64,11 +66,11 @@ const App = () => {
             </Route>
 
             <Route path="/about">
-              <div>About us</div>
+              <AboutUs />
             </Route>
 
             <Route path="/contact">
-              <div>Contact us</div>
+              <ContactUs />
             </Route>
 
             <Route path="/company/:companyId">

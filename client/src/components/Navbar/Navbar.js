@@ -38,7 +38,7 @@ function Navbar() {
                 </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="/order-confirm/"><NavContent>Order History</NavContent></Link>
+            <Link to="/order-confirm/search"><NavContent>Order History</NavContent></Link>
         </NavWrapper>
     )
 }

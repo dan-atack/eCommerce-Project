@@ -38,6 +38,7 @@ const Wrapper = styled(Link)`
   padding: 10px;
   box-shadow: 5px 5px 5px grey, 5px 5px 8px black;
   color: black;
+  background: whitesmoke;
   text-decoration: none;
   border-radius: 5px;
   transition: 250ms ease-in-out;

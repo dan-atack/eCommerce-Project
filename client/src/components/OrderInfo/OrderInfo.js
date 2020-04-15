@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
+
 
 import Spinner from '../Spinner';
+import OrderSearch from './OrderSearch';
 import { clearPurchase } from '../../actions';
 
 
@@ -48,11 +49,15 @@ const OrderInfo = () => {
   const {confirmId} = useParams();
   const dispatch = useDispatch();
 
+  console.log('fetcho', confirmId);
   const [orderInfo, setOrderInfo] = React.useState(null);
+  
 //fetches order info and stores it in state to be used for rendering
 //clearpurchase() sets the state status back to 'idle' (was on 'purchased')
 //may need to add a security measure based on currentuser later?
   React.useEffect(()=> {
+    //stops fetch if just order search page
+    if (confirmId !== 'search')
     fetch(`/history/${confirmId}`)
     .then(data => data.json())
     .then(data => {
@@ -66,42 +71,56 @@ const OrderInfo = () => {
 // eslint-disable-next-line
   }, [confirmId])
 
-
-  return orderInfo? (
-    <>
-    <h2>Order # {confirmId}</h2>
-    {orderInfo.cartItems.map(item => {
-      return (
-        <ItemCard key={item.id}>
-          <img src={item.imageSrc} alt='item'/>
-          <InfoDiv>
-            <Title>
-              <StyledLink to={`/product/${item.id}`} >{item.name}</StyledLink>
-            </Title>
-            <p>
-              Quantity: <span>{item.quantity}</span> @ {item.price}
-            </p>
-          </InfoDiv>
-        </ItemCard>
-      )
-    })}
-    <UserInfo>
-      <p>Name:<span>{orderInfo.user.name}</span></p>
-      <p>Address:<span>{orderInfo.user.address}</span></p>
-      <p>Email:<span>{orderInfo.user.email}</span></p>
-      <p>Total:<span>${orderInfo.total}</span></p>
-    </UserInfo>
-    </>
-  ) : <Spinner size={40}/>
+//if this page is rendered from the order history link; just return search input
+  if (confirmId === 'search'){
+    return (
+      <OrderSearch/>
+    )
+  } else {
+    return orderInfo? (
+      <>
+      <h2>Order # {confirmId}</h2>
+      {orderInfo.cartItems.map(item => {
+        return (
+          <ItemCard key={item.id}>
+            <img src={item.imageSrc} alt='item'/>
+            <InfoDiv>
+              <Title>
+                <StyledLink to={`/product/${item.id}`} >{item.name}</StyledLink>
+              </Title>
+              <p>
+                Quantity: <span>{item.quantity}</span> @ {item.price}
+              </p>
+            </InfoDiv>
+          </ItemCard>
+        )
+      })}
+      <UserInfo>
+        <p>Name:<span>{orderInfo.user.name}</span></p>
+        <p>Address:<span>{orderInfo.user.address}</span></p>
+        <p>Email:<span>{orderInfo.user.email}</span></p>
+        <p>Total:<span>${orderInfo.total}</span></p>
+      </UserInfo>
+      </>
+    ) : <Spinner size={40}/>
+  }
 };
+
+const StyledDiv = styled.div`
+  width: 90%;
+  height: 90%;
+  background: whitesmoke;
+  box-shadow: 2px 5px 10px 0px #0B325E;
+  border-radius: 5px;
+  margin: 2.5% auto;
+  padding: 1rem;
+`;
 
 const UserInfo = styled.div`
   span{
     font-weight: bold;
   }
 `;
-
-
 const ItemCard = styled.div`
   display: flex;
   align-items: center;
