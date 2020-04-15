@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { filterItems } from '../../actions';
-import {FaFilter} from 'react-icons/fa';
+import { FaFilter } from 'react-icons/fa';
 
 const FilterBar = () => {
   const dispatch = useDispatch();
@@ -72,28 +72,28 @@ const FilterBar = () => {
     console.log(origin);
     setFilter({
       ...filter,
-      category: { 
-        ...categoryDefault, 
-        [key]: e.target.checked, 
-        All: false, 
+      category: {
+        ...categoryDefault,
+        [key]: e.target.checked,
+        All: false,
       },
     });
     return;
   };
-// these states are just used to toggle the filter collapsibles
+  // these states are just used to toggle the filter collapsibles
   const [catdrop, setCatdrop] = React.useState(false);
   const [locdrop, setLocdrop] = React.useState(false);
 
   return (
     <StyledDiv>
-      <FaFilter/>
+      <FaFilter />
       <p>
-        <button
-          onClick={() => setCatdrop(!catdrop)}
-        >
-        {catdrop? '⮛' : '⮚'}</button>Category
+        <button onClick={() => setCatdrop(!catdrop)}>
+          {catdrop ? '⮛' : '⮚'}
+        </button>
+        Category
       </p>
-      <StyledUl style={{maxHeight: catdrop? 'fit-content' : 0}} >
+      <StyledUl style={{ maxHeight: catdrop ? 'fit-content' : 0 }}>
         {Object.keys(filter.category).map((location) => {
           const origin = 'category';
           return (
@@ -113,11 +113,12 @@ const FilterBar = () => {
       </StyledUl>
 
       <p>
-        <button
-          onClick={() => setLocdrop(!locdrop)}
-        >
-        {locdrop? '⮟' : '⮞'}</button>Body Location</p>
-      <StyledUl style={{maxHeight: locdrop? 'fit-content' : 0}} >
+        <button onClick={() => setLocdrop(!locdrop)}>
+          {locdrop ? '⮟' : '⮞'}
+        </button>
+        Body Location
+      </p>
+      <StyledUl style={{ maxHeight: locdrop ? 'fit-content' : 0 }}>
         {Object.keys(filter.bodyLocation).map((location) => {
           return (
             <li key={Math.random() * 10000000}>
@@ -133,21 +134,20 @@ const FilterBar = () => {
           );
         })}
       </StyledUl>
-
     </StyledDiv>
   );
 };
 
 const StyledDiv = styled.div`
   width: 100%;
-  font-size: .75rem;
-  padding: .25rem;
+  font-size: 0.75rem;
+  padding: 0.25rem;
   p {
     font-weight: bold;
-    font-size: .85rem;
-    margin: .75rem 0 .25rem;
+    font-size: 0.85rem;
+    margin: 0.75rem 0 0.25rem;
   }
-  button{
+  button {
     background: none;
     border: none;
   }
@@ -162,9 +162,7 @@ const StyledUl = styled.ul`
   border-radius: 5px;
 `;
 
-
 // ⯈ ⮞ ⮚
 // ⯆ ⮟ ⮛
-
 
 export default FilterBar;

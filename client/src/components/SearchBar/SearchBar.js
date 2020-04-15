@@ -13,20 +13,20 @@ const SearchBar = () => {
       setReturnValues(null);
       return;
     }
-    
+
     fetch(`/products/search/${searchInput}`)
       .then((res) => res.json())
       .then((res) => {
         setReturnValues(res);
       });
-
   }, [searchInput]);
 
   const handleSearch = (e) => {
     e.preventDefault();
+    setSearchInput('');
     history.push(`/search/${searchInput}`);
   };
-  
+
   return (
     <>
       <Wrapper>
@@ -37,8 +37,9 @@ const SearchBar = () => {
               onChange={(e) => setSearchInput(e.target.value)}
               name="searchTerm"
               placeholder="What are you shopping for?"
+              value={searchInput}
             />
-            <SearchList returnValues={returnValues} userInput={searchInput}/>
+            <SearchList returnValues={returnValues} userInput={searchInput} />
           </SearchBox>
           <StyledButton type="submit" onClick={handleSearch}>
             Search

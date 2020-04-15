@@ -7,6 +7,7 @@ import SearchBar from '../../components/SearchBar';
 
 import ItemCard from '../../components/ItemCard';
 import Spinner from '../../components/Spinner';
+import ItemDisplay from '../../components/ItemDisplay';
 
 const Category = () => {
   const { categoryName } = useParams();
@@ -34,14 +35,7 @@ const Category = () => {
         <>
           <SearchBar />
           <Title>{categoryName}</Title>
-          <ItemDisplay>
-            {displayItems
-              ? displayItems.map((item) => {
-                  // to be changed with item card component
-                  return <ItemCard key={item.id} product={item} />;
-                })
-              : ''}
-          </ItemDisplay>
+          {displayItems ? <ItemDisplay /> : ''}
         </>
       ) : (
         <Spinner size={50} />
@@ -57,10 +51,10 @@ const Title = styled.h2`
     1px 2px 2px rgba(0, 0, 0, 0.5);
 `;
 
-const ItemDisplay = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-`;
+// const ItemDisplay = styled.div`
+//   display: flex;
+//   justify-content: space-evenly;
+//   flex-wrap: wrap;
+// `;
 
 export default Category;
