@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
+import {COLORS} from '../../constants';
 import Spinner from '../Spinner';
 import { 
   submitOrder, 
@@ -137,7 +138,7 @@ const ModalForm = ({ cartItems, total }) => {
         <Button 
         type='submit' 
         variant="contained" 
-        color="primary"
+        color="secondary"
         >
           Purchase
         </Button>
@@ -155,7 +156,8 @@ const StyledForm = styled.form`
   }
   Button {
     height: 2.5rem;
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 80%;
+    background: ${COLORS.addToCartPink};;
   }
 `;
 

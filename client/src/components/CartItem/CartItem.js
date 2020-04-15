@@ -60,7 +60,7 @@ const StyledDiv = styled.div`
   align-items: center;
   margin: .25rem 0;
   padding: .5rem;
-  border: 1px dotted gray;
+  border: 1px solid gray;
   background: white;
   font-size: .65rem;
   img {

@@ -111,7 +111,7 @@ const FilterBarWrap = styled.div`
 const MainWrap = styled.div`
   grid-area: main;
   overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   background: #ffc857;
 `;
 const CheckoutBarWrap = styled.div`

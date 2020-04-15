@@ -83,6 +83,11 @@ function ProductDetails() {
           <div
             style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
           >
+            
+          </div>
+        </BigDiv>
+        <DetailBox>
+          <div>
             This stately item is worn on the{' '}
             {body_location ? body_location.toLowerCase() : ''} and combines
             sleekness and power into an elegant
@@ -91,19 +96,21 @@ function ProductDetails() {
               : ''}{' '}
             package.
           </div>
-        </BigDiv>
-        <DetailBox>
-          <span>
+          <div>
+          <p>
             Category: {category ? category : ''}
             items
-          </span>
-          <span>Typically worn on: {body_location ? body_location : ''}</span>
-          <span>
+          </p>
+          <p>
+            Typically worn on: {body_location ? body_location : ''}
+          </p>
+          <p>
             Manufactured by:{' '}
             <Link to={`/company/${companyId ? companyId : ''}`}>
               {companyName ? companyName : ''}
             </Link>
-          </span>
+          </p>
+          </div>
         </DetailBox>
         {
           // conditional price display for discounted items:
@@ -162,22 +169,26 @@ const DetailBox = styled.div`
   grid-area: deets;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: 1px solid black;
   border-radius: 8px;
   padding: 16px;
   width: 256px;
-
+  background: whitesmoke;
   a {
     color: blue;
   }
 `;
 const BigDiv = styled.div`
   margin: 24px;
+  padding: 10px;
   border: 1px solid ${COLORS.borderNoire};
   border-radius: 8px;
   grid-area: img;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  background: whitesmoke;
+  text-align: center;
 `;
 
 const PurchaseInfo = styled.div`
@@ -189,6 +200,7 @@ const PurchaseInfo = styled.div`
 const DetailPic = styled.img`
   height: auto;
   width: auto;
+  object-fit: contain;
   padding: 8px;
   margin: 16px;
   background: white;

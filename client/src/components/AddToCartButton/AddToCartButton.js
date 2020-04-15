@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-// new action, ADD TO CART, needed in actions file
 import { addItemToCart } from '../../actions';
 import { COLORS } from '../../constants';
 

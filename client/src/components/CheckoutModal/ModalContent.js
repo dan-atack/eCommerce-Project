@@ -17,8 +17,12 @@ const useStyles = makeStyles({
   table: {
     margin: '1rem 0 2rem 0',
   },
-  tableHead: {
+  bold: {
     fontWeight: 'bold',
+    fontFamily: 'Poppins, sans-serif',
+  },
+  font: {
+    fontFamily: 'Poppins, sans-serif',
   },
   tableRow: {
     borderBottom: '2px solid lightgray',
@@ -34,18 +38,24 @@ const ModalContent = ({ cartItems }) => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead className={classes.tableHead}>
             <TableRow className={classes.tableRow}>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Quantity</TableCell>
-              <TableCell align="center">Price</TableCell>
+              <TableCell className={classes.bold} align="center">
+                Name</TableCell>
+              <TableCell className={classes.bold} align="center">
+                Quantity</TableCell>
+              <TableCell className={classes.bold} align="center">
+                Price</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
           {cartItems.map(item => {
             return (
                 <TableRow className={classes.tableRow} key={`${item.id}`}>
-                    <TableCell align="center">{item.name}</TableCell>
-                    <TableCell align="center">{item.quantity}</TableCell>
-                    <TableCell align="center">{item.price}</TableCell>
+                    <TableCell className={classes.font} align="center">
+                    {item.name}</TableCell>
+                    <TableCell className={classes.font} align="center">
+                    {item.quantity}</TableCell>
+                    <TableCell className={classes.font} align="center">
+                    {item.price}</TableCell>
                 </TableRow>
             )
           })}

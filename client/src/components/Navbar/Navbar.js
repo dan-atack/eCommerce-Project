@@ -51,7 +51,7 @@ const LogoBG = styled.div `
     top: 0;
     transition: background-color 500ms;
     border-radius: 3px;
-
+    
     &:hover {
         border-bottom: crimson solid 2px;
         background-color: lightgray;
@@ -65,8 +65,9 @@ const NavContent = styled.div `
     color: lightgray;
     transition: background-color 500ms;
     border-radius: 3px;
-
+    border-bottom: transparent solid 2px;
     &:hover {
+        cursor: pointer;
         color: black;
         border-bottom: crimson solid 2px;
         background-color: lightgray;
@@ -86,6 +87,7 @@ const NavWrapper = styled.div `
     align-items: flex-end;
     z-index: 1;
     height: 100%;
+    
     a {
         text-decoration: none;
         color: black;

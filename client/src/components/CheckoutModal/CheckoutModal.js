@@ -43,14 +43,16 @@ const CheckoutModal = () => {
       || status === 'error'
     } 
     onClose={() => {dispatch(clearPurchase())}}
+    maxWidth={'lg'}
+    
     >
       <Container className={classes.container}>
         <Title>Checkout</Title>
         <ModalContent cartItems={cartItems}/>
         <DialogContent>
-          {`${cartItems.length} item(s) Total: $${total}`}
+          {`${cartItems.length} item(s) Total: $${total.toFixed(2)}`}
         </DialogContent>
-        <ModalForm cartItems={cartItems} total={total} />
+        <ModalForm cartItems={cartItems} total={total.toFixed(2)} />
       </Container>
     </Dialog>
   )
