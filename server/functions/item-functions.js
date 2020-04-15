@@ -1,8 +1,8 @@
 const items = require("../data/items.json");
 
-// ****************************************************************** // //
-// function that will sort the data by category specified by the user //  //
-// ****************************************************************** // //
+// ****************************************************************** //
+// function that will sort the data by category specified by the user //
+// ****************************************************************** //
 const sortCategory = (req) => {  
 
     //category of items specified in the url
