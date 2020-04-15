@@ -47,10 +47,11 @@ const SearchBar = () => {
 };
 
 const StyledInput = styled.input`
-  width: 75%;
+  /* width: 75%; */
   padding: 4px;
   font-size: 1rem;
   height: 100%;
+  flex-grow: 2;
   &:focus {
     outline: none;
   }
