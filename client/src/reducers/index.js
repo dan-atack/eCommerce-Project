@@ -20,9 +20,7 @@ export const parseInitialItems = (state) => {
 // loading state for initial server fetch:
 export const displayLoadState = (state) => state.catalog.status;
 
+export const displayDetailLoadState = (state) => state.catalog.detailStatus;
+
 // Get specific product info for Product Details page:
-export const getProductDetails = (state) => {
-  if (state.catalog.status === 'complete') {
-    return state.catalog.productDetails;
-  }
-};
+export const getProductDetails = (state) => state.catalog.productDetails;

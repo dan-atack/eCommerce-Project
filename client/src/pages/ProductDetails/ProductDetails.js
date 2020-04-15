@@ -1,73 +1,101 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector, ReactReduxContext } from 'react-redux';
 import { getProductDetails, displayDetailLoadState } from '../../reducers';
-import FetchItemDetails from '../../components/StateFunctions/FetchItemDetails';
-//import { setProductDetails } from '../../actions';
+import Spinner from '../../components/Spinner';
+import { setProductDetailsFromFetch } from '../../actions';
 import AddToCartButton from '../../components/AddToCartButton';
 import { COLORS } from '../../constants';
 
 function ProductDetails() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { productId } = useParams();
-  const dataInState = useSelector(getProductDetails);
-  // Check if there is data in the state:
-  let itemDataLoaded = Object.keys(dataInState).length > 0;
-  // use this boolean to render the page immediately if the data is in the state:
-  if (itemDataLoaded) {
-    const {
-      id,
-      name,
-      price,
-      body_location,
-      category,
-      imageSrc,
-      numInStock,
-      companyId,
-    } = dataInState;
-    // convert price to numerical value:
-    const numericalPrice = Number(price.slice(1));
-    //         rhyming string methods! ^
-    return (
-      <MainBox>
-        <h1 style={{ gridArea: 'name' }}>{name}</h1>
-        <BigDiv>
-          <DetailPic src={imageSrc} alt={name} />
-          <div
-            style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
-          >
-            This stately item is worn on the {body_location.toLowerCase()} and
-            combines sleekness and power into an elegant
-            {numericalPrice < 100 ? ', and affordable' : ''} package.
-          </div>
-        </BigDiv>
-        <DetailBox>
-          <span>Category: {category} items</span>
-          <span>Typically worn on: {body_location}</span>
-          <span></span>
-        </DetailBox>
-        <PurchaseInfo>
-          {numInStock > 0 ? (
-            <span>
-              Stock Remaining: {numInStock} starting at {price}
-            </span>
-          ) : (
-            <span>This item is currently sold out. Sorry about that eh!</span>
-          )}
-        </PurchaseInfo>
-        {numInStock > 0 ? (
-          <AddToCartButton item={dataInState} />
-        ) : (
-          <button>Can I get a rain check??</button>
-        )}
-      </MainBox>
-    );
-  } else {
-    // return statement for if you go to the page directly, skipping the item card-state combo (btw if you do this I hate you)
-    FetchItemDetails(productId);
-    return <h1>YOU FUCK!!!</h1>;
+  const [companyName, setCompanyName] = React.useState('');
+  // function to get company name once the item data loads:
+  const getCompanyName = (companyId) => {
+    fetch(`/companyName/${companyId}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((company) => setCompanyName(company.companyName));
+  };
+  React.useEffect(() => {
+    fetch(`/item/${productId}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((item) => {
+        dispatch(setProductDetailsFromFetch(item));
+        getCompanyName(item.companyId);
+      });
+  }, []);
+  let dataInState = useSelector(getProductDetails);
+  // Fetch company name from HQ:
+
+  if (Object.keys(dataInState).length == 0) {
+    return <Spinner />;
   }
+
+  const {
+    id,
+    name,
+    price,
+    body_location,
+    category,
+    imageSrc,
+    numInStock,
+    companyId,
+  } = dataInState;
+
+  // convert price to numerical value:
+  const numericalPrice = Number(price.slice(1));
+  //         rhyming string methods! ^
+  return (
+    <MainBox>
+      <h1 style={{ gridArea: 'name' }}>{name ? name : ''}</h1>
+      <BigDiv>
+        <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
+        <div
+          style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
+        >
+          This stately item is worn on the{' '}
+          {body_location ? body_location.toLowerCase() : ''}
+          and combines sleekness and power into an elegant
+          {(numericalPrice ? numericalPrice : 0) < 100
+            ? ', and affordable'
+            : ''}{' '}
+          package.
+        </div>
+      </BigDiv>
+      <DetailBox>
+        <span>
+          Category: {category ? category : ''}
+          items
+        </span>
+        <span>Typically worn on: {body_location ? body_location : ''}</span>
+        <Link to={`/company/${companyId ? companyId : ''}`}>
+          Manufactured by: {companyName ? companyName : ''}
+        </Link>
+      </DetailBox>
+      <PurchaseInfo>
+        {(numInStock ? numInStock : 0) > 0 ? (
+          <span>
+            Stock Remaining: {numInStock ? numInStock : 0} starting at{' '}
+            {price ? price : '$0.00'}
+          </span>
+        ) : (
+          <span>This item is currently sold out. Sorry about that eh!</span>
+        )}
+      </PurchaseInfo>
+      {numInStock > 0 ? (
+        <AddToCartButton item={dataInState} />
+      ) : (
+        <button>Can I get a rain check??</button>
+      )}
+    </MainBox>
+  );
 }
 
 const MainBox = styled.div`
