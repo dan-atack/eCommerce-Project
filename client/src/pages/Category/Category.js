@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
 import ItemCard from '../../components/ItemCard';
@@ -22,11 +23,13 @@ const Category = () => {
     <>
       {products ? (
         <>
-          <h2>{categoryName}</h2>
+        <Title>{categoryName}</Title>
+        <ItemDisplay>
           {products.map((item) => {
             // to be changed with item card component
             return <ItemCard key={item.id} product={item} />;
           })}
+        </ItemDisplay>
         </>
       ) : (
         <Spinner size={50} />
@@ -34,5 +37,20 @@ const Category = () => {
     </>
   );
 };
+
+const Title = styled.h2`
+  padding:  1rem;
+  color: whitesmoke;
+  text-shadow: 4px 8px 25px #616161, 
+    0px 4px 4px rgba(0, 0, 0, 0.3), 
+    1px 2px 2px rgba(0, 0, 0, 0.5);
+`;
+
+const ItemDisplay = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
+
 
 export default Category;

@@ -68,11 +68,12 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: .5rem;
+  border-left: 2px solid #ffc857;
 `;
 const Header = styled.div`
   h1 {
     color: whitesmoke;
-    text-shadow: 4px 8px 25px #000000, 
+    text-shadow: 4px 8px 25px #616161, 
     0px 4px 4px rgba(0, 0, 0, 0.5), 
     1px 2px 2px rgba(0, 0, 0, 0.75);
   }

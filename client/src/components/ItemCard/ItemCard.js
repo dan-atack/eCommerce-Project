@@ -33,13 +33,16 @@ const Wrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   width: 200px;
   height: 300px;
   padding: 10px;
+  margin: 10px 0;
   box-shadow: 5px 5px 5px grey, 5px 5px 8px black;
   color: black;
   background: whitesmoke;
   text-decoration: none;
+  text-align: center;
   border-radius: 5px;
   transition: 250ms ease-in-out;
   background: whitesmoke;
