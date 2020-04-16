@@ -14,6 +14,7 @@ const Category = () => {
   let displayItems = useSelector((state) => state.filters.displayItems);
   const dispatch = useDispatch();
   const [products, setProducts] = useState(null);
+  
   useEffect(() => {
     // fetching products by category
     fetch(`/products/${categoryName}`)
