@@ -8,6 +8,7 @@ import ItemCard from '../../components/ItemCard';
 const ItemDisplay = () => {
   const ITEMS_PER_PAGE = 12;
   let displayItems = useSelector((state) => state.filters.displayItems);
+
   const [pages, setPages] = useState([[]]);
   const [currentPage, setCurrentPage] = useState(0);
   // To set the pages everytime displayItems changes. This makes this component re-usable

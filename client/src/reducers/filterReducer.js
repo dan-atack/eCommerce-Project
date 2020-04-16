@@ -62,6 +62,31 @@ export default function filterReducer(state = initialState, action) {
       }
       return state;
     }
+    case 'SORT_ITEMS': {
+      console.log('action ',  JSON.parse(action.sortVar) );
+    //value passed is stringified object {type: '.', elv: '.'}, must parse to use.
+      const variable = JSON.parse(action.sortVar);
+      let sortedItems = [...state.displayItems];
+
+      if (variable.type === 'price') 
+        sortedItems = sortedItems.sort((a, b) => {
+        //removes "$" , turns price string into number, then sorts
+          return ( 
+            parseFloat((b.price).replace(/[^\d.]/g, '')) - 
+            parseFloat((a.price).replace(/[^\d.]/g, '')) )
+        });
+      //lower case to avoid uppercase chars messing result
+      if (variable.type === 'name') {
+        sortedItems = sortedItems.sort((a, b) => 
+        ((a.name).toLowerCase() < (b.name).toLowerCase()) ? 1 : -1);
+      };
+    //default sorts are descending, simple reverse for ascending
+      if (variable.elv === 'ascending') {
+        sortedItems = sortedItems.reverse();
+      } ;
+      
+      return { ...state, displayItems: sortedItems };
+    }
     default: {
       return state;
     }

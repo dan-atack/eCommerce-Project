@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { filterItems } from '../../actions';
 import { FaFilter } from 'react-icons/fa';
 
+import ItemSorter from '../ItemSorter';
+
 const FilterBar = () => {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
@@ -86,6 +88,7 @@ const FilterBar = () => {
 
   return (
     <StyledDiv>
+      <ItemSorter/>
       <FaFilter />
       <p>
         <button onClick={() => setCatdrop(!catdrop)}>
@@ -134,6 +137,7 @@ const FilterBar = () => {
           );
         })}
       </StyledUl>
+      
     </StyledDiv>
   );
 };

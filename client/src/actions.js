@@ -69,6 +69,12 @@ export const filterItems = (filters) => ({
   filters,
 });
 
+export const sortItems = (sortVar, elevation) => ({
+  type: 'SORT_ITEMS',
+  sortVar,
+  elevation,
+});
+
 //  SEARCH RESULTS:
 
 export const searchResults = (products) => ({
