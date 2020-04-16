@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchResults, setDisplayItems } from '../../actions';
 import SearchBar from '../../components/SearchBar';
 
-import ItemCard from '../../components/ItemCard';
 import Spinner from '../../components/Spinner';
 import ItemDisplay from '../../components/ItemDisplay';
 

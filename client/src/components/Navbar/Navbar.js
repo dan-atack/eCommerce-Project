@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 import logo from "../../assets/Shady-sellers.png"
 import NavCategory from "./NavCategory"
+import { useAuth0 } from "../../auth0/react-auth0-spa"
 
 function Navbar() {
     // used to render the dropdown menu
@@ -19,7 +20,23 @@ function Navbar() {
             })
     }, [])
 
-    return (
+    // authetication
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+    return (<>
+        <LoginAndOut>
+            {!isAuthenticated && (
+            <Authenticators onClick={() => loginWithRedirect({})}>Log in</Authenticators>
+            )}
+
+            {isAuthenticated && (<>
+                <Authenticators>
+                    <Link to="/profile">Profile</Link>
+                </Authenticators>
+                <Authenticators onClick={() => logout()}>Log out</Authenticators>
+                </>)}
+        </LoginAndOut>
+
         <NavWrapper>
             <Link to="/"><LogoBG><Logo src={logo} alt="logo" /></LogoBG></Link>
             <Link to="/"><NavContent>Home</NavContent></Link>
@@ -40,8 +57,37 @@ function Navbar() {
 
             <Link to="/order-confirm/search"><NavContent>Order History</NavContent></Link>
         </NavWrapper>
-    )
+    </>)
 }
+
+const Authenticators = styled.div `
+    color: whitesmoke;
+    font-size: 1.5em;
+
+    transition: background-color 500ms;
+    border-radius: 3px;
+    padding: 10px;
+
+    &:hover {
+        border-bottom: crimson solid 2px;
+        color: black;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+    
+    a {
+            text-decoration: none;
+            color: whitesmoke;
+        }
+`
+
+const LoginAndOut = styled.div `
+    position: fixed;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+`
 
 const LogoBG = styled.div `
     height: 100%;
@@ -49,8 +95,9 @@ const LogoBG = styled.div `
     position: absolute;
     left: 0;
     top: 0;
-    transition: background-color 500ms;
     border-radius: 3px;
+
+    transition: background-color 500ms;
     
     &:hover {
         border-bottom: crimson solid 2px;
@@ -63,9 +110,11 @@ const NavContent = styled.div `
     margin: 51px 0px 0px;
     font-size: 1.5em;
     color: lightgray;
-    transition: background-color 500ms;
     border-radius: 3px;
     border-bottom: transparent solid 2px;
+
+    transition: background-color 500ms;
+
     &:hover {
         cursor: pointer;
         color: black;
@@ -84,7 +133,6 @@ const NavWrapper = styled.div `
     display: flex;
     position: relative;
     justify-content: flex-end;
-    align-items: flex-end;
     z-index: 1;
     height: 100%;
     

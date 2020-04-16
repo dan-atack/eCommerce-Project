@@ -49,7 +49,6 @@ const OrderInfo = () => {
   const {confirmId} = useParams();
   const dispatch = useDispatch();
 
-  console.log('fetcho', confirmId);
   const [orderInfo, setOrderInfo] = React.useState(null);
   
   //fetches order info and stores it in state to be used for rendering
