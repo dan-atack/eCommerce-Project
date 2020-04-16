@@ -1,24 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setQty, removeItem } from '../../actions';
 
 const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
-
-
   const dispatch = useDispatch();
   let amount = quantity;
 
   return (
     <StyledDiv>
-      <img src={imageSrc} alt='item'/>
+      <img src={imageSrc} alt='item' />
       <InfoDiv>
         <Title>
-          <StyledLink to={`/product/${id}`} >{name}</StyledLink>
+          <StyledLink to={`/product/${id}`}>{name}</StyledLink>
           <StyledButton
             onClick={() => {
-              dispatch(removeItem(id))
+              dispatch(removeItem(id));
             }}
           >
             X
@@ -29,44 +27,53 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
           <StyledButton
             onClick={() => {
               //stops increasing beyond stock levels (Maxspan appears when at max)
-              if(amount < stock){
-                amount ++;
+              if (amount < stock) {
+                amount++;
                 console.log(amount);
-                dispatch(setQty(id, amount))
+                dispatch(setQty(id, amount));
               }
             }}
-          >▲</StyledButton>
+          >
+            ▲
+          </StyledButton>
           <StyledButton
-          onClick={() => {
-            //stops decreasing below 1
-            if(amount > 0){
-              amount --;
-              dispatch(setQty(id, amount))
-            }
-          }}
-          >▼</StyledButton>
-          <MaxSpan style={{visibility: amount===stock ? "visible" : "hidden"}}>
+            onClick={() => {
+              //stops decreasing below 1
+              if (amount > 0) {
+                amount--;
+                dispatch(setQty(id, amount));
+              }
+            }}
+          >
+            ▼
+          </StyledButton>
+          <MaxSpan
+            style={{ visibility: amount === stock ? 'visible' : 'hidden' }}
+          >
             max
           </MaxSpan>
         </p>
         <p>@ {price}</p>
       </InfoDiv>
     </StyledDiv>
-  )
+  );
 };
 
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
-  margin: .25rem 0;
-  padding: .5rem;
+  margin: 0.25rem 0;
+  padding: 0.5rem;
   border: 1px solid gray;
   background: white;
-  font-size: .65rem;
+  font-size: 0.65rem;
   img {
     max-height: 3rem;
     max-width: 3rem;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
+    @media (max-width: 776px) {
+      display: none;
+    }
   }
 `;
 const InfoDiv = styled.div`
@@ -76,7 +83,7 @@ const InfoDiv = styled.div`
   justify-content: center;
   span {
     font-weight: bold;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     text-decoration: underline;
   }
 `;
@@ -84,7 +91,7 @@ const Title = styled.p`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid gray;
-  font-size: .70rem;
+  font-size: 0.7rem;
 `;
 const StyledLink = styled(Link)`
   color: black;
@@ -97,10 +104,10 @@ const StyledLink = styled(Link)`
 //need to make some standardized button css or component
 const StyledButton = styled.button`
   border-radius: 50%;
-  height: .8rem;
-  width: .8rem;
-  margin-right: .10rem;
-  font-size: .4rem;
+  height: 0.8rem;
+  width: 0.8rem;
+  margin-right: 0.1rem;
+  font-size: 0.4rem;
   font-weight: bold;
   background: maroon;
   border: none;
@@ -108,13 +115,13 @@ const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;
 //if keeping; alter so does not push "quantity" over on appearance
 const MaxSpan = styled.span`
-  font-size: .5rem;
+  font-size: 0.5rem;
   text-decoration: none;
   color: maroon;
 `;

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
-
 import NavCategory from './NavCategory';
-import { useAuth0 } from '../../auth0/react-auth0-spa';
 
 import { useSelector } from 'react-redux';
 import logo from '../../assets/GadgetGrotto.png';
 import darkLogo from '../../assets/GadgetGrottoDark.png';
+import { useAuth0 } from '../../auth0/react-auth0-spa';
 
 function Navbar() {
   const COLORS = useSelector((state) => state.designSetting);
@@ -28,6 +27,53 @@ function Navbar() {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   // Styled components
+  const LogoBG = styled.div`
+    height: 100%;
+    width: 106px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: background-color 500ms;
+    border-radius: 3px;
+    &:hover {
+      border-bottom: ${COLORS.filter} solid 2px;
+      background-color: lightgray;
+    }
+    @media (max-width: 504px) {
+      height: 108px;
+      position: relative;
+    }
+  `;
+  // Added this to keep the navlinks separate from the logo on smaller devices:
+  const NavCats = styled.div`
+    display: flex;
+  `;
+
+  const NavContent = styled.div`
+    padding: 10px;
+    margin: 51px 0px 0px;
+    font-size: 1.5em;
+    color: lightgray;
+    transition: background-color 500ms;
+    border-radius: 3px;
+    border-bottom: transparent solid 2px;
+    &:hover {
+      cursor: pointer;
+      color: ${COLORS.header};
+      border-bottom: ${COLORS.filter} solid 2px;
+      background-color: ${COLORS.main};
+    }
+    @media (max-width: 504px) {
+      margin: 0px;
+    }
+  `;
+
+  // =======
+  //             <Link to="/order-confirm/search"><NavContent>Order History</NavContent></Link>
+  //         </NavWrapper>
+  //     </>)
+  // }
+
   const Authenticators = styled.div`
     color: whitesmoke;
     font-size: 1.5em;
@@ -57,41 +103,6 @@ function Navbar() {
     justify-content: space-between;
   `;
 
-  const LogoBG = styled.div`
-    height: 100%;
-    width: 106px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius: 3px;
-
-    transition: background-color 500ms;
-
-    &:hover {
-      border-bottom: ${COLORS.filter} solid 2px;
-      background-color: ${COLORS.main};
-    }
-  `;
-
-  const NavContent = styled.div`
-    padding: 10px;
-    margin: 51px 0px 0px;
-    font-size: 1.5em;
-    color: ${COLORS.main};
-    transition: background-color 500ms;
-    border-radius: 3px;
-    border-bottom: transparent solid 2px;
-
-    transition: background-color 500ms;
-
-    &:hover {
-      cursor: pointer;
-      color: ${COLORS.header};
-      border-bottom: ${COLORS.filter} solid 2px;
-      background-color: ${COLORS.main};
-    }
-  `;
-
   const Logo = styled.img`
     height: 107px;
     position: absolute;
@@ -102,12 +113,17 @@ function Navbar() {
     display: flex;
     position: relative;
     justify-content: flex-end;
+    align-items: flex-end;
     z-index: 1;
     height: 100%;
 
     a {
       text-decoration: none;
       color: black;
+    }
+    @media (max-width: 504px) {
+      flex-direction: column;
+      align-items: center;
     }
   `;
 

@@ -89,55 +89,57 @@ const FilterBar = () => {
 
   return (
     <StyledDiv>
-      <ItemSorter />
-      <FaFilter />
-      <p>
-        <button onClick={() => setCatdrop(!catdrop)}>
-          {catdrop ? '⮛' : '⮚'}
-        </button>
-        Category
-      </p>
-      <StyledUl style={{ maxHeight: catdrop ? 'fit-content' : 0 }}>
-        {Object.keys(filter.category).map((location) => {
-          const origin = 'category';
-          return (
-            <li>
-              <input
-                type={'radio'}
-                name={`${location}`}
-                id={`${location}`}
-                value={location}
-                onChange={(e) => handleRadio(e, origin)}
-                checked={filter.category[location]}
-              ></input>
-              <label for={`${location}`}>{location}</label>
-            </li>
-          );
-        })}
-      </StyledUl>
+      <Sorters>
+        <ItemSorter />
+        <FaFilter />
+        <p>
+          <button onClick={() => setCatdrop(!catdrop)}>
+            {catdrop ? '⮛' : '⮚'}
+          </button>
+          Category
+        </p>
+        <StyledUl style={{ maxHeight: catdrop ? 'fit-content' : 0 }}>
+          {Object.keys(filter.category).map((location) => {
+            const origin = 'category';
+            return (
+              <li>
+                <input
+                  type={'radio'}
+                  name={`${location}`}
+                  id={`${location}`}
+                  value={location}
+                  onChange={(e) => handleRadio(e, origin)}
+                  checked={filter.category[location]}
+                ></input>
+                <label for={`${location}`}>{location}</label>
+              </li>
+            );
+          })}
+        </StyledUl>
 
-      <p>
-        <button onClick={() => setLocdrop(!locdrop)}>
-          {locdrop ? '⮟' : '⮞'}
-        </button>
-        Body Location
-      </p>
-      <StyledUl style={{ maxHeight: locdrop ? 'fit-content' : 0 }}>
-        {Object.keys(filter.bodyLocation).map((location) => {
-          return (
-            <li key={Math.random() * 10000000}>
-              <input
-                type={'checkbox'}
-                name={`${location}`}
-                id={`${location}`}
-                onChange={handleCheckbox}
-                checked={filter['bodyLocation'][location]}
-              ></input>
-              <label for={`${location}`}>{location}</label>
-            </li>
-          );
-        })}
-      </StyledUl>
+        <p>
+          <button onClick={() => setLocdrop(!locdrop)}>
+            {locdrop ? '⮟' : '⮞'}
+          </button>
+          Body Location
+        </p>
+        <StyledUl style={{ maxHeight: locdrop ? 'fit-content' : 0 }}>
+          {Object.keys(filter.bodyLocation).map((location) => {
+            return (
+              <li key={Math.random() * 10000000}>
+                <input
+                  type={'checkbox'}
+                  name={`${location}`}
+                  id={`${location}`}
+                  onChange={handleCheckbox}
+                  checked={filter['bodyLocation'][location]}
+                ></input>
+                <label for={`${location}`}>{location}</label>
+              </li>
+            );
+          })}
+        </StyledUl>
+      </Sorters>
       <ChangeDesignButton />
     </StyledDiv>
   );
@@ -147,6 +149,7 @@ const StyledDiv = styled.div`
   width: 100%;
   font-size: 0.75rem;
   padding: 0.25rem;
+  min-width: 128px;
   p {
     font-weight: bold;
     font-size: 0.85rem;
@@ -155,6 +158,21 @@ const StyledDiv = styled.div`
   button {
     background: none;
     border: none;
+  }
+  @media (max-width: 540px) {
+    display: flex;
+  }
+  @media (max-width: 360px) {
+    flex-direction: column;
+  }
+`;
+
+const Sorters = styled.div`
+  @media (max-width: 540px) {
+    display: flex;
+  }
+  @media (max-width: 360px) {
+    flex-direction: column;
   }
 `;
 
@@ -165,6 +183,9 @@ const StyledUl = styled.ul`
   margin: 0 auto;
   background: whitesmoke;
   border-radius: 5px;
+  @media (max-width: 540px) {
+    margin: 0px 8px;
+  }
 `;
 
 // ⯈ ⮞ ⮚
