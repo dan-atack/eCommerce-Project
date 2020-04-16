@@ -54,7 +54,7 @@ function ProductDetails() {
     }
   };
   const discount = determineDiscount();
-
+  
   if (Object.keys(dataInState).length == 0) {
     return <Spinner />;
   }
@@ -116,10 +116,10 @@ function ProductDetails() {
           // conditional price display for discounted items:
           discount != price ? (
             <PurchaseInfo>
-              <span>
+              {discount && <span>
                 {numInStock} units available from the INSANELY low price of
                 {` $${discount.toFixed(2)}`}!!!
-              </span>
+              </span>}
             </PurchaseInfo>
           ) : (
             <PurchaseInfo>

@@ -13,7 +13,7 @@ import Category from '../../pages/Category';
 // get feature/sale item data into state:
 import { parseInitialItems, displayLoadState } from '../../reducers';
 import FilterBar from '../FilterBar';
-import CompanyPage from '../CompanyPage';
+import CompanyPage from '../../pages/CompanyPage';
 import Homepage from '../../pages/Homepage';
 
 // Product details is in PAGES directory:

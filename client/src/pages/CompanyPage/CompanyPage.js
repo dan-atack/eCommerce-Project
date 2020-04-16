@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Route, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { searchResults, setDisplayItems } from '../../actions';
 
-import ItemCard from '../ItemCard';
+import ItemDisplay from '../../components/ItemDisplay';
+
 function CompanyPage() {
   const { companyId } = useParams();
 
   const [companyItems, setCompanyItems] = useState([]);
   const [name, setName] = useState('');
 
-  let displayItems = useSelector((state) => state.filters.displayItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,11 +34,7 @@ function CompanyPage() {
     <>
       <h2>All products by {name} :</h2>
       <CompanyProducts>
-        <Route>
-          {displayItems.map((item) => {
-            return <ItemCard key={Math.random() * 10000000} product={item} />;
-          })}
-        </Route>
+          <ItemDisplay />
       </CompanyProducts>
     </>
   );
