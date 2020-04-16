@@ -116,6 +116,13 @@ const PageSelectBox = styled.div`
 `;
 const PageChange = styled.div`
   padding: 4px 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: 250ms;
+  &:hover {
+    background: whitesmoke;
+  }
 `;
 
 export default ItemDisplay;
