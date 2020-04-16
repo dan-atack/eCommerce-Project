@@ -95,7 +95,7 @@ const CartBar = () => {
 
   //cart is "hidden" off to the left unless containing items
   return (
-    <StyledDiv style={{ left: cartItems.length > 0 ? '0%' : '0%' }}>
+    <StyledDiv style={{ left: cartItems.length > 0 ? '0%' : '100%' }}>
       <div>
         <Header>
           <h1>Cart</h1>
