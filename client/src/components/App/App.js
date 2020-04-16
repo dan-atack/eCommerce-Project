@@ -22,8 +22,14 @@ import Homepage from '../../pages/Homepage';
 import ProductDetails from '../../pages/ProductDetails';
 import Navbar from '../Navbar';
 import CartBar from '../CartBar';
-
 import SearchResults from '../../pages/SearchResults';
+
+// authenticator related things
+import { useAuth0 } from "../../auth0/react-auth0-spa";
+import history from "../../auth0/utils/history"
+import ProfilePage from "../../pages/ProfilePage";
+
+
 const App = () => {
   const COLORS = useSelector((state) => state.designSetting);
   const PageStructure = styled.div`
@@ -70,8 +76,12 @@ const App = () => {
     grid-area: foot;
     background: ${COLORS.footer};
   `;
+
+
+  const { loading } = useAuth0();
+
   return (
-    <Router>
+    <Router history={history}>
       <PageStructure>
         <GlobalStyles />
         <CheckoutModal />
@@ -120,6 +130,11 @@ const App = () => {
             <Route path='/company/:companyId'>
               <CompanyPage />
             </Route>
+
+            <Route path="/profile">
+              <ProfilePage />
+            </Route>
+
           </Switch>
         </MainWrap>
 
