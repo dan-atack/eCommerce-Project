@@ -3,9 +3,10 @@ import { combineReducers } from 'redux';
 import catalog from './catalogReducer';
 import cartItems from './cartItemsReducer';
 import filters from './filterReducer';
+import designSetting from './designReducer';
 import { createSelectorHook } from 'react-redux';
 
-export default combineReducers({ catalog, cartItems, filters });
+export default combineReducers({ catalog, cartItems, filters, designSetting });
 
 // This returns two lists of items: the featured and sale products, on initial load:
 export const parseInitialItems = (state) => {

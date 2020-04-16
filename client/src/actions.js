@@ -87,3 +87,8 @@ export const setDisplayItems = (products) => ({
   products,
 });
 // MORE ACTIONS GO HERE :)
+// CHANGE DESIGN STYLE:
+export const setDesign = (style) => ({
+  type: 'CHANGE_DESIGN',
+  style,
+});

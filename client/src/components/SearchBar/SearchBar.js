@@ -61,13 +61,15 @@ const StyledInput = styled.input`
   }
 `;
 const StyledButton = styled.button`
+  box-sizing: border-box;
   width: 15%;
-  padding: 4px;
+  padding: 9px;
+  margin: 0;
   margin-left: 5px;
   height: 100%;
 `;
 const StyledForm = styled.form`
-  height: 30px;
+  height: 100%;
   display: flex;
   align-items: center;
   width: 100%;

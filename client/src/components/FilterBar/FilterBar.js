@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { filterItems } from '../../actions';
 import { FaFilter } from 'react-icons/fa';
+import ChangeDesignButton from '../ChangeDesignButton';
 
 import ItemSorter from '../ItemSorter';
 
@@ -88,7 +89,7 @@ const FilterBar = () => {
 
   return (
     <StyledDiv>
-      <ItemSorter/>
+      <ItemSorter />
       <FaFilter />
       <p>
         <button onClick={() => setCatdrop(!catdrop)}>
@@ -137,7 +138,7 @@ const FilterBar = () => {
           );
         })}
       </StyledUl>
-      
+      <ChangeDesignButton />
     </StyledDiv>
   );
 };
