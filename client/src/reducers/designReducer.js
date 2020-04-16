@@ -5,7 +5,7 @@ const initialState = {
   filter: '#3AAFA9',
   main: '#DEF2F1',
   footer: '#2B7A78',
-  text: '#FEFFFF',
+  background: '#FEFFFF',
   logo: 'base',
 };
 
@@ -21,7 +21,7 @@ export default function designReducer(state = initialState, action) {
             filter: '#3AAFA9',
             main: '#17252A',
             footer: '#2B7A78',
-            text: '#FEFFFF',
+            background: '#FEFFFF',
             logo: 'dark',
           };
         }
@@ -33,7 +33,7 @@ export default function designReducer(state = initialState, action) {
             filter: '#3AAFA9',
             main: '#DEF2F1',
             footer: '#2B7A78',
-            text: '#FEFFFF',
+            background: '#FEFFFF',
             logo: 'base',
           };
         }

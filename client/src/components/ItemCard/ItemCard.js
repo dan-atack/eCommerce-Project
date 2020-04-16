@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setProductDetailsFromCard } from '../../actions';
 import starburst from '../../assets/starburst.png';
+import { useSelector } from 'react-redux';
 
 const ItemCard = ({ product }) => {
   const dispatch = useDispatch();
+  const COLORS = useSelector((state) => state.designSetting);
 
   const {
     id,
@@ -18,6 +20,45 @@ const ItemCard = ({ product }) => {
     numInStock,
     companyId,
   } = product;
+
+  // styled components:
+  const Special = styled.div`
+    color: whitesmoke;
+    padding: 4px;
+    z-index: 2;
+    background-image: url(${starburst});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 72px;
+    width: 96px;
+  `;
+
+  const StruckThru = styled.span`
+    text-decoration: line-through;
+    color: ${COLORS.filter};
+    margin-right: 8px;
+  `;
+
+  const Wrapper = styled(Link)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 240px;
+    height: 360px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 5px 5px 5px grey, 5px 5px 8px ${COLORS.header};
+    color: ${COLORS.header};
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: 250ms ease-in-out;
+    background: ${COLORS.background};
+    &:hover {
+      transform: scale(1.01);
+    }
+  `;
 
   return (
     <Wrapper
@@ -43,44 +84,5 @@ const ItemCard = ({ product }) => {
     </Wrapper>
   );
 };
-
-const Special = styled.div`
-  color: whitesmoke;
-  padding: 4px;
-  z-index: 2;
-  background-image: url(${starburst});
-  background-repeat: no-repeat;
-  background-size: 100%;
-  height: 72px;
-  width: 96px;
-`;
-
-const StruckThru = styled.span`
-  text-decoration: line-through;
-  color: black;
-  margin-right: 8px;
-`;
-
-const Wrapper = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 240px;
-  height: 360px;
-  padding: 10px;
-  margin: 10px 0;
-  box-shadow: 5px 5px 5px grey, 5px 5px 8px black;
-  color: black;
-  background: whitesmoke;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 5px;
-  transition: 250ms ease-in-out;
-  background: whitesmoke;
-  &:hover {
-    transform: scale(1.01);
-  }
-`;
 
 export default ItemCard;
