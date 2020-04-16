@@ -13,9 +13,13 @@ const ChangeDesignButton = () => {
         return;
       }
       case 'New': {
-        dispatch(setDesign('new'));
+        dispatch(setDesign('darkMode'));
         return;
       }
+      // case 'Whacky': {
+      //   dispatch(setDesign('whacky'));
+      //   return;
+      // }
       default: {
         return;
       }

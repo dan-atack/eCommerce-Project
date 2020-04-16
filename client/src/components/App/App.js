@@ -10,7 +10,6 @@ import ContactUs from '../../pages/ContactUs';
 import CheckoutModal from '../CheckoutModal';
 import OrderInfo from '../OrderInfo';
 import Category from '../../pages/Category';
-import COLORS from '../COLORS';
 
 // get feature/sale item data into state:
 import { parseInitialItems, displayLoadState } from '../../reducers';
@@ -32,6 +31,7 @@ import ProfilePage from "../../pages/ProfilePage";
 
 const App = () => {
   const COLORS = useSelector((state) => state.designSetting);
+
   const PageStructure = styled.div`
     height: 100vh;
     position: relative;
@@ -60,7 +60,7 @@ const App = () => {
   const CheckoutBarWrap = styled.div`
     grid-area: sideright;
     background: whitesmoke;
-    border-left: 2px solid #ffc857;
+    border-left: 2px solid ${COLORS.filter};
     overflow-x: hidden;
   `;
   const FooterWrap = styled.div`

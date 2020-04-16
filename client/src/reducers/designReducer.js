@@ -1,38 +1,45 @@
 const initialState = {
   addToCartPink: 'rgb(224, 60, 96)',
   borderNoire: 'rgb(26, 21, 22)',
-  header: '#DE6B48',
-  filter: '#A0A4B8',
-  main: '#D8DDEF',
-  footer: '#7293A0',
+  header: '#17252A',
+  filter: '#3AAFA9',
+  main: '#DEF2F1',
+  footer: '#2B7A78',
+  text: '#FEFFFF',
+  logo: 'base',
 };
 
 export default function designReducer(state = initialState, action) {
   switch (action.type) {
     case 'CHANGE_DESIGN': {
       switch (action.style) {
-        case 'new': {
+        case 'darkMode': {
           return {
             addToCartPink: 'rgb(224, 60, 96)',
             borderNoire: 'rgb(26, 21, 22)',
-            header: '',
-            filter: '#A0A4B8',
-            main: '#D8DDEF',
-            footer: '#DE6B48',
+            header: '#DEF2F1',
+            filter: '#3AAFA9',
+            main: '#17252A',
+            footer: '#2B7A78',
+            text: '#FEFFFF',
+            logo: 'dark',
           };
         }
         case 'base': {
           return {
             addToCartPink: 'rgb(224, 60, 96)',
             borderNoire: 'rgb(26, 21, 22)',
-            header: '#2e4052',
-            filter: '#bdd9bf;',
-            main: '#ffc857',
-            footer: '#412234',
+            header: '#17252A',
+            filter: '#3AAFA9',
+            main: '#DEF2F1',
+            footer: '#2B7A78',
+            text: '#FEFFFF',
+            logo: 'base',
           };
         }
       }
     }
+
     default: {
       return state;
     }
