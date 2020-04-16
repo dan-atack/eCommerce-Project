@@ -46,15 +46,17 @@ function ProductDetails() {
       const thereIsDiscount = inits.saleItems.filter(
         (item) => item.id == productId
       );
+      // filtering yields a list, so if this list contains anything then the item is discounted:
       if (thereIsDiscount.length > 0) {
         return Math.round(Number(thereIsDiscount[0].price.slice(1)) * 85) / 100;
       } else {
+        // if there is no discount we'll return the regular price instead:
         return dataInState.price;
       }
     }
   };
   const discount = determineDiscount();
-  
+
   if (Object.keys(dataInState).length == 0) {
     return <Spinner />;
   }
@@ -82,9 +84,7 @@ function ProductDetails() {
           <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
           <div
             style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
-          >
-            
-          </div>
+          ></div>
         </BigDiv>
         <DetailBox>
           <div>
@@ -96,30 +96,28 @@ function ProductDetails() {
               : ''}{' '}
             package.
           </div>
-          <div>
-          <p>
+          <span>
             Category: {category ? category : ''}
             items
-          </p>
-          <p>
-            Typically worn on: {body_location ? body_location : ''}
-          </p>
-          <p>
+          </span>
+          <span>Typically worn on: {body_location ? body_location : ''}</span>
+          <span>
             Manufactured by:{' '}
             <Link to={`/company/${companyId ? companyId : ''}`}>
               {companyName ? companyName : ''}
             </Link>
-          </p>
-          </div>
+          </span>
         </DetailBox>
         {
           // conditional price display for discounted items:
           discount != price ? (
             <PurchaseInfo>
-              {discount && <span>
-                {numInStock} units available from the INSANELY low price of
-                {` $${discount.toFixed(2)}`}!!!
-              </span>}
+              {discount && (
+                <span>
+                  {numInStock} units available from the INSANELY low price of
+                  {` $${discount.toFixed(2)}`}!!!
+                </span>
+              )}
             </PurchaseInfo>
           ) : (
             <PurchaseInfo>
@@ -145,7 +143,9 @@ function ProductDetails() {
             }
           />
         ) : (
-          <button>Can I get a rain check??</button>
+          <Link to={`/company/${companyId ? companyId : ''}`}>
+            <RainCheck>See similar Items...</RainCheck>
+          </Link>
         )}
       </MainBox>
     </>
@@ -162,6 +162,25 @@ const MainBox = styled.div`
   padding: 16px;
   width: 100%;
   height: 100%;
+  @media (max-width: 940px) {
+    grid-template-areas:
+      'name name'
+      'img img'
+      'deets deets'
+      'purch buy';
+  }
+<<<<<<< Updated upstream
+  @media (max-width: 480px) {
+    grid-template-areas:
+      'name'
+      'img'
+      'deets'
+      'purch'
+      'buy';
+    padding: 8px;
+  }
+=======
+>>>>>>> Stashed changes
 `;
 const DetailBox = styled.div`
   margin: 24px;
@@ -173,10 +192,14 @@ const DetailBox = styled.div`
   border: 1px solid black;
   border-radius: 8px;
   padding: 16px;
-  width: 256px;
+  width: auto;
   background: whitesmoke;
   a {
     color: blue;
+  }
+  @media (max-width: 480px) {
+    margin: 8px;
+    padding: 8px;
   }
 `;
 const BigDiv = styled.div`
@@ -189,12 +212,31 @@ const BigDiv = styled.div`
   flex-direction: column;
   background: whitesmoke;
   text-align: center;
+  @media (max-width: 480px) {
+    margin: 8px;
+    padding: 8px;
+  }
 `;
 
 const PurchaseInfo = styled.div`
   grid-area: purch;
   display: flex;
   justify-content: space-evenly;
+`;
+
+const RainCheck = styled.button`
+  color: whitesmoke;
+  font-size: 22px;
+  background-color: ${COLORS.outOfStockBlue};
+  height: 72px;
+  width: 174px;
+  margin: 24px;
+  border-radius: 8px;
+  border: 1px solid ${COLORS.borderNoire};
+  grid-area: buy;
+  @media (max-width: 480px) {
+    margin: 8px;
+  }
 `;
 
 const DetailPic = styled.img`
@@ -207,6 +249,9 @@ const DetailPic = styled.img`
   border: 1px solid black;
   border-radius: 8px;
   box-shadow: 0px 0px 8px 2px gray;
+  @media (max-width: 480px) {
+    margin: 8px;
+  }
 `;
 
 export default ProductDetails;

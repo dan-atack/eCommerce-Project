@@ -18,6 +18,3 @@ const colorMap = {
   },
 };
 export const COLORS = colorMap;
-// Founding stones of a 'colours library' to improve uniformity
-// Also, there is a ton of literature on colour psychology and its relation to influencing peoples' buying habits...
-// Makes for some fascinating reading on google, and yet provides very little consistent advice :P

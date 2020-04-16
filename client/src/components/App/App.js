@@ -32,17 +32,26 @@ const App = () => {
     display: grid;
     grid-template-areas:
       'head head head'
-      'sideleft main sideright'
+      'filters main cart'
       'foot foot foot';
     grid-template-rows: 1fr 6fr 0.3fr;
     grid-template-columns: 1.2fr 6fr 2fr;
+    @media (max-width: 540px) {
+      grid-template-areas:
+        'head head'
+        'filters filters'
+        'main cart'
+        'foot foot';
+      grid-template-rows: 1fr 1fr 6fr 0.5fr;
+      grid-template-columns: 2fr 1fr;
+    }
   `;
   const HeaderWrap = styled.div`
     grid-area: head;
     background: ${COLORS.header};
   `;
   const FilterBarWrap = styled.div`
-    grid-area: sideleft;
+    grid-area: filters;
     background: ${COLORS.filter};
   `;
   const MainWrap = styled.div`
@@ -52,7 +61,7 @@ const App = () => {
     background: ${COLORS.main};
   `;
   const CheckoutBarWrap = styled.div`
-    grid-area: sideright;
+    grid-area: cart;
     background: whitesmoke;
     border-left: 2px solid #ffc857;
     overflow-x: hidden;
@@ -76,39 +85,39 @@ const App = () => {
 
         <MainWrap>
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <Homepage />
             </Route>
 
-            <Route path="/search/:searchTerm">
+            <Route path='/search/:searchTerm'>
               <SearchResults />
             </Route>
 
-            <Route path="/category/:categoryName">
+            <Route path='/category/:categoryName'>
               <Category />
             </Route>
 
-            <Route path="/product/:productId">
+            <Route path='/product/:productId'>
               <ProductDetails />
             </Route>
 
-            <Route path="/seller/:sellerId">
+            <Route path='/seller/:sellerId'>
               <div>Store</div>
             </Route>
 
-            <Route path="/order-confirm/:confirmId">
+            <Route path='/order-confirm/:confirmId'>
               <OrderInfo />
             </Route>
 
-            <Route path="/about">
+            <Route path='/about'>
               <AboutUs />
             </Route>
 
-            <Route path="/contact">
+            <Route path='/contact'>
               <ContactUs />
             </Route>
 
-            <Route path="/company/:companyId">
+            <Route path='/company/:companyId'>
               <CompanyPage />
             </Route>
           </Switch>

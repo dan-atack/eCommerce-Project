@@ -13,33 +13,36 @@ const ItemSorter = () => {
       <label>
         Sort By:
         <select
-          onChange={(ev)=> {
-            console.log('target ',ev.target.value);
+          onChange={(ev) => {
+            console.log('target ', ev.target.value);
             dispatch(sortItems(ev.target.value));
-            
           }}
         >
-          <option selected="selected">Select</option>
-          <option 
-          value={JSON.stringify({type:'name', elv:'ascending'})} >
-            Name - Ascending</option>
-          <option 
-          value={JSON.stringify({type:'name', elv:'descending'})} >
-            Name - Descending</option>
-          <option 
-          value={JSON.stringify({type:'price', elv:'ascending'})} >
-            Price - Ascending</option>
-          <option 
-          value={JSON.stringify({type:'price', elv:'descending'})} >
-            Price - Descending</option>
+          <option selected='selected'>Select</option>
+          <option value={JSON.stringify({ type: 'name', elv: 'ascending' })}>
+            Name - Ascending
+          </option>
+          <option value={JSON.stringify({ type: 'name', elv: 'descending' })}>
+            Name - Descending
+          </option>
+          <option value={JSON.stringify({ type: 'price', elv: 'ascending' })}>
+            Price - Ascending
+          </option>
+          <option value={JSON.stringify({ type: 'price', elv: 'descending' })}>
+            Price - Descending
+          </option>
         </select>
       </label>
     </StyledDiv>
-  )
+  );
 };
 
 const StyledDiv = styled.div`
   margin: 0 0 2rem;
+  @media (max-width: 540px) {
+    margin-top: 20px;
+    margin-right: 16px;
+  }
 `;
 
 export default ItemSorter;

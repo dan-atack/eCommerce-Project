@@ -21,12 +21,12 @@ function AddToCartButton({ item }) {
 const StyledButton = styled.button`
   color: whitesmoke;
   font-size: 24px;
-  background-color: ${COLORS.addToCartPink};
+  background-color: ${COLORS.base.addToCartPink};
   height: 72px;
   width: 174px;
   margin: 24px;
   border-radius: 8px;
-  border: 1px solid ${COLORS.borderNoire};
+  border: 1px solid ${COLORS.base.borderNoire};
   grid-area: buy;
 `;
 
