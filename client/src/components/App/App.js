@@ -24,10 +24,9 @@ import CartBar from '../CartBar';
 import SearchResults from '../../pages/SearchResults';
 
 // authenticator related things
-import { useAuth0 } from "../../auth0/react-auth0-spa";
-import history from "../../auth0/utils/history"
-import ProfilePage from "../../pages/ProfilePage";
-
+import { useAuth0 } from '../../auth0/react-auth0-spa';
+import history from '../../auth0/utils/history';
+import ProfilePage from '../../pages/ProfilePage';
 
 const App = () => {
   const COLORS = useSelector((state) => state.designSetting);
@@ -68,7 +67,7 @@ const App = () => {
   `;
   const CheckoutBarWrap = styled.div`
     grid-area: cart;
-    background: whitesmoke;
+    background: ${COLORS.background};
     border-left: 2px solid ${COLORS.filter};
     overflow-x: hidden;
   `;
@@ -76,7 +75,6 @@ const App = () => {
     grid-area: foot;
     background: ${COLORS.footer};
   `;
-
 
   const { loading } = useAuth0();
 
@@ -95,46 +93,45 @@ const App = () => {
 
         <MainWrap>
           <Switch>
-            <Route exact path='/'>
+            <Route exact path="/">
               <Homepage />
             </Route>
 
-            <Route path='/search/:searchTerm'>
+            <Route path="/search/:searchTerm">
               <SearchResults />
             </Route>
 
-            <Route path='/category/:categoryName'>
+            <Route path="/category/:categoryName">
               <Category />
             </Route>
 
-            <Route path='/product/:productId'>
+            <Route path="/product/:productId">
               <ProductDetails />
             </Route>
 
-            <Route path='/seller/:sellerId'>
+            <Route path="/seller/:sellerId">
               <div>Store</div>
             </Route>
 
-            <Route path='/order-confirm/:confirmId'>
+            <Route path="/order-confirm/:confirmId">
               <OrderInfo />
             </Route>
 
-            <Route path='/about'>
+            <Route path="/about">
               <AboutUs />
             </Route>
 
-            <Route path='/contact'>
+            <Route path="/contact">
               <ContactUs />
             </Route>
 
-            <Route path='/company/:companyId'>
+            <Route path="/company/:companyId">
               <CompanyPage />
             </Route>
 
             <Route path="/profile">
               <ProfilePage />
             </Route>
-
           </Switch>
         </MainWrap>
 

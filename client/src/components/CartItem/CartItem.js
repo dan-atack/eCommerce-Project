@@ -1,16 +1,84 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setQty, removeItem } from '../../actions';
 
 const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
+  const COLORS = useSelector((state) => state.designSetting);
   const dispatch = useDispatch();
   let amount = quantity;
 
+  // Styled components:
+  const StyledDiv = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 0.25rem 0;
+    padding: 0.5rem;
+    border: 1px solid gray;
+    background: white;
+    font-size: 0.65rem;
+    img {
+      max-height: 3rem;
+      max-width: 3rem;
+      margin-right: 0.5rem;
+      @media (max-width: 776px) {
+        display: none;
+      }
+    }
+  `;
+  const InfoDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span {
+      font-weight: bold;
+      margin-right: 0.5rem;
+      text-decoration: underline;
+    }
+  `;
+  const Title = styled.p`
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    font-size: 0.7rem;
+  `;
+  const StyledLink = styled(Link)`
+    color: black;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  `;
+  //need to make some standardized button css or component
+  const StyledButton = styled.button`
+    border-radius: 50%;
+    height: 0.8rem;
+    width: 0.8rem;
+    margin-right: 0.1rem;
+    font-size: 0.4rem;
+    font-weight: bold;
+    background: ${COLORS.filter};
+    border: none;
+    color: ${COLORS.background};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      cursor: pointer;
+    }
+  `;
+  //if keeping; alter so does not push "quantity" over on appearance
+  const MaxSpan = styled.span`
+    font-size: 0.5rem;
+    text-decoration: none;
+    color: maroon;
+  `;
   return (
     <StyledDiv>
-      <img src={imageSrc} alt='item' />
+      <img src={imageSrc} alt="item" />
       <InfoDiv>
         <Title>
           <StyledLink to={`/product/${id}`}>{name}</StyledLink>
@@ -58,72 +126,5 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
     </StyledDiv>
   );
 };
-
-const StyledDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 0.25rem 0;
-  padding: 0.5rem;
-  border: 1px solid gray;
-  background: white;
-  font-size: 0.65rem;
-  img {
-    max-height: 3rem;
-    max-width: 3rem;
-    margin-right: 0.5rem;
-    @media (max-width: 776px) {
-      display: none;
-    }
-  }
-`;
-const InfoDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  span {
-    font-weight: bold;
-    margin-right: 0.5rem;
-    text-decoration: underline;
-  }
-`;
-const Title = styled.p`
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid gray;
-  font-size: 0.7rem;
-`;
-const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
-//need to make some standardized button css or component
-const StyledButton = styled.button`
-  border-radius: 50%;
-  height: 0.8rem;
-  width: 0.8rem;
-  margin-right: 0.1rem;
-  font-size: 0.4rem;
-  font-weight: bold;
-  background: maroon;
-  border: none;
-  color: whitesmoke;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-//if keeping; alter so does not push "quantity" over on appearance
-const MaxSpan = styled.span`
-  font-size: 0.5rem;
-  text-decoration: none;
-  color: maroon;
-`;
 
 export default CartItem;

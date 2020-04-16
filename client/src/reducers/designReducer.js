@@ -7,6 +7,7 @@ const initialState = {
   footer: '#2B7A78',
   background: '#FEFFFF',
   logo: 'base',
+  addToCartPink: 'rgb(224, 60, 96)',
 };
 
 export default function designReducer(state = initialState, action) {
@@ -23,6 +24,7 @@ export default function designReducer(state = initialState, action) {
             footer: '#2B7A78',
             background: '#FEFFFF',
             logo: 'dark',
+            addToCartPink: 'rgb(224, 60, 96)',
           };
         }
         case 'base': {
@@ -35,6 +37,7 @@ export default function designReducer(state = initialState, action) {
             footer: '#2B7A78',
             background: '#FEFFFF',
             logo: 'base',
+            addToCartPink: 'rgb(224, 60, 96)',
           };
         }
       }

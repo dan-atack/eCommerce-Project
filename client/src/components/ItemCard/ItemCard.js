@@ -49,7 +49,7 @@ const ItemCard = ({ product }) => {
     padding: 10px;
     margin: 10px 0;
     box-shadow: 5px 5px 5px grey, 5px 5px 8px ${COLORS.header};
-    color: ${COLORS.header};
+    color: black;
     text-decoration: none;
     text-align: center;
     border-radius: 5px;
