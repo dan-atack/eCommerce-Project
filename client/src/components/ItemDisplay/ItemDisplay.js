@@ -29,6 +29,7 @@ const ItemDisplay = () => {
       });
       setPages(pagesProxy);
     }
+    setCurrentPage(0);
   }, [displayItems]);
 
   return (
@@ -45,7 +46,7 @@ const ItemDisplay = () => {
               of {displayItems.length}
             </div>
             <PageSelectBox>
-              <div
+              <PageChange
                 onClick={() => {
                   if (currentPage > 0) {
                     setCurrentPage(currentPage - 1);
@@ -53,8 +54,8 @@ const ItemDisplay = () => {
                 }}
               >
                 &#8656; Previous page
-              </div>
-              <div
+              </PageChange>
+              <PageChange
                 onClick={() => {
                   if (currentPage < pages.length - 1) {
                     setCurrentPage(currentPage + 1);
@@ -62,7 +63,7 @@ const ItemDisplay = () => {
                 }}
               >
                 Next Page &#8658;
-              </div>
+              </PageChange>
             </PageSelectBox>
           </InfoBox>
           <Wrapper>
@@ -70,6 +71,26 @@ const ItemDisplay = () => {
               return <ItemCard key={item.id} product={item} />;
             })}
           </Wrapper>
+          <PageSelectBox style={{ justifyContent: 'space-between' }}>
+            <PageChange
+              onClick={() => {
+                if (currentPage > 0) {
+                  setCurrentPage(currentPage - 1);
+                }
+              }}
+            >
+              &#8656; Previous page
+            </PageChange>
+            <PageChange
+              onClick={() => {
+                if (currentPage < pages.length - 1) {
+                  setCurrentPage(currentPage + 1);
+                }
+              }}
+            >
+              Next Page &#8658;
+            </PageChange>
+          </PageSelectBox>
         </>
       ) : (
         <Spinner size={50} />
@@ -92,6 +113,9 @@ const PageSelectBox = styled.div`
   font-size: 0.7rem;
   /* justify-content: space-between; */
   /* width: fit-content + 205px; */
+`;
+const PageChange = styled.div`
+  padding: 4px 10px;
 `;
 
 export default ItemDisplay;
