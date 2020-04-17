@@ -98,12 +98,20 @@ const UserInfo = styled.div`
 const ItemCard = styled.div`
   display: flex;
   align-items: center;
+<<<<<<< Updated upstream
   /* width: fit-content; */
   margin: 0.25rem 0;
   padding: 0.5rem;
   border-bottom: 1px solid ${(props) => props.COLORS.filter};
   background: ${(props) => props.COLORS.background};
   font-size: 0.65rem;
+=======
+  margin: .25rem 0;
+  padding: .5rem;
+  border-bottom: 1px solid gray;
+  background: white;
+  font-size: .65rem;
+>>>>>>> Stashed changes
   img {
     max-height: 3rem;
     max-width: 3rem;
