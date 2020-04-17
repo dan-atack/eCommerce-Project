@@ -7,6 +7,7 @@ import NavCategory from './NavCategory';
 import { useSelector } from 'react-redux';
 import logo from '../../assets/GadgetGrotto.png';
 import darkLogo from '../../assets/GadgetGrottoDark.png';
+import whackyLogo from '../../assets/GadgetGrottoWhacky.png';
 import { useAuth0 } from '../../auth0/react-auth0-spa';
 import ProfilePicture from '../ProfilePicture';
 
@@ -50,6 +51,8 @@ function Navbar() {
                   ? logo
                   : COLORS.logo === 'dark'
                   ? darkLogo
+                  : COLORS.logo === 'whacky'
+                  ? whackyLogo
                   : logo
               }
               alt="logo"

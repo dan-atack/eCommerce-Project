@@ -6,6 +6,7 @@ import NoResults from '../NoResults';
 import ItemCard from '../../components/ItemCard';
 
 const ItemDisplay = () => {
+  const COLORS = useSelector((state) => state.designSetting);
   const ITEMS_PER_PAGE = 12;
   let displayItems = useSelector((state) => state.filters.displayItems);
 
@@ -38,7 +39,7 @@ const ItemDisplay = () => {
       {displayItems.length > 0 ? (
         <>
           <InfoBox>
-            <div>
+            <div style={{ color: COLORS.header, marginLeft: '5px' }}>
               Displaying items {currentPage * ITEMS_PER_PAGE + 1} to{' '}
               {Math.min(
                 currentPage * ITEMS_PER_PAGE + ITEMS_PER_PAGE,
@@ -53,6 +54,7 @@ const ItemDisplay = () => {
                     setCurrentPage(currentPage - 1);
                   }
                 }}
+                COLORS={COLORS}
               >
                 &#8656; Previous page
               </PageChange>
@@ -62,6 +64,7 @@ const ItemDisplay = () => {
                     setCurrentPage(currentPage + 1);
                   }
                 }}
+                COLORS={COLORS}
               >
                 Next Page &#8658;
               </PageChange>
@@ -79,6 +82,7 @@ const ItemDisplay = () => {
                   setCurrentPage(currentPage - 1);
                 }
               }}
+              COLORS={COLORS}
             >
               &#8656; Previous page
             </PageChange>
@@ -88,6 +92,7 @@ const ItemDisplay = () => {
                   setCurrentPage(currentPage + 1);
                 }
               }}
+              COLORS={COLORS}
             >
               Next Page &#8658;
             </PageChange>
@@ -114,6 +119,7 @@ const PageSelectBox = styled.div`
   font-size: 0.7rem;
 `;
 const PageChange = styled.div`
+  color: ${(props) => props.COLORS.header};
   padding: 4px 10px;
   margin: 5px;
   cursor: pointer;

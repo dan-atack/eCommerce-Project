@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchResults, setDisplayItems } from '../../actions';
+import styled from 'styled-components';
 import SearchBar from '../../components/SearchBar';
 import ItemDisplay from '../../components/ItemDisplay';
 
 const SearchResults = () => {
   let displayItems = useSelector((state) => state.filters.displayItems);
-  console.log(displayItems);
+  const COLORS = useSelector((state) => state.designSetting);
   const { searchTerm } = useParams();
   const [returnValues, setReturnValues] = useState(null);
   const dispatch = useDispatch();
@@ -27,10 +28,15 @@ const SearchResults = () => {
   return (
     <>
       <SearchBar />
-      <h2>Results for "{searchTerm}"</h2>
+      <Text COLORS={COLORS}>Results for "{searchTerm}"</Text>
       {displayItems && <ItemDisplay />}
     </>
   );
 };
+
+const Text = styled.h2`
+  color: ${(props) => props.COLORS.header};
+  margin-left: 5px;
+`;
 
 export default SearchResults;

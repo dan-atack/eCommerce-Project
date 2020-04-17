@@ -49,7 +49,7 @@ export default function designReducer(state = initialState, action) {
             main: '#78BC61',
             footer: '#648767',
             background: '#8C271E',
-            logo: 'base',
+            logo: 'whacky',
             clearCart: '#FF0000',
           };
         }
