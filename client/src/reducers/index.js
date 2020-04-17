@@ -4,7 +4,6 @@ import catalog from './catalogReducer';
 import cartItems from './cartItemsReducer';
 import filters from './filterReducer';
 import designSetting from './designReducer';
-import { createSelectorHook } from 'react-redux';
 
 export default combineReducers({ catalog, cartItems, filters, designSetting });
 

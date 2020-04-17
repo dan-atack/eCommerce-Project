@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector, ReactReduxContext } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FetchInitItems from '../../components/StateFunctions/FetchInitItems';
 import { getProductDetails, parseInitialItems } from '../../reducers';
 import Spinner from '../../components/Spinner';
@@ -42,7 +42,7 @@ function ProductDetails() {
   const inits = useSelector(parseInitialItems);
   // Determine Discount will return the original price string if item is not on sale, or the discounted value if it is on sale:
   const determineDiscount = () => {
-    if (inits != undefined) {
+    if (inits !== undefined) {
       const thereIsDiscount = inits.saleItems.filter(
         (item) => item.id == productId
       );
@@ -57,12 +57,11 @@ function ProductDetails() {
   };
   const discount = determineDiscount();
 
-  if (Object.keys(dataInState).length == 0) {
+  if (Object.keys(dataInState).length === 0) {
     return <Spinner />;
   }
 
   const {
-    id,
     name,
     price,
     body_location,
@@ -222,7 +221,7 @@ function ProductDetails() {
         </DetailBox>
         {
           // conditional price display for discounted items:
-          discount != price ? (
+          discount !== price ? (
             <PurchaseInfo>
               {discount && (
                 <span>
@@ -249,8 +248,8 @@ function ProductDetails() {
         {numInStock > 0 ? (
           <AddToCartButton
             item={
-              discount != price
-                ? discount != undefined
+              discount !== price
+                ? discount !== undefined
                   ? { ...dataInState, price: `$${discount.toFixed(2)}` }
                   : dataInState
                 : dataInState

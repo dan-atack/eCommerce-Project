@@ -51,10 +51,4 @@ const Title = styled.h2`
     1px 2px 2px rgba(0, 0, 0, 0.5);
 `;
 
-// const ItemDisplay = styled.div`
-//   display: flex;
-//   justify-content: space-evenly;
-//   flex-wrap: wrap;
-// `;
-
 export default Category;

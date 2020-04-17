@@ -7,6 +7,7 @@ import Spinner from '../Spinner';
 import OrderSearch from './OrderSearch';
 import { clearPurchase } from '../../actions';
 
+<<<<<<< Updated upstream
 //  EXAMPLE DATA
 // data.order === {
 //   cartItems: [
@@ -41,6 +42,8 @@ import { clearPurchase } from '../../actions';
 //   payment: "Payment Confirmed",
 //   total: 55.67,
 // }
+=======
+>>>>>>> Stashed changes
 
 const OrderInfo = () => {
   const { confirmId } = useParams();
@@ -49,6 +52,7 @@ const OrderInfo = () => {
   const [orderInfo, setOrderInfo] = React.useState(null);
 
   //fetches order info and stores it in state to be used for rendering
+<<<<<<< Updated upstream
   //clearpurchase() sets the state status back to 'idle' (was on 'purchased')
   //may need to add a security measure based on currentuser later?
   React.useEffect(() => {
@@ -67,6 +71,23 @@ const OrderInfo = () => {
         });
     // eslint-disable-next-line
   }, [confirmId]);
+=======
+  React.useEffect(()=> {
+    //stops fetch if just order search page
+    if (confirmId !== 'search')
+    fetch(`/history/${confirmId}`)
+    .then(data => data.json())
+    .then(data => {
+      console.log('data.confirmation (confirmId)', data.confirmation);
+      console.log('data.order ', data.order);
+      setOrderInfo(data.order);
+      dispatch(clearPurchase());
+    }).catch(err => {
+      console.error('Caught error orderinfo: ', err);
+    });
+    
+  }, [confirmId])
+>>>>>>> Stashed changes
 
   //if this page is rendered from the order history link; just return search input
   if (confirmId === 'search') {
@@ -136,12 +157,20 @@ const UserInfo = styled.div`
 const ItemCard = styled.div`
   display: flex;
   align-items: center;
+<<<<<<< Updated upstream
   /* width: fit-content; */
   margin: 0.25rem 0;
   padding: 0.5rem;
   border-bottom: 1px solid ${(props) => props.COLORS.filter};
   background: ${(props) => props.COLORS.background};
   font-size: 0.65rem;
+=======
+  margin: .25rem 0;
+  padding: .5rem;
+  border-bottom: 1px solid gray;
+  background: white;
+  font-size: .65rem;
+>>>>>>> Stashed changes
   img {
     max-height: 3rem;
     max-width: 3rem;

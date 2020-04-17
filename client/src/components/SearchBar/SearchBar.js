@@ -51,7 +51,6 @@ const SearchBar = () => {
 };
 
 const StyledInput = styled.input`
-  /* width: 75%; */
   padding: 4px;
   font-size: 1rem;
   height: 100%;
@@ -69,7 +68,6 @@ const StyledButton = styled.button`
   border-radius: 4px;
 `;
 const StyledForm = styled.form`
-  /* height: 30px; */
   display: flex;
   align-items: center;
   width: 100%;

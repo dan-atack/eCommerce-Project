@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import Spinner from '../../components/Spinner';
-import NoResults from '../NoResults';
 
+import NoResults from '../NoResults';
 import ItemCard from '../../components/ItemCard';
 
 const ItemDisplay = () => {
@@ -96,7 +95,6 @@ const ItemDisplay = () => {
         </>
       ) : (
         <NoResults />
-        // <Spinner size={50} />
       )}
     </>
   );
@@ -114,8 +112,6 @@ const InfoBox = styled.div`
 const PageSelectBox = styled.div`
   display: flex;
   font-size: 0.7rem;
-  /* justify-content: space-between; */
-  /* width: fit-content + 205px; */
 `;
 const PageChange = styled.div`
   padding: 4px 10px;

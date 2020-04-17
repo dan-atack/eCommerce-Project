@@ -25,7 +25,7 @@ function Navbar() {
   }, []);
 
   // authetication
-  const { isAuthenticated, loginWithPopup, logout, user } = useAuth0();
+  const { isAuthenticated, loginWithPopup } = useAuth0();
 
   // Styled components
 

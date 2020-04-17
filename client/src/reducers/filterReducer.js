@@ -4,12 +4,10 @@ export default function filterReducer(state = initialState, action) {
   switch (action.type) {
     // All relevant items post search/category
     case 'SET_SEARCH_RESULTS': {
-      // console.log(action);
       return { ...state, baseItems: action.products };
     }
     // Items to display (after filters for example)
     case 'SET_DISPLAY_ITEMS': {
-      // console.log(action);
       return { ...state, displayItems: action.products };
     }
     case 'FILTER_ITEMS': {
@@ -56,24 +54,7 @@ export default function filterReducer(state = initialState, action) {
         };
         
         //due to increased combination complexity, opted to filter price first if applicable, then feed that result to the other filters.
-        const filteredItems = ( priceFiltering(initialItems) ).filter((item) => {
-          
-          console.log(item);
-          // console.log(
-          //   "categoryFilter",
-          //   categoryFilter,
-          //   "length",
-          //   categoryFilter.length,
-          //   "bodyFilter",
-          //   bodyFilter,
-          //   "length",
-          //   bodyFilter.length,
-          //   "priceFilter",
-          //   priceFilter,
-          //   "length",
-          //   priceFilter.length,
-          // );
-
+        const filteredItems = (priceFiltering(initialItems)).filter((item) => {
           // If both we have filters on both conditions
           if (categoryFilter.length && bodyFilter.length) {
             return (
@@ -100,7 +81,6 @@ export default function filterReducer(state = initialState, action) {
     }
     case 'SORT_ITEMS': {
       if (action.sortVar === 'selected') {return state};
-      // console.log('action ',  JSON.parse(action.sortVar) );
       //value passed is stringified object {type: '.', elv: '.'}, must parse to use.
       const variable = JSON.parse(action.sortVar);
       let sortedItems = [...state.displayItems];

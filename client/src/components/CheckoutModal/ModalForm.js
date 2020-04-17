@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {COLORS} from '../../constants';
 import Spinner from '../Spinner';
 import { 
   submitOrder, 
@@ -24,6 +23,7 @@ const useStyles = makeStyles({
 const ModalForm = ({ cartItems, total }) => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.cartItems.status);
+  const COLORS = useSelector((state) => state.designSetting);
 
 //storing form inputs onChange to be sent in fetch
   const [name, setName] = React.useState('');
@@ -84,7 +84,7 @@ const ModalForm = ({ cartItems, total }) => {
   return( (status === 'submitting-order' || status === 'purchased')? 
   <Spinner size={30} /> :
     <FormControl>
-      <StyledForm
+      <StyledForm COLORS={COLORS}
       onSubmit={(ev)=>submitPurchase(ev)}
       >
         <p>Enter user details</p>
@@ -157,32 +157,9 @@ const StyledForm = styled.form`
   Button {
     height: 2.5rem;
     margin: 1rem 1rem 1rem 80%;
-    background: ${COLORS.addToCartPink};;
+    background-color: ${(props) => props.COLORS.addToCartPink};
+
   }
 `;
 
 export default ModalForm;
-
-
-
-//post object examples
-
-// const exampleObject ={ 
-//   cartItems: [ {item object}, {item object}, 'etc',],
-//   user: {
-//     name: 'jim',
-//     address: '33 jim st',
-//   },
-//   payment: {
-//     creditCardNumber: '23453454',
-//     creditCardExp: '0109',
-//   },
-// };
-
-// const simplerExampleObject2 = { 
-//   cartItems: [ {item object}, {item object}, 'etc',],
-//   name: 'jim',
-//   address: '33 jim st',
-//   creditCardNumber: '23453454',
-//   creditCardExp: '0109',
-// }

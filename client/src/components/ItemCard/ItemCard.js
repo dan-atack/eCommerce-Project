@@ -17,11 +17,7 @@ const ItemCard = ({ product }) => {
     id,
     name,
     price,
-    body_location,
-    category,
     imageSrc,
-    numInStock,
-    companyId,
   } = product;
 
   let isOnSale = false;
@@ -40,7 +36,7 @@ const ItemCard = ({ product }) => {
       to={`/product/${id}`}
       COLORS={COLORS}
     >
-      <img src={imageSrc} />
+      <img src={imageSrc} alt="itempic" />
       <div>{name}</div>
       {isOnSale ? (
         <div style={{ display: 'flex' }}>
