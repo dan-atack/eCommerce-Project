@@ -28,7 +28,7 @@ import ProfilePage from '../../pages/ProfilePage';
 
 const App = () => {
   const COLORS = useSelector((state) => state.designSetting);
-  
+
   return (
     <Router history={history}>
       <PageStructure>

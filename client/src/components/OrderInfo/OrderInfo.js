@@ -14,21 +14,21 @@ const OrderInfo = () => {
   const [orderInfo, setOrderInfo] = React.useState(null);
 
   //fetches order info and stores it in state to be used for rendering
-  React.useEffect(()=> {
+  React.useEffect(() => {
     //stops fetch if just order search page
     if (confirmId !== 'search')
-    fetch(`/history/${confirmId}`)
-    .then(data => data.json())
-    .then(data => {
-      console.log('data.confirmation (confirmId)', data.confirmation);
-      console.log('data.order ', data.order);
-      setOrderInfo(data.order);
-      dispatch(clearPurchase());
-    }).catch(err => {
-      console.error('Caught error orderinfo: ', err);
-    });
-    
-  }, [confirmId])
+      fetch(`/history/${confirmId}`)
+        .then((data) => data.json())
+        .then((data) => {
+          console.log('data.confirmation (confirmId)', data.confirmation);
+          console.log('data.order ', data.order);
+          setOrderInfo(data.order);
+          dispatch(clearPurchase());
+        })
+        .catch((err) => {
+          console.error('Caught error orderinfo: ', err);
+        });
+  }, [confirmId]);
 
   //if this page is rendered from the order history link; just return search input
   if (confirmId === 'search') {
@@ -98,20 +98,12 @@ const UserInfo = styled.div`
 const ItemCard = styled.div`
   display: flex;
   align-items: center;
-<<<<<<< Updated upstream
   /* width: fit-content; */
   margin: 0.25rem 0;
   padding: 0.5rem;
   border-bottom: 1px solid ${(props) => props.COLORS.filter};
   background: ${(props) => props.COLORS.background};
   font-size: 0.65rem;
-=======
-  margin: .25rem 0;
-  padding: .5rem;
-  border-bottom: 1px solid gray;
-  background: white;
-  font-size: .65rem;
->>>>>>> Stashed changes
   img {
     max-height: 3rem;
     max-width: 3rem;

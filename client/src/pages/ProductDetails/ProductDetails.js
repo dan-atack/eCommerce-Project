@@ -77,123 +77,6 @@ function ProductDetails() {
   //         rhyming string methods! ^
 
   // Styled components:
-  const MainBox = styled.div`
-    display: grid;
-    grid-template-areas:
-      'name name name'
-      'img img deets'
-      'img img deets'
-      'purch purch buy';
-    padding: 16px;
-    width: 100%;
-    height: 100%;
-    @media (max-width: 940px) {
-      grid-template-areas:
-        'name name'
-        'img img'
-        'deets deets'
-        'purch buy';
-    }
-    @media (max-width: 480px) {
-      grid-template-areas:
-        'name'
-        'img'
-        'deets'
-        'purch'
-        'buy';
-      padding: 4px;
-      width: 90%;
-    }
-  `;
-  const DetailBox = styled.div`
-    margin: 24px;
-    text-align: left;
-    grid-area: deets;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid ${COLORS.header};
-    border-radius: 8px;
-    padding: 16px;
-    width: auto;
-    background: ${COLORS.background};
-    a {
-      color: blue;
-    }
-    @media (max-width: 480px) {
-      margin: 4px;
-      padding: 4px;
-    }
-  `;
-  const BigDiv = styled.div`
-    margin: 24px;
-    padding: 10px;
-    border: 1px solid ${COLORS.borderNoire};
-    border-radius: 8px;
-    grid-area: img;
-    display: flex;
-    flex-direction: column;
-    background: ${COLORS.background};
-    text-align: center;
-    @media (max-width: 480px) {
-      margin: 4px;
-      padding: 4px;
-    }
-  `;
-  const Special = styled.div`
-    color: whitesmoke;
-    padding: 4px;
-    z-index: 2;
-    background-image: url(${starburst});
-    background-repeat: no-repeat;
-    background-size: 100%;
-    min-height: 72px;
-    min-width: 96px;
-  `;
-  const StruckThru = styled.span`
-    text-decoration: line-through;
-    color: ${COLORS.filter};
-    margin-right: 8px;
-    position: relative;
-    margin-right: 8px;
-    color: black;
-  `;
-  const PurchaseInfo = styled.div`
-    grid-area: purch;
-    display: flex;
-    justify-content: space-evenly;
-    color: ${COLORS.header};
-  `;
-
-  const RainCheck = styled.button`
-    color: ${COLORS.background};
-    font-size: 22px;
-    background-color: ${COLORS.outOfStockBlue};
-    height: 72px;
-    width: 174px;
-    margin: 24px;
-    border-radius: 8px;
-    border: 1px solid ${COLORS.borderNoire};
-    grid-area: buy;
-    @media (max-width: 480px) {
-      margin: 4px;
-    }
-  `;
-
-  const DetailPic = styled.img`
-    height: auto;
-    width: auto;
-    object-fit: contain;
-    padding: 8px;
-    margin: 16px;
-    background: white;
-    border: 1px solid black;
-    border-radius: 8px;
-    box-shadow: 0px 0px 8px 2px gray;
-    @media (max-width: 480px) {
-      margin: 4px;
-    }
-  `;
 
   return (
     <>
@@ -202,13 +85,14 @@ function ProductDetails() {
         <h1 style={{ gridArea: 'name', color: `${COLORS.header}` }}>
           {name ? name : ''}
         </h1>
-        <BigDiv>
+        <BigDiv COLORS={COLORS}>
+          {' '}
           <DetailPic src={imageSrc ? imageSrc : ''} alt={name} />
           <div
             style={{ display: 'flex', flexDirection: 'column', marginTop: 16 }}
           ></div>
         </BigDiv>
-        <DetailBox>
+        <DetailBox COLORS={COLORS}>
           <div>
             This stately item is worn on the{' '}
             {body_location ? body_location.toLowerCase() : ''} and combines
@@ -230,12 +114,12 @@ function ProductDetails() {
         {
           // conditional price display for discounted items:
           discount !== price ? (
-            <PurchaseInfo>
+            <PurchaseInfo COLORS={COLORS}>
               {discount && (
                 <>
                   <p style={{ position: 'relative', top: 14 }}>
                     {numInStock} units available from the OUTRAGEOUSLY low price
-                    of: <StruckThru>{`${price}`}</StruckThru>
+                    of: <StruckThru COLORS={COLORS}>{`${price}`}</StruckThru>
                   </p>
                   <Special>
                     <span
@@ -246,7 +130,7 @@ function ProductDetails() {
               )}
             </PurchaseInfo>
           ) : (
-            <PurchaseInfo>
+            <PurchaseInfo COLORS={COLORS}>
               {numInStock > 0 ? (
                 <span>
                   {numInStock} units available from the low, low price of{' '}
@@ -272,12 +156,130 @@ function ProductDetails() {
           />
         ) : (
           <Link to={`/company/${companyId ? companyId : ''}`}>
-            <RainCheck>See similar Items...</RainCheck>
+            <RainCheck COLORS={COLORS}>See similar Items...</RainCheck>
           </Link>
         )}
       </MainBox>
     </>
   );
 }
+
+const MainBox = styled.div`
+  display: grid;
+  grid-template-areas:
+    'name name name'
+    'img img deets'
+    'img img deets'
+    'purch purch buy';
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  @media (max-width: 940px) {
+    grid-template-areas:
+      'name name'
+      'img img'
+      'deets deets'
+      'purch buy';
+  }
+  @media (max-width: 480px) {
+    grid-template-areas:
+      'name'
+      'img'
+      'deets'
+      'purch'
+      'buy';
+    padding: 4px;
+    width: 90%;
+  }
+`;
+const DetailBox = styled.div`
+  margin: 24px;
+  text-align: left;
+  grid-area: deets;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid ${(props) => props.COLORS.header};
+  border-radius: 8px;
+  padding: 16px;
+  width: auto;
+  background: ${(props) => props.COLORS.background};
+  a {
+    color: blue;
+  }
+  @media (max-width: 480px) {
+    margin: 4px;
+    padding: 4px;
+  }
+`;
+const BigDiv = styled.div`
+  margin: 24px;
+  padding: 10px;
+  border: 1px solid ${(props) => props.COLORS.borderNoire};
+  border-radius: 8px;
+  grid-area: img;
+  display: flex;
+  flex-direction: column;
+  background: ${(props) => props.COLORS.background};
+  text-align: center;
+  @media (max-width: 480px) {
+    margin: 4px;
+    padding: 4px;
+  }
+`;
+const Special = styled.div`
+  color: whitesmoke;
+  padding: 4px;
+  z-index: 2;
+  background-image: url(${starburst});
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 72px;
+  min-width: 96px;
+`;
+const StruckThru = styled.span`
+  text-decoration: line-through;
+  color: ${(props) => props.COLORS.filter};
+  margin-right: 8px;
+  position: relative;
+  margin-right: 8px;
+  color: black;
+`;
+const PurchaseInfo = styled.div`
+  grid-area: purch;
+  display: flex;
+  justify-content: space-evenly;
+  color: ${(props) => props.COLORS.header};
+`;
+
+const RainCheck = styled.button`
+  color: ${(props) => props.COLORS.background};
+  font-size: 22px;
+  background-color: ${(props) => props.COLORS.outOfStockBlue};
+  height: 72px;
+  width: 174px;
+  margin: 24px;
+  border-radius: 8px;
+  border: 1px solid ${(props) => props.COLORS.borderNoire};
+  grid-area: buy;
+  @media (max-width: 480px) {
+    margin: 4px;
+  }
+`;
+
+const DetailPic = styled.img`
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  padding: 8px;
+  margin: 16px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px 2px gray;
+  @media (max-width: 480px) {
+    margin: 4px;
+  }
+`;
 
 export default ProductDetails;
