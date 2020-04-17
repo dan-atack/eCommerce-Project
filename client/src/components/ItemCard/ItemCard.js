@@ -23,9 +23,11 @@ const ItemCard = ({ product }) => {
   let isOnSale = false;
   let discountPrice = 0;
 
-  if (saleIds.includes(id)) {
-    isOnSale = true;
-    discountPrice = Math.round(Number(price.slice(1)) * 85) / 100;
+  if (saleIds != undefined) {
+    if (saleIds.includes(id)) {
+      isOnSale = true;
+      discountPrice = Math.round(Number(price.slice(1)) * 85) / 100;
+    }
   }
 
   // styled components:

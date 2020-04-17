@@ -235,13 +235,14 @@ const FilterBar = () => {
           })}
         </StyledUl>
       </Sorters>
-      <ChangeDesignButton style={{ gridArea: 'styles' }} />
+      <ChangeDesignButton className='styles' style={{ gridArea: 'styles' }} />
     </StyledDiv>
   );
 };
 
 const StyledDiv = styled.div`
   width: 100%;
+  height: 100%;
   font-size: 0.75rem;
   padding: 0.25rem;
   min-width: 128px;
@@ -256,6 +257,7 @@ const StyledDiv = styled.div`
     border: none;
   }
   @media (max-width: 540px) {
+    height: auto;
     display: grid;
     grid-template-areas:
       'sorters'

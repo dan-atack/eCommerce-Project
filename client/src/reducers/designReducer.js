@@ -50,7 +50,6 @@ export default function designReducer(state = initialState, action) {
             footer: '#648767',
             background: '#8C271E',
             logo: 'base',
-            addToCartPink: 'rgb(224, 60, 96)',
             clearCart: '#FF0000',
           };
         }
