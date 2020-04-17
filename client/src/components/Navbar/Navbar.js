@@ -38,7 +38,7 @@ function Navbar() {
     border-radius: 3px;
     &:hover {
       border-bottom: ${COLORS.filter} solid 2px;
-      background-color: lightgray;
+      background-color: ${COLORS.main};
     }
     @media (max-width: 504px) {
       height: 108px;
@@ -50,7 +50,7 @@ function Navbar() {
     padding: 10px;
     margin: 51px 0px 0px;
     font-size: 1.5em;
-    color: lightgray;
+    color: ${COLORS.main};
     transition: background-color 500ms;
     border-radius: 3px;
     border-bottom: transparent solid 2px;
