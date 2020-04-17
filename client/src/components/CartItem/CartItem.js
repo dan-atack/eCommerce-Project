@@ -25,6 +25,9 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
       @media (max-width: 776px) {
         display: none;
       }
+      @media (max-width: 400px) {
+        display: initial;
+      }
     }
   `;
   const InfoDiv = styled.div`
@@ -70,6 +73,12 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
       cursor: pointer;
     }
   `;
+  const QtyField = styled.div`
+    display: grid;
+    grid-template-areas:
+      'qty more'
+      'num less';
+  `;
   //if keeping; alter so does not push "quantity" over on appearance
   const MaxSpan = styled.span`
     font-size: 0.5rem;
@@ -78,7 +87,7 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
   `;
   return (
     <StyledDiv>
-      <img src={imageSrc} alt="item" />
+      <img src={imageSrc} alt='item' />
       <InfoDiv>
         <Title>
           <StyledLink to={`/product/${id}`}>{name}</StyledLink>
@@ -91,30 +100,43 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
           </StyledButton>
         </Title>
         <p>
-          Quantity: <span>{amount}</span>
-          <StyledButton
-            onClick={() => {
-              //stops increasing beyond stock levels (Maxspan appears when at max)
-              if (amount < stock) {
-                amount++;
-                console.log(amount);
-                dispatch(setQty(id, amount));
-              }
-            }}
-          >
-            ▲
-          </StyledButton>
-          <StyledButton
-            onClick={() => {
-              //stops decreasing below 1
-              if (amount > 0) {
-                amount--;
-                dispatch(setQty(id, amount));
-              }
-            }}
-          >
-            ▼
-          </StyledButton>
+          <QtyField>
+            <span style={{ gridArea: 'qty' }}>Quantity:</span>{' '}
+            <span
+              style={{
+                gridArea: 'num',
+                fontSize: '2em',
+                textAlign: 'center',
+              }}
+            >
+              {amount}
+            </span>
+            <StyledButton
+              style={{ gridArea: 'more', position: 'relative', top: 14 }}
+              onClick={() => {
+                //stops increasing beyond stock levels (Maxspan appears when at max)
+                if (amount < stock) {
+                  amount++;
+                  console.log(amount);
+                  dispatch(setQty(id, amount));
+                }
+              }}
+            >
+              ▲
+            </StyledButton>
+            <StyledButton
+              style={{ gridArea: 'less', position: 'relative', top: 14 }}
+              onClick={() => {
+                //stops decreasing below 1
+                if (amount > 0) {
+                  amount--;
+                  dispatch(setQty(id, amount));
+                }
+              }}
+            >
+              ▼
+            </StyledButton>
+          </QtyField>
           <MaxSpan
             style={{ visibility: amount === stock ? 'visible' : 'hidden' }}
           >

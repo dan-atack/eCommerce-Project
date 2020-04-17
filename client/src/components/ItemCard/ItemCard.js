@@ -58,6 +58,12 @@ const ItemCard = ({ product }) => {
     &:hover {
       transform: scale(1.01);
     }
+    @media (max-width: 420px) {
+      transform: scale(0.75);
+      &:hover {
+        transform: scale(0.78);
+      }
+    }
   `;
 
   return (

@@ -7,6 +7,7 @@ const colorMap = {
     filter: '#bdd9bf;',
     main: '#ffc857',
     footer: '#412234',
+    clearCart: '#ff1053',
   },
   new: {
     addToCartPink: 'rgb(224, 60, 96)',

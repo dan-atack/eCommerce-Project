@@ -53,7 +53,7 @@ const CartBar = () => {
     border-radius: 10px;
     margin: 0 1rem;
     font-size: 0.75rem;
-    background: ${COLORS.footer};
+    background: ${COLORS.clearCart};
     color: lightgray;
     border: none;
     &:hover {
@@ -76,6 +76,9 @@ const CartBar = () => {
     align-items: center;
     @media (max-width: 760px) {
       flex-direction: column;
+    }
+    @media (max-width: 400px) {
+      position: relative;
     }
   `;
   const CheckoutButton = styled.button`

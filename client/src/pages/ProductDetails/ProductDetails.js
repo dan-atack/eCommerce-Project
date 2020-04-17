@@ -102,7 +102,8 @@ function ProductDetails() {
         'deets'
         'purch'
         'buy';
-      padding: 8px;
+      padding: 4px;
+      width: 90%;
     }
   `;
   const DetailBox = styled.div`
@@ -121,8 +122,8 @@ function ProductDetails() {
       color: blue;
     }
     @media (max-width: 480px) {
-      margin: 8px;
-      padding: 8px;
+      margin: 4px;
+      padding: 4px;
     }
   `;
   const BigDiv = styled.div`
@@ -136,8 +137,8 @@ function ProductDetails() {
     background: ${COLORS.background};
     text-align: center;
     @media (max-width: 480px) {
-      margin: 8px;
-      padding: 8px;
+      margin: 4px;
+      padding: 4px;
     }
   `;
 
@@ -159,7 +160,7 @@ function ProductDetails() {
     border: 1px solid ${COLORS.borderNoire};
     grid-area: buy;
     @media (max-width: 480px) {
-      margin: 8px;
+      margin: 4px;
     }
   `;
 
@@ -174,7 +175,7 @@ function ProductDetails() {
     border-radius: 8px;
     box-shadow: 0px 0px 8px 2px gray;
     @media (max-width: 480px) {
-      margin: 8px;
+      margin: 4px;
     }
   `;
 
@@ -201,10 +202,7 @@ function ProductDetails() {
               : ''}{' '}
             package.
           </div>
-          <span>
-            Category: {category ? category : ''}
-            items
-          </span>
+          <span>Category: {category ? category : ''} items</span>
           <span>Typically worn on: {body_location ? body_location : ''}</span>
           <span>
             Manufactured by:{' '}
@@ -243,7 +241,9 @@ function ProductDetails() {
           <AddToCartButton
             item={
               discount != price
-                ? { ...dataInState, price: `$${discount.toFixed(2)}` }
+                ? discount != undefined
+                  ? { ...dataInState, price: `$${discount.toFixed(2)}` }
+                  : dataInState
                 : dataInState
             }
           />

@@ -68,12 +68,6 @@ function Navbar() {
     }
   `;
 
-  // =======
-  //             <Link to="/order-confirm/search"><NavContent>Order History</NavContent></Link>
-  //         </NavWrapper>
-  //     </>)
-  // }
-
   const Authenticators = styled.div`
     color: whitesmoke;
     font-size: 1.5em;
@@ -101,6 +95,10 @@ function Navbar() {
     z-index: 2;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 450px) {
+      position: absolute;
+      right: 0;
+    }
   `;
 
   const Logo = styled.img`
@@ -139,7 +137,7 @@ function Navbar() {
         {isAuthenticated && (
           <>
             <Authenticators>
-              <Link to="/profile">Profile</Link>
+              <Link to='/profile'>Profile</Link>
             </Authenticators>
             <Authenticators onClick={() => logout()}>Log out</Authenticators>
           </>
@@ -147,7 +145,7 @@ function Navbar() {
       </LoginAndOut>
 
       <NavWrapper>
-        <Link to="/">
+        <Link to='/'>
           <LogoBG>
             <Logo
               src={
@@ -157,11 +155,11 @@ function Navbar() {
                   ? darkLogo
                   : logo
               }
-              alt="logo"
+              alt='logo'
             />
           </LogoBG>
         </Link>
-        <Link to="/">
+        <Link to='/'>
           <NavContent>Home</NavContent>
         </Link>
 
@@ -177,7 +175,7 @@ function Navbar() {
           </Dropdown.Menu>
         </Dropdown>
 
-        <Link to="/order-confirm/search">
+        <Link to='/order-confirm/search'>
           <NavContent>Order History</NavContent>
         </Link>
       </NavWrapper>

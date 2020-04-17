@@ -50,6 +50,16 @@ const App = () => {
       grid-template-rows: 1fr 1fr 6fr 0.5fr;
       grid-template-columns: 2fr 1fr;
     }
+    @media (max-width: 400px) {
+      grid-template-areas:
+        'head'
+        'filters'
+        'main'
+        'cart'
+        'foot';
+      grid-template-rows: 1fr 1fr 6fr 4fr 0.5fr;
+      grid-template-columns: 100%;
+    }
   `;
   const HeaderWrap = styled.div`
     grid-area: head;
@@ -93,43 +103,43 @@ const App = () => {
 
         <MainWrap>
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <Homepage />
             </Route>
 
-            <Route path="/search/:searchTerm">
+            <Route path='/search/:searchTerm'>
               <SearchResults />
             </Route>
 
-            <Route path="/category/:categoryName">
+            <Route path='/category/:categoryName'>
               <Category />
             </Route>
 
-            <Route path="/product/:productId">
+            <Route path='/product/:productId'>
               <ProductDetails />
             </Route>
 
-            <Route path="/seller/:sellerId">
+            <Route path='/seller/:sellerId'>
               <div>Store</div>
             </Route>
 
-            <Route path="/order-confirm/:confirmId">
+            <Route path='/order-confirm/:confirmId'>
               <OrderInfo />
             </Route>
 
-            <Route path="/about">
+            <Route path='/about'>
               <AboutUs />
             </Route>
 
-            <Route path="/contact">
+            <Route path='/contact'>
               <ContactUs />
             </Route>
 
-            <Route path="/company/:companyId">
+            <Route path='/company/:companyId'>
               <CompanyPage />
             </Route>
 
-            <Route path="/profile">
+            <Route path='/profile'>
               <ProfilePage />
             </Route>
           </Switch>

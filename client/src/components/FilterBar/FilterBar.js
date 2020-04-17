@@ -91,14 +91,21 @@ const FilterBar = () => {
     <StyledDiv>
       <Sorters>
         <ItemSorter />
-        <FaFilter />
+        <ToggleSvg>
+          <FaFilter />
+        </ToggleSvg>
         <p>
           <button onClick={() => setCatdrop(!catdrop)}>
             {catdrop ? '⮛' : '⮚'}
           </button>
           Category
         </p>
-        <StyledUl style={{ maxHeight: catdrop ? 'fit-content' : 0 }}>
+        <StyledUl
+          style={{
+            maxHeight: catdrop ? 'fit-content' : 0,
+            border: catdrop ? '1px solid black' : 0,
+          }}
+        >
           {Object.keys(filter.category).map((location) => {
             const origin = 'category';
             return (
@@ -123,7 +130,12 @@ const FilterBar = () => {
           </button>
           Body Location
         </p>
-        <StyledUl style={{ maxHeight: locdrop ? 'fit-content' : 0 }}>
+        <StyledUl
+          style={{
+            maxHeight: locdrop ? 'fit-content' : 0,
+            border: locdrop ? '1px solid black' : 0,
+          }}
+        >
           {Object.keys(filter.bodyLocation).map((location) => {
             return (
               <li key={Math.random() * 10000000}>
@@ -140,7 +152,7 @@ const FilterBar = () => {
           })}
         </StyledUl>
       </Sorters>
-      <ChangeDesignButton />
+      <ChangeDesignButton style={{ gridArea: 'styles' }} />
     </StyledDiv>
   );
 };
@@ -160,18 +172,27 @@ const StyledDiv = styled.div`
     border: none;
   }
   @media (max-width: 540px) {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+      'sorters'
+      'styles';
   }
-  @media (max-width: 360px) {
+  @media (max-width: 390px) {
     flex-direction: column;
+  }
+`;
+const ToggleSvg = styled.div`
+  @media (max-width: 540px) {
+    display: none;
   }
 `;
 
 const Sorters = styled.div`
   @media (max-width: 540px) {
     display: flex;
+    grid-area: sorters;
   }
-  @media (max-width: 360px) {
+  @media (max-width: 390px) {
     flex-direction: column;
   }
 `;
@@ -184,7 +205,11 @@ const StyledUl = styled.ul`
   background: whitesmoke;
   border-radius: 5px;
   @media (max-width: 540px) {
-    margin: 0px 8px;
+    position: relative;
+    right: 72px;
+    top: 56px;
+    z-index: 2;
+    min-width: 0px;
   }
 `;
 
