@@ -28,66 +28,7 @@ import ProfilePage from '../../pages/ProfilePage';
 
 const App = () => {
   const COLORS = useSelector((state) => state.designSetting);
-
-<<<<<<< Updated upstream
-  const { loading } = useAuth0();
-=======
-  const PageStructure = styled.div`
-    height: 100vh;
-    position: relative;
-    display: grid;
-    grid-template-areas:
-      'head head head'
-      'filters main cart'
-      'foot foot foot';
-    grid-template-rows: 1fr 6fr 0.3fr;
-    grid-template-columns: 1.2fr 6fr 2fr;
-    @media (max-width: 540px) {
-      grid-template-areas:
-        'head head'
-        'filters filters'
-        'main cart'
-        'foot foot';
-      grid-template-rows: 1fr 1fr 6fr 0.5fr;
-      grid-template-columns: 2fr 1fr;
-    }
-    @media (max-width: 400px) {
-      grid-template-areas:
-        'head'
-        'filters'
-        'main'
-        'cart'
-        'foot';
-      grid-template-rows: 1fr 1fr 6fr 4fr 0.5fr;
-      grid-template-columns: 100%;
-    }
-  `;
-  const HeaderWrap = styled.div`
-    grid-area: head;
-    background: ${COLORS.header};
-  `;
-  const FilterBarWrap = styled.div`
-    grid-area: filters;
-    background: ${COLORS.filter};
-  `;
-  const MainWrap = styled.div`
-    grid-area: main;
-    overflow-y: auto;
-    /* overflow-x: hidden; */
-    background: ${COLORS.main};
-  `;
-  const CheckoutBarWrap = styled.div`
-    grid-area: cart;
-    background: ${COLORS.background};
-    border-left: 2px solid ${COLORS.filter};
-    overflow-x: hidden;
-  `;
-  const FooterWrap = styled.div`
-    grid-area: foot;
-    background: ${COLORS.footer};
-  `;
->>>>>>> Stashed changes
-
+  
   return (
     <Router history={history}>
       <PageStructure>

@@ -7,44 +7,6 @@ import Spinner from '../Spinner';
 import OrderSearch from './OrderSearch';
 import { clearPurchase } from '../../actions';
 
-<<<<<<< Updated upstream
-//  EXAMPLE DATA
-// data.order === {
-//   cartItems: [
-//     0: {
-//       id: 6543,
-//       name: "Barska GB12166 Fitness Watch with Heart Rate Monitor",
-//       price: "$49.99",
-//       body_location: "Wrist",
-//       category: "Fitness",
-//       imageSrc: 'blahblah',
-//       numInStock: 9,
-//       companyId: 19962,
-//       quantity: 1,
-//     }
-//     1: {
-//       id: 6544,
-//       name: "Belkin GS5 Sport Fit Armband, Black F8M918B1C00",
-//       price: "$24.99",
-//       body_location: "Arms",
-//       category: "Fitness",
-//       imageSrc: 'blehbleh',
-//       numInStock: 5,
-//       companyId: 17452,
-//       quantity: 3,
-//     }
-//   ],
-//   user: {
-//     name: "jjj"
-//     address: "jjj"
-//     email: "jj@jjj"
-//   },
-//   payment: "Payment Confirmed",
-//   total: 55.67,
-// }
-=======
->>>>>>> Stashed changes
-
 const OrderInfo = () => {
   const { confirmId } = useParams();
   const dispatch = useDispatch();
@@ -52,26 +14,6 @@ const OrderInfo = () => {
   const [orderInfo, setOrderInfo] = React.useState(null);
 
   //fetches order info and stores it in state to be used for rendering
-<<<<<<< Updated upstream
-  //clearpurchase() sets the state status back to 'idle' (was on 'purchased')
-  //may need to add a security measure based on currentuser later?
-  React.useEffect(() => {
-    //stops fetch if just order search page
-    if (confirmId !== 'search')
-      fetch(`/history/${confirmId}`)
-        .then((data) => data.json())
-        .then((data) => {
-          console.log('data.confirmation (confirmId)', data.confirmation);
-          console.log('data.order ', data.order);
-          setOrderInfo(data.order);
-          dispatch(clearPurchase());
-        })
-        .catch((err) => {
-          console.error('Caught error orderinfo: ', err);
-        });
-    // eslint-disable-next-line
-  }, [confirmId]);
-=======
   React.useEffect(()=> {
     //stops fetch if just order search page
     if (confirmId !== 'search')
@@ -87,7 +29,6 @@ const OrderInfo = () => {
     });
     
   }, [confirmId])
->>>>>>> Stashed changes
 
   //if this page is rendered from the order history link; just return search input
   if (confirmId === 'search') {
