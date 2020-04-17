@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Spinner from '../../components/Spinner';
+import NoResults from '../NoResults';
 
 import ItemCard from '../../components/ItemCard';
 
@@ -94,7 +95,8 @@ const ItemDisplay = () => {
           </PageSelectBox>
         </>
       ) : (
-        <Spinner size={50} />
+        <NoResults />
+        // <Spinner size={50} />
       )}
     </>
   );

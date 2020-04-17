@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filterItems } from '../../actions';
 import { FaFilter } from 'react-icons/fa';
 import ChangeDesignButton from '../ChangeDesignButton';
@@ -8,6 +8,7 @@ import ChangeDesignButton from '../ChangeDesignButton';
 import ItemSorter from '../ItemSorter';
 
 const FilterBar = () => {
+  const baseItems = useSelector((state) => state.filters.baseItems);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
     bodyLocation: {
@@ -42,8 +43,39 @@ const FilterBar = () => {
   useEffect(() => {
     dispatch(filterItems(filter));
   }, [filter]);
+  useEffect(() => {
+    setFilter({
+      bodyLocation: {
+        Wrist: false,
+        Arms: false,
+        Head: false,
+        Waist: false,
+        Chest: false,
+        Hands: false,
+        Neck: false,
+        Feet: false,
+        Torso: false,
+      },
+      category: {
+        All: true,
+        Fitness: false,
+        Medical: false,
+        Lifestyle: false,
+        Entertainment: false,
+        Industrial: false,
+        PetsAndAnimals: false,
+        Gaming: false,
+      },
+      price: {
+        '$0 - $25': false,
+        '$25 - $50': false,
+        '$50 - $100': false,
+        '$100 and up': false,
+      },
+    });
+  }, [baseItems]);
 
-// function to handle radio button (category) filters
+  // function to handle radio button (category) filters
   const handleRadio = (e, origin) => {
     const key = e.target.value;
     console.log(key);
@@ -101,7 +133,6 @@ const FilterBar = () => {
     Gaming: false,
   };
 
-  
   // these states are just used to toggle the filter collapsibles
   const [catdrop, setCatdrop] = React.useState(false);
   const [locdrop, setLocdrop] = React.useState(false);
