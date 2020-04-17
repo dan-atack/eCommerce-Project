@@ -86,6 +86,10 @@ function Navbar() {
     a {
       text-decoration: none;
       color: whitesmoke;
+
+      &:hover {
+        color: black;
+      }
     }
   `;
 
