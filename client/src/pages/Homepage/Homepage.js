@@ -15,41 +15,12 @@ function Homepage() {
   let loadStatus = useSelector(displayLoadState);
 
   // Styled components:
-  const Wrapper = styled.div`
-    display: 'flex';
-    flex-direction: 'column';
-  `;
 
-  const Title = styled.h2`
-    padding: 0.5rem 1rem 0;
-    text-align: center;
-    color: ${COLORS.header};
-    text-shadow: 4px 8px 25px #616161, 0px 4px 4px rgba(0, 0, 0, 0.3),
-      1px 2px 2px rgba(0, 0, 0, 0.5);
-  `;
-
-  const SubTitle = styled(Title)`
-    font-size: 1.2rem;
-    text-align: left;
-  `;
-
-  const ItemDisplay = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  `;
-
-  const SaleItems = styled(ItemDisplay)`
-    div {
-      color: black;
-    }
-  `;
-  
   return (
     <Wrapper>
       <SearchBar />
-      <Title>Home</Title>
-      <SubTitle>Sale!</SubTitle>
+      <Title COLORS={COLORS}>Home</Title>
+      <SubTitle COLORS={COLORS}>Sale!</SubTitle>
       <SaleItems>
         {loadStatus === 'complete' ? (
           catalogItems.saleItems.map((item) => {
@@ -59,7 +30,7 @@ function Homepage() {
           <></>
         )}
       </SaleItems>
-      <SubTitle>Featured!</SubTitle>
+      <SubTitle COLORS={COLORS}>Featured!</SubTitle>
       <ItemDisplay>
         {loadStatus === 'complete' ? (
           catalogItems.featuredItems.map((item) => {
@@ -72,5 +43,35 @@ function Homepage() {
     </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: 'flex';
+  flex-direction: 'column';
+`;
+
+const Title = styled.h2`
+  padding: 0.5rem 1rem 0;
+  text-align: center;
+  color: ${(props) => props.COLORS.header};
+  text-shadow: 4px 8px 25px #616161, 0px 4px 4px rgba(0, 0, 0, 0.3),
+    1px 2px 2px rgba(0, 0, 0, 0.5);
+`;
+
+const SubTitle = styled(Title)`
+  font-size: 1.2rem;
+  text-align: left;
+`;
+
+const ItemDisplay = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
+
+const SaleItems = styled(ItemDisplay)`
+  div {
+    color: black;
+  }
+`;
 
 export default Homepage;

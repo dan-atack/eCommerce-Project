@@ -8,6 +8,7 @@ import ChangeDesignButton from '../ChangeDesignButton';
 import ItemSorter from '../ItemSorter';
 
 const FilterBar = () => {
+  const COLORS = useSelector((state) => state.designSetting);
   const baseItems = useSelector((state) => state.filters.baseItems);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
@@ -139,7 +140,7 @@ const FilterBar = () => {
   const [pridrop, setPridrop] = React.useState(false);
 
   return (
-    <StyledDiv>
+    <StyledDiv COLORS={COLORS}>
       <Sorters>
         <ItemSorter />
         <ToggleSvg>
@@ -156,6 +157,7 @@ const FilterBar = () => {
             maxHeight: catdrop ? 'fit-content' : 0,
             border: catdrop ? '1px solid black' : 0,
           }}
+          COLORS={COLORS}
         >
           {Object.keys(filter.category).map((location) => {
             const origin = 'category';
@@ -185,6 +187,7 @@ const FilterBar = () => {
             maxHeight: locdrop ? 'fit-content' : 0,
             border: locdrop ? '1px solid black' : 0,
           }}
+          COLORS={COLORS}
         >
           {Object.keys(filter.bodyLocation).map((location) => {
             return (
@@ -207,7 +210,10 @@ const FilterBar = () => {
           </button>
           Price
         </p>
-        <StyledUl style={{ maxHeight: pridrop ? 'fit-content' : 0 }}>
+        <StyledUl
+          style={{ maxHeight: pridrop ? 'fit-content' : 0 }}
+          COLORS={COLORS}
+        >
           {Object.keys(filter.price).map((range) => {
             return (
               <li key={Math.random() * 10000000}>
@@ -237,7 +243,7 @@ const StyledDiv = styled.div`
   p {
     font-weight: bold;
     font-size: 0.85rem;
-    color: whitesmoke;
+    color: ${(props) => props.COLORS.background};
     margin: 0.75rem 0 0.25rem;
   }
   button {
@@ -275,7 +281,7 @@ const StyledUl = styled.ul`
   width: 90%;
   min-width: fit-content;
   margin: 0 auto;
-  background: whitesmoke;
+  background: ${(props) => props.COLORS.background};
   border-radius: 5px;
   @media (max-width: 540px) {
     position: relative;
