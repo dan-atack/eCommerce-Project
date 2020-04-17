@@ -8,7 +8,6 @@ import { getProductDetails, parseInitialItems } from '../../reducers';
 import Spinner from '../../components/Spinner';
 import { setProductDetailsFromFetch } from '../../actions';
 import AddToCartButton from '../../components/AddToCartButton';
-import { COLORS } from '../../constants';
 import SearchBar from '../../components/SearchBar';
 
 function ProductDetails() {
@@ -150,14 +149,19 @@ function ProductDetails() {
   `;
 
   const RainCheck = styled.button`
-    color: ${COLORS.background};
     font-size: 22px;
-    background-color: ${COLORS.outOfStockBlue};
+    background-color: ${COLORS.filter};
     height: 72px;
     width: 174px;
     margin: 24px;
     border-radius: 8px;
     border: 1px solid ${COLORS.borderNoire};
+
+    a {
+      color: ${COLORS.header};
+      text-decoration: none;
+    }
+
     grid-area: buy;
     @media (max-width: 480px) {
       margin: 4px;
@@ -178,6 +182,11 @@ function ProductDetails() {
       margin: 4px;
     }
   `;
+
+  const LinkSize = styled.div `
+    width: 100%;
+    height: 100%;
+  `
 
   return (
     <>
@@ -248,9 +257,13 @@ function ProductDetails() {
             }
           />
         ) : (
-          <Link to={`/company/${companyId ? companyId : ''}`}>
-            <RainCheck>See similar Items...</RainCheck>
-          </Link>
+          <RainCheck>
+            <Link>
+              <LinkSize to={`/company/${companyId ? companyId : ''}`}>
+                See similar Items...
+              </LinkSize>
+            </Link>
+          </RainCheck>
         )}
       </MainBox>
     </>

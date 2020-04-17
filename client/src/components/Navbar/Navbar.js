@@ -66,7 +66,7 @@ function Navbar() {
   `;
 
   const Authenticators = styled.div`
-    color: whitesmoke;
+    color: ${COLORS.main};
     font-size: 1.5em;
 
     transition: background-color 500ms;
@@ -74,9 +74,9 @@ function Navbar() {
     padding: 10px;
 
     &:hover {
+      color: ${COLORS.header};
       border-bottom: ${COLORS.filter} solid 2px;
-      color: black;
-      background-color: lightgray;
+      background-color: ${COLORS.main};
       cursor: pointer;
     }
 

@@ -16,10 +16,10 @@ const ChangeDesignButton = () => {
         dispatch(setDesign('darkMode'));
         return;
       }
-      // case 'Whacky': {
-      //   dispatch(setDesign('whacky'));
-      //   return;
-      // }
+      case 'Whacky': {
+        dispatch(setDesign('whacky'));
+        return;
+      }
       default: {
         return;
       }
@@ -27,10 +27,16 @@ const ChangeDesignButton = () => {
   };
   return (
     <ButtonBox>
-      ChangeDesignButton
-      <StyleOption onClick={designClickHandle}>Base</StyleOption>
-      <StyleOption onClick={designClickHandle}>New</StyleOption>
-      <StyleOption onClick={designClickHandle}>Whacky</StyleOption>
+      Pick your colors!
+      <StyleOption onClick={designClickHandle}>
+        <span  className="base" >Base</span>
+      </StyleOption>
+      <StyleOption onClick={designClickHandle}>
+        <span  className="new" >New</span>
+      </StyleOption>
+      <StyleOption onClick={designClickHandle}>
+        <span  className="whacky" >Whacky</span>
+      </StyleOption>
     </ButtonBox>
   );
 };
@@ -38,6 +44,7 @@ const ChangeDesignButton = () => {
 const ButtonBox = styled.ul`
   display: flex;
   flex-direction: column;
+  font-size: 1.3em;
   @media (max-width: 540px) {
     flex-direction: row;
     margin: 0px 8px;
@@ -45,7 +52,29 @@ const ButtonBox = styled.ul`
 `;
 
 const StyleOption = styled.li`
-  /* display: none; */
+  padding: 5px;
+
+  .base {
+    color: #17252A;
+    background: #DEF2F1;
+    padding: 2px;
+    border-radius: 3px;
+  }
+
+  .new {
+    color: #DEF2F1;
+    background: #17252A;
+    padding: 2px;
+    border-radius: 3px;
+  }
+
+  .whacky {
+    color: #8C271E;
+    background: #78BC61;
+    padding: 2px;
+    border-radius: 3px;
+  }  
+
   @media (max-width: 540px) {
     margin: 0px 8px;
   }

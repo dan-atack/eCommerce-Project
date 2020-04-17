@@ -40,6 +40,20 @@ export default function designReducer(state = initialState, action) {
             clearCart: '#FF0000',
           };
         }
+        case 'whacky': {
+          return {
+            addToCartPink: 'rgb(224, 60, 96)',
+            borderNoire: 'rgb(26, 21, 22)',
+            header: '#EDAFB8',
+            filter: '#C0C781',
+            main: '#78BC61',
+            footer: '#648767',
+            background: '#8C271E',
+            logo: 'base',
+            addToCartPink: 'rgb(224, 60, 96)',
+            clearCart: '#FF0000',
+          };
+        }
       }
     }
 
