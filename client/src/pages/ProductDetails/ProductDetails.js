@@ -259,7 +259,13 @@ function ProductDetails() {
         ) : (
           <RainCheck>
             <Link to={`/company/${companyId ? companyId : ''}`}>
+<<<<<<< Updated upstream
               <LinkSize>See similar Items...</LinkSize>
+=======
+              <LinkSize>
+                See similar Items...
+              </LinkSize>
+>>>>>>> Stashed changes
             </Link>
           </RainCheck>
         )}
