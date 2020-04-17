@@ -8,23 +8,23 @@ const AboutUs = () => {
         <h2>About Us</h2>
         <p>
           {' '}
-          The Shady App Company has had a long history of web development since
-          it's founding in 1818.{' '}
+          Gadget Grotto has had a long history of web development since it's
+          founding in 1818.{' '}
         </p>
         <p>
           This E-Commerce site is brought to you by the collaborative efforts of
           the founding members:
         </p>
-        <a href={'https://github.com/dan-atack'} target='_blank'>
+        <a href={'https://github.com/dan-atack'} target="_blank">
           <p>Daniel Atack</p>
         </a>
-        <a href={'https://github.com/RonyKordahi'} target='_blank'>
+        <a href={'https://github.com/RonyKordahi'} target="_blank">
           <p>Rony Kordhani</p>
         </a>
-        <a href={'https://github.com/CraigNock'} target='_blank'>
+        <a href={'https://github.com/CraigNock'} target="_blank">
           <p>Craig Nockels</p>
         </a>
-        <a href={'https://github.com/PaulSusset'} target='_blank'>
+        <a href={'https://github.com/PaulSusset'} target="_blank">
           <p>Paul Susset</p>
         </a>
       </StyledDiv>

@@ -183,10 +183,10 @@ function ProductDetails() {
     }
   `;
 
-  const LinkSize = styled.div `
+  const LinkSize = styled.div`
     width: 100%;
     height: 100%;
-  `
+  `;
 
   return (
     <>
@@ -258,10 +258,8 @@ function ProductDetails() {
           />
         ) : (
           <RainCheck>
-            <Link>
-              <LinkSize to={`/company/${companyId ? companyId : ''}`}>
-                See similar Items...
-              </LinkSize>
+            <Link to={`/company/${companyId ? companyId : ''}`}>
+              <LinkSize>See similar Items...</LinkSize>
             </Link>
           </RainCheck>
         )}
