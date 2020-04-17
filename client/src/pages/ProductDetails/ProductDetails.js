@@ -8,6 +8,7 @@ import { getProductDetails, parseInitialItems } from '../../reducers';
 import Spinner from '../../components/Spinner';
 import { setProductDetailsFromFetch } from '../../actions';
 import AddToCartButton from '../../components/AddToCartButton';
+import starburst from '../../assets/starburst.png';
 import SearchBar from '../../components/SearchBar';
 
 function ProductDetails() {
@@ -139,7 +140,24 @@ function ProductDetails() {
       padding: 4px;
     }
   `;
-
+  const Special = styled.div`
+    color: whitesmoke;
+    padding: 4px;
+    z-index: 2;
+    background-image: url(${starburst});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 72px;
+    min-width: 96px;
+  `;
+  const StruckThru = styled.span`
+    text-decoration: line-through;
+    color: ${COLORS.filter};
+    margin-right: 8px;
+    position: relative;
+    margin-right: 8px;
+    color: black;
+  `;
   const PurchaseInfo = styled.div`
     grid-area: purch;
     display: flex;
@@ -148,19 +166,14 @@ function ProductDetails() {
   `;
 
   const RainCheck = styled.button`
+    color: ${COLORS.background};
     font-size: 22px;
-    background-color: ${COLORS.filter};
+    background-color: ${COLORS.outOfStockBlue};
     height: 72px;
     width: 174px;
     margin: 24px;
     border-radius: 8px;
     border: 1px solid ${COLORS.borderNoire};
-
-    a {
-      color: ${COLORS.header};
-      text-decoration: none;
-    }
-
     grid-area: buy;
     @media (max-width: 480px) {
       margin: 4px;
@@ -180,11 +193,6 @@ function ProductDetails() {
     @media (max-width: 480px) {
       margin: 4px;
     }
-  `;
-
-  const LinkSize = styled.div`
-    width: 100%;
-    height: 100%;
   `;
 
   return (
@@ -224,10 +232,17 @@ function ProductDetails() {
           discount !== price ? (
             <PurchaseInfo>
               {discount && (
-                <span>
-                  {numInStock} units available from the INSANELY low price of
-                  {` $${discount.toFixed(2)}`}!!!
-                </span>
+                <>
+                  <p style={{ position: 'relative', top: 14 }}>
+                    {numInStock} units available from the OUTRAGEOUSLY low price
+                    of: <StruckThru>{`${price}`}</StruckThru>
+                  </p>
+                  <Special>
+                    <span
+                      style={{ position: 'relative', top: 11, left: 8 }}
+                    >{`  $${discount.toFixed(2)}!!`}</span>
+                  </Special>
+                </>
               )}
             </PurchaseInfo>
           ) : (
@@ -256,11 +271,9 @@ function ProductDetails() {
             }
           />
         ) : (
-          <RainCheck>
-            <Link to={`/company/${companyId ? companyId : ''}`}>
-              <LinkSize>See similar Items...</LinkSize>
-            </Link>
-          </RainCheck>
+          <Link to={`/company/${companyId ? companyId : ''}`}>
+            <RainCheck>See similar Items...</RainCheck>
+          </Link>
         )}
       </MainBox>
     </>
