@@ -31,37 +31,19 @@ const FilterBar = () => {
       PetsAndAnimals: false,
       Gaming: false,
     },
+    price: {
+      '$0 - $25': false,
+      '$25 - $50': false,
+      '$50 - $100': false,
+      '$100 and up': false,
+    },
   });
   // useEffect to dispatch whenever any value of the filters change
   useEffect(() => {
     dispatch(filterItems(filter));
   }, [filter]);
 
-  // function to handle checkboxes (body location) filters
-  const handleCheckbox = (e) => {
-    const key = e.target.name;
-    setFilter({
-      ...filter,
-      bodyLocation: {
-        ...filter['bodyLocation'],
-        [key]: !filter['bodyLocation'][key],
-      },
-    });
-    return;
-  };
-  // reset for categories
-  const categoryDefault = {
-    All: true,
-    Fitness: false,
-    Medical: false,
-    Lifestyle: false,
-    Entertainment: false,
-    Industrial: false,
-    PetsAndAnimals: false,
-    Gaming: false,
-  };
-
-  // function to handle radio button (category) filters
+// function to handle radio button (category) filters
   const handleRadio = (e, origin) => {
     const key = e.target.value;
     console.log(key);
@@ -83,9 +65,47 @@ const FilterBar = () => {
     });
     return;
   };
+  // function to handle checkboxes (body location) filters
+  const handleBodyCheckbox = (e) => {
+    const key = e.target.name;
+    setFilter({
+      ...filter,
+      bodyLocation: {
+        ...filter['bodyLocation'],
+        [key]: !filter['bodyLocation'][key],
+      },
+    });
+    return;
+  };
+  const handlePriceCheckbox = (e) => {
+    const key = e.target.name;
+    setFilter({
+      ...filter,
+      price: {
+        ...filter['price'],
+        [key]: !filter['price'][key],
+      },
+    });
+    return;
+  };
+
+  // reset for categories
+  const categoryDefault = {
+    All: true,
+    Fitness: false,
+    Medical: false,
+    Lifestyle: false,
+    Entertainment: false,
+    Industrial: false,
+    PetsAndAnimals: false,
+    Gaming: false,
+  };
+
+  
   // these states are just used to toggle the filter collapsibles
   const [catdrop, setCatdrop] = React.useState(false);
   const [locdrop, setLocdrop] = React.useState(false);
+  const [pridrop, setPridrop] = React.useState(false);
 
   return (
     <StyledDiv>
@@ -96,7 +116,7 @@ const FilterBar = () => {
         </ToggleSvg>
         <p>
           <button onClick={() => setCatdrop(!catdrop)}>
-            {catdrop ? '⮛' : '⮚'}
+            {catdrop ? '⮟' : '⮞'}
           </button>
           Category
         </p>
@@ -123,7 +143,6 @@ const FilterBar = () => {
             );
           })}
         </StyledUl>
-
         <p>
           <button onClick={() => setLocdrop(!locdrop)}>
             {locdrop ? '⮟' : '⮞'}
@@ -143,10 +162,32 @@ const FilterBar = () => {
                   type={'checkbox'}
                   name={`${location}`}
                   id={`${location}`}
-                  onChange={handleCheckbox}
+                  onChange={handleBodyCheckbox}
                   checked={filter['bodyLocation'][location]}
                 ></input>
                 <label for={`${location}`}>{location}</label>
+              </li>
+            );
+          })}
+        </StyledUl>
+        <p>
+          <button onClick={() => setPridrop(!pridrop)}>
+            {pridrop ? '⮟' : '⮞'}
+          </button>
+          Price
+        </p>
+        <StyledUl style={{ maxHeight: pridrop ? 'fit-content' : 0 }}>
+          {Object.keys(filter.price).map((range) => {
+            return (
+              <li key={Math.random() * 10000000}>
+                <input
+                  type={'checkbox'}
+                  name={`${range}`}
+                  id={`${range}`}
+                  onChange={handlePriceCheckbox}
+                  checked={filter['price'][range]}
+                ></input>
+                <label for={`${range}`}>{range}</label>
               </li>
             );
           })}
@@ -165,6 +206,7 @@ const StyledDiv = styled.div`
   p {
     font-weight: bold;
     font-size: 0.85rem;
+    color: whitesmoke;
     margin: 0.75rem 0 0.25rem;
   }
   button {

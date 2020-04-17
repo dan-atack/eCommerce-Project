@@ -14,11 +14,10 @@ const ItemSorter = () => {
         Sort By:
         <select
           onChange={(ev) => {
-            console.log('target ', ev.target.value);
             dispatch(sortItems(ev.target.value));
           }}
         >
-          <option selected='selected'>Select</option>
+          <option value='selected'>Select</option>
           <option value={JSON.stringify({ type: 'name', elv: 'ascending' })}>
             Name - Ascending
           </option>

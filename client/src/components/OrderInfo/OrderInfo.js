@@ -98,7 +98,7 @@ const OrderInfo = () => {
         <p>Name:<span>{orderInfo.user.name}</span></p>
         <p>Address:<span>{orderInfo.user.address}</span></p>
         <p>Email:<span>{orderInfo.user.email}</span></p>
-        <p>Total:<span>${(orderInfo.total).toFixed(2)}</span></p>
+        <p>Total:<span>${(orderInfo.total)}</span></p>
       </UserInfo>
       </StyledDiv>
     ) : <Spinner size={40}/>

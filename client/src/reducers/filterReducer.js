@@ -4,40 +4,74 @@ export default function filterReducer(state = initialState, action) {
   switch (action.type) {
     // All relevant items post search/category
     case 'SET_SEARCH_RESULTS': {
-      console.log(action);
+      // console.log(action);
       return { ...state, baseItems: action.products };
     }
     // Items to display (after filters for example)
     case 'SET_DISPLAY_ITEMS': {
-      console.log(action);
+      // console.log(action);
       return { ...state, displayItems: action.products };
     }
     case 'FILTER_ITEMS': {
       if (state.baseItems) {
-        const filteredItems = state.baseItems.filter((item) => {
-          // filter out which values are 'true' from the action.filters object.
-          // For body location
-          const bodyFilter = Object.keys(action.filters.bodyLocation).filter(
-            (filter) => {
-              return action.filters.bodyLocation[filter];
-            }
-          );
-          // For category
-          const categoryFilter = Object.keys(action.filters.category).filter(
-            (filter) => {
-              //if filter is set to 'All', disregard the 'All' key
-              return action.filters.category[(filter!=='All')? filter: ''];
-            }
-          );
+        // filter out which values are 'true' from the action.filters object.
+        // For category
+        const categoryFilter = Object.keys(action.filters.category).filter(
+          (filter) => {
+            //if filter is set to 'All', disregard the 'All' key
+            return action.filters.category[(filter!=='All')? filter: ''];
+          }
+        );
+        // For body location
+        const bodyFilter = Object.keys(action.filters.bodyLocation).filter(
+          (filter) => {
+            return action.filters.bodyLocation[filter];
+          }
+        );
+        // For price
+        const priceFilter = Object.keys(action.filters.price).filter(
+          (filter) => {
+            return action.filters.price[filter];
+          }
+        );
+
+        let initialItems = [...state.baseItems];
+        //function to filter by selected price ranges
+        const priceFiltering = (initialItems) => {
+        if(priceFilter.length) {
+          let newPricedItems = initialItems.filter((item) => {
+            let numPrice = parseFloat(item.price.replace(/[^\d.]/g, ''));
+            // console.log('pf ', priceFilter);
+            return (
+            ( ( priceFilter.includes('$0 - $25') ) ? ( 0 < numPrice && numPrice <= 20 ): false)  ||
+            ( ( priceFilter.includes('$25 - $50') ) ? ( 20 < numPrice && numPrice <= 50 ): false)  ||
+            ( ( priceFilter.includes('$50 - $100') ) ? ( 50 < numPrice && numPrice <= 100 ): false)  ||
+            ( ( priceFilter.includes('$100 and up') ) ? ( 100 < numPrice ): false)  
+            )
+          });
+          // console.log(newpricedItems);
+          return newPricedItems;
+          
+        } else { return initialItems}
+        };
+        
+        //due to increased combination complexity, opted to filter price first if applicable, then feed that result to the other filters.
+        const filteredItems = ( priceFiltering(initialItems) ).filter((item) => {
+          
+          console.log(item);
           // console.log(
+          //   "categoryFilter",
+          //   categoryFilter,
+          //   "length",
+          //   categoryFilter.length,
           //   "bodyFilter",
           //   bodyFilter,
           //   "length",
           //   bodyFilter.length,
-          //   "categoryFilter",
-          //   categoryFilter,
+          //   "priceFilter",
+          //   priceFilter,
           //   "length",
-          //   categoryFilter.length
+          //   priceFilter.length,
           // );
 
           // If both we have filters on both conditions
@@ -52,8 +86,10 @@ export default function filterReducer(state = initialState, action) {
             // if we have conditions only on the body location (multiple possible)
           } else if (!categoryFilter.length && bodyFilter.length) {
             return bodyFilter.includes(item.body_location);
-            // no filtering
-          } else if (!categoryFilter.length && !bodyFilter.length) {
+            // #nofilter
+          } else if (!categoryFilter.length 
+            && !bodyFilter.length 
+            ) {
             return true;
           }
         });
@@ -63,8 +99,9 @@ export default function filterReducer(state = initialState, action) {
       return state;
     }
     case 'SORT_ITEMS': {
-      console.log('action ',  JSON.parse(action.sortVar) );
-    //value passed is stringified object {type: '.', elv: '.'}, must parse to use.
+      if (action.sortVar === 'selected') {return state};
+      // console.log('action ',  JSON.parse(action.sortVar) );
+      //value passed is stringified object {type: '.', elv: '.'}, must parse to use.
       const variable = JSON.parse(action.sortVar);
       let sortedItems = [...state.displayItems];
 
