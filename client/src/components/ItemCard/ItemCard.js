@@ -5,10 +5,13 @@ import { useDispatch } from 'react-redux';
 import { setProductDetailsFromCard } from '../../actions';
 import starburst from '../../assets/starburst.png';
 import { useSelector } from 'react-redux';
+import { displaySaleIds } from '../../reducers';
 
 const ItemCard = ({ product }) => {
   const dispatch = useDispatch();
   const COLORS = useSelector((state) => state.designSetting);
+  // ensure card has sale item data no matter where it's accessed from:
+  const saleIds = useSelector(displaySaleIds);
 
   const {
     id,
@@ -20,6 +23,14 @@ const ItemCard = ({ product }) => {
     numInStock,
     companyId,
   } = product;
+
+  let isOnSale = false;
+  let discountPrice = 0;
+
+  if (saleIds.includes(id)) {
+    isOnSale = true;
+    discountPrice = Math.round(Number(price.slice(1)) * 85) / 100;
+  }
 
   // styled components:
   const Special = styled.div`
@@ -73,7 +84,7 @@ const ItemCard = ({ product }) => {
     >
       <img src={imageSrc} />
       <div>{name}</div>
-      {product.isOnSale ? (
+      {isOnSale ? (
         <div style={{ display: 'flex' }}>
           <StruckThru style={{ position: 'relative', top: 18 }}>
             {price}
@@ -81,7 +92,7 @@ const ItemCard = ({ product }) => {
           <Special>
             <span
               style={{ position: 'relative', top: 14 }}
-            >{`$${product.discountPrice.toFixed(2)}`}</span>
+            >{`$${discountPrice.toFixed(2)}`}</span>
           </Special>
         </div>
       ) : (

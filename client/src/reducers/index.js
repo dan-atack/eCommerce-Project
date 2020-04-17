@@ -17,6 +17,15 @@ export const parseInitialItems = (state) => {
     };
   }
 };
+export const displaySaleIds = (state) => {
+  if (state.catalog.status === 'complete') {
+    let saleIds = [];
+    Object.values(state.catalog.saleItems).forEach((item) =>
+      saleIds.push(item.id)
+    );
+    return saleIds;
+  }
+};
 // Show me the loading states:
 // loading state for initial server fetch:
 export const displayLoadState = (state) => state.catalog.status;
