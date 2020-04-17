@@ -119,10 +119,6 @@ const App = () => {
               <ProductDetails />
             </Route>
 
-            <Route path='/seller/:sellerId'>
-              <div>Store</div>
-            </Route>
-
             <Route path='/order-confirm/:confirmId'>
               <OrderInfo />
             </Route>

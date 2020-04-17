@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import logo from '../../assets/GadgetGrotto.png';
 import darkLogo from '../../assets/GadgetGrottoDark.png';
 import { useAuth0 } from '../../auth0/react-auth0-spa';
+import ProfilePicture from "../ProfilePicture";
 
 function Navbar() {
   const COLORS = useSelector((state) => state.designSetting);
@@ -24,7 +25,7 @@ function Navbar() {
   }, []);
 
   // authetication
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithPopup, logout, user } = useAuth0();
 
   // Styled components
   const LogoBG = styled.div`
@@ -44,16 +45,12 @@ function Navbar() {
       position: relative;
     }
   `;
-  // Added this to keep the navlinks separate from the logo on smaller devices:
-  const NavCats = styled.div`
-    display: flex;
-  `;
 
   const NavContent = styled.div`
     padding: 10px;
     margin: 51px 0px 0px;
     font-size: 1.5em;
-    color: ${COLORS.main};
+    color: lightgray;
     transition: background-color 500ms;
     border-radius: 3px;
     border-bottom: transparent solid 2px;
@@ -99,10 +96,6 @@ function Navbar() {
     z-index: 2;
     display: flex;
     justify-content: space-between;
-    @media (max-width: 450px) {
-      position: absolute;
-      right: 0;
-    }
   `;
 
   const Logo = styled.img`
@@ -133,23 +126,18 @@ function Navbar() {
     <>
       <LoginAndOut>
         {!isAuthenticated && (
-          <Authenticators onClick={() => loginWithRedirect({})}>
+          <Authenticators onClick={() => loginWithPopup({})}>
             Log in
           </Authenticators>
         )}
 
         {isAuthenticated && (
-          <>
-            <Authenticators>
-              <Link to='/profile'>Profile</Link>
-            </Authenticators>
-            <Authenticators onClick={() => logout()}>Log out</Authenticators>
-          </>
+          <ProfilePicture />
         )}
       </LoginAndOut>
 
       <NavWrapper>
-        <Link to='/'>
+        <Link to="/">
           <LogoBG>
             <Logo
               src={
@@ -159,11 +147,11 @@ function Navbar() {
                   ? darkLogo
                   : logo
               }
-              alt='logo'
+              alt="logo"
             />
           </LogoBG>
         </Link>
-        <Link to='/'>
+        <Link to="/">
           <NavContent>Home</NavContent>
         </Link>
 
@@ -179,7 +167,7 @@ function Navbar() {
           </Dropdown.Menu>
         </Dropdown>
 
-        <Link to='/order-confirm/search'>
+        <Link to="/order-confirm/search">
           <NavContent>Order History</NavContent>
         </Link>
       </NavWrapper>

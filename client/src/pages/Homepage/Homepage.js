@@ -44,7 +44,7 @@ function Homepage() {
       color: black;
     }
   `;
-
+  
   return (
     <Wrapper>
       <SearchBar />
