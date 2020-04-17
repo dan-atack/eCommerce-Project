@@ -1,10 +1,17 @@
-const initialState = { baseItems: [], displayItems: [] };
+const initialState = { 
+  baseItems: [], 
+  displayItems: [], 
+  sortOption: { type: 'none', elv: 'none' },
+};
 
 export default function filterReducer(state = initialState, action) {
   switch (action.type) {
     // All relevant items post search/category
     case 'SET_SEARCH_RESULTS': {
-      return { ...state, baseItems: action.products };
+      return { 
+        ...state, 
+        baseItems: action.products, 
+      };
     }
     // Items to display (after filters for example)
     case 'SET_DISPLAY_ITEMS': {
@@ -55,6 +62,7 @@ export default function filterReducer(state = initialState, action) {
         
         //due to increased combination complexity, opted to filter price first if applicable, then feed that result to the other filters.
         const filteredItems = (priceFiltering(initialItems)).filter((item) => {
+
           // If both we have filters on both conditions
           if (categoryFilter.length && bodyFilter.length) {
             return (
@@ -80,11 +88,17 @@ export default function filterReducer(state = initialState, action) {
       return state;
     }
     case 'SORT_ITEMS': {
-      if (action.sortVar === 'selected') {return state};
+      // console.log('action ',  JSON.parse(action.sortVar) );
       //value passed is stringified object {type: '.', elv: '.'}, must parse to use.
       const variable = JSON.parse(action.sortVar);
+      
+      if (variable.type === 'none' 
+      || state.baseItems === null 
+      || state.displayItems === null) {
+        return {...state, sortOption: variable }
+      };
+      // console.log('aaaaaa ',state.displayItems);
       let sortedItems = [...state.displayItems];
-
       if (variable.type === 'price') 
         sortedItems = sortedItems.sort((a, b) => {
         //removes "$" , turns price string into number, then sorts
@@ -102,7 +116,7 @@ export default function filterReducer(state = initialState, action) {
         sortedItems = sortedItems.reverse();
       } ;
       
-      return { ...state, displayItems: sortedItems };
+      return { ...state, displayItems: sortedItems, sortOption: variable };
     }
     default: {
       return state;

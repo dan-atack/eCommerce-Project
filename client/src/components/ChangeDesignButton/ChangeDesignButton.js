@@ -44,6 +44,7 @@ const ChangeDesignButton = () => {
 const ButtonBox = styled.ul`
   display: flex;
   flex-direction: column;
+  margin-top: 4rem;
   font-size: 1.3em;
   @media (max-width: 540px) {
     flex-direction: row;
@@ -53,7 +54,7 @@ const ButtonBox = styled.ul`
 
 const StyleOption = styled.li`
   padding: 5px;
-
+  margin: .5rem 0 0;
   .base {
     color: #17252A;
     background: #DEF2F1;

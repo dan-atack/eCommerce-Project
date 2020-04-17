@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterItems } from '../../actions';
+import { filterItems, sortItems } from '../../actions';
 import { FaFilter } from 'react-icons/fa';
 import ChangeDesignButton from '../ChangeDesignButton';
 
@@ -10,6 +10,8 @@ import ItemSorter from '../ItemSorter';
 const FilterBar = () => {
   const COLORS = useSelector((state) => state.designSetting);
   const baseItems = useSelector((state) => state.filters.baseItems);
+  const sortOption = useSelector((state) => state.filters.sortOption);
+  console.log(sortOption);
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({
     bodyLocation: {
@@ -43,7 +45,9 @@ const FilterBar = () => {
   // useEffect to dispatch whenever any value of the filters change
   useEffect(() => {
     dispatch(filterItems(filter));
+    dispatch( sortItems(JSON.stringify(sortOption)) );
   }, [filter]);
+
   useEffect(() => {
     setFilter({
       bodyLocation: {
@@ -74,6 +78,7 @@ const FilterBar = () => {
         '$100 and up': false,
       },
     });
+    
   }, [baseItems]);
 
   // function to handle radio button (category) filters
