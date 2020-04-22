@@ -29,7 +29,8 @@ const CheckoutModal = () => {
 
   const total = cartItems.reduce((sum, item) => {
     //removal of "$" & conversion from string to number. 
-    return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
+    if (item.price != undefined) return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
+    else {return 0}
   }, 0)
 
   const classes = useStyles();

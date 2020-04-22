@@ -1,4 +1,15 @@
-const items = require("../data/items.json");
+const {MongoClient} = require("mongodb");
+
+const {getItems} = require("../data/items");
+
+// grabbing all the items from the data base without having to ping it every time
+// will allow us to return the relevant information until a change has been made
+let items;
+
+const getData = async () => {
+    items = await getItems();
+}
+getData();
 
 // customized sort function (code found at https://www.sitepoint.com/sort-an-array-of-objects-in-javascript)
 const sortByStock = (a, b) => {
@@ -65,18 +76,15 @@ const getSearchResults = (req) => {
 // returns the information of the specified item  //
 // ********************************************** //
 const getItemInformation = (req) => {  
-
     const {itemId} = req.params;
-
     // wiwll be used to determine the position of the required item
     let position;
 
     items.forEach((item, index) => {
-        if (item.id == itemId){
+        if (item._id == itemId){
             position = index;
         }
     })
-
     return(items[position]);
 }
 
@@ -108,22 +116,21 @@ const getCategories = () => {
 // returns an array of the 3 items on special sorted by highest stock and 3 random items as featured items //
 // ******************************************************************************************************* //
 const getHomepage = () => {  
+    getData();
 
     // constant of how many items we want displayed
     const NUM_OF_ITEMS = 3;
 
-    // cloning the items file so as to not change the order
-    const sortedItems = [...items];
-    
-    sortedItems.sort(sortByStock);
-
     // the arrays that are used to select the items displayed on the homepage
     let itemsOnSale = [];
     let featuredItems = [];
+    let sortedItems = [...items];
+    
+    sortedItems.sort(sortByStock);
 
     // sets random items in the featuredItems array | sets the 3 first items with the highest stock in the itemsOnSale array
     for (let i = 0; i < NUM_OF_ITEMS; ++i) {
-        featuredItems.push(items[Math.floor(Math.random() * items.length)]);
+        featuredItems.push(sortedItems[Math.floor(Math.random() * sortedItems.length)]);
         itemsOnSale.push(sortedItems[i]);
     }
 

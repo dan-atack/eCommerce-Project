@@ -7,15 +7,15 @@ export const addItemToCart = (item) => ({
   item,
 });
 // Increase or decrease qty of an item in the cart (up to the max in stock):
-export const setQty = (id, amt) => ({
+export const setQty = (_id, amt) => ({
   type: 'SET_QUANTITY',
-  id,
+  _id,
   amt,
 });
 // Remove an item from the cart state:
-export const removeItem = (id) => ({
+export const removeItem = (_id) => ({
   type: 'REMOVE_ITEM',
-  id,
+  _id,
 });
 // Remove ALL items from the cart state (sets cart to empty object):
 export const clearCart = () => ({

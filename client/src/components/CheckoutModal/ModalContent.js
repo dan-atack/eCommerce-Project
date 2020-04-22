@@ -49,7 +49,7 @@ const ModalContent = ({ cartItems }) => {
           <TableBody>
           {cartItems.map(item => {
             return (
-                <TableRow className={classes.tableRow} key={`${item.id}`}>
+                <TableRow className={classes.tableRow} key={`${item._id}`}>
                     <TableCell className={classes.font} align="center">
                     {item.name}</TableCell>
                     <TableCell className={classes.font} align="center">

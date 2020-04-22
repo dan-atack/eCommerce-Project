@@ -14,7 +14,7 @@ const ItemCard = ({ product }) => {
   const saleIds = useSelector(displaySaleIds);
 
   const {
-    id,
+    _id,
     name,
     price,
     imageSrc,
@@ -24,7 +24,7 @@ const ItemCard = ({ product }) => {
   let discountPrice = 0;
 
   if (saleIds != undefined) {
-    if (saleIds.includes(id)) {
+    if (saleIds.includes(_id)) {
       isOnSale = true;
       discountPrice = Math.round(Number(price.slice(1)) * 85) / 100;
     }
@@ -35,7 +35,7 @@ const ItemCard = ({ product }) => {
   return (
     <Wrapper
       onClick={() => dispatch(setProductDetailsFromCard(product))}
-      to={`/product/${id}`}
+      to={`/product/${_id}`}
       COLORS={COLORS}
     >
       <img src={imageSrc} alt="itempic" />

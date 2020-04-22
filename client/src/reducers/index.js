@@ -20,7 +20,7 @@ export const displaySaleIds = (state) => {
   if (state.catalog.status === 'complete') {
     let saleIds = [];
     Object.values(state.catalog.saleItems).forEach((item) =>
-      saleIds.push(item.id)
+      saleIds.push(item._id)
     );
     return saleIds;
   }

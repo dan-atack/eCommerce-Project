@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQty, removeItem } from '../../actions';
 
-const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
+const CartItem = ({ _id, name, price, quantity, stock, imageSrc }) => {
   const COLORS = useSelector((state) => state.designSetting);
   const dispatch = useDispatch();
   let amount = quantity;
@@ -16,10 +16,10 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
       <img src={imageSrc} alt="item" />
       <InfoDiv>
         <Title>
-          <StyledLink to={`/product/${id}`}>{name}</StyledLink>
+          <StyledLink to={`/product/${_id}`}>{name}</StyledLink>
           <StyledButton
             onClick={() => {
-              dispatch(removeItem(id));
+              dispatch(removeItem(_id));
             }}
             COLORS={COLORS}
           >
@@ -44,8 +44,7 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
                 //stops increasing beyond stock levels (Maxspan appears when at max)
                 if (amount < stock) {
                   amount++;
-                  console.log(amount);
-                  dispatch(setQty(id, amount));
+                  dispatch(setQty(_id, amount));
                 }
               }}
               COLORS={COLORS}
@@ -58,7 +57,7 @@ const CartItem = ({ id, name, price, quantity, stock, imageSrc }) => {
                 //stops decreasing below 1
                 if (amount > 0) {
                   amount--;
-                  dispatch(setQty(id, amount));
+                  dispatch(setQty(_id, amount));
                 }
               }}
               COLORS={COLORS}

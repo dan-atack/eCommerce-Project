@@ -8,22 +8,24 @@ const initialState = {
 export default function cartItemsReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ITEM_TO_CART": {
+      console.log("ADD TO CART", action.item._id)
+
       let qty = 0;
       // clicking add to cart repeatedly increases qty:
-      qty = state.items[action.item.id]
-        ? (qty = state.items[action.item.id].quantity + 1)
+      qty = state.items[action.item._id]
+        ? (qty = state.items[action.item._id].quantity + 1)
         : (qty = 1);
       // make sure clicking add to cart cannot exceed product availability:
       if (
-        state.items[action.item.id] && 
-        qty >= state.items[action.item.id].numInStock
+        state.items[action.item._id] && 
+        qty >= state.items[action.item._id].numInStock
         )
-        qty = state.items[action.item.id].numInStock;
+        qty = state.items[action.item._id].numInStock;
       return {
         ...state,
         items: {
           ...state.items,
-          [action.item.id]: {
+          [action.item._id]: {
           ...action.item,
           quantity: qty,
           },
@@ -31,12 +33,13 @@ export default function cartItemsReducer(state = initialState, action) {
       };
     }
     case "SET_QUANTITY": {
+      console.log("SET_QUANTITY", action)
       return {
         ...state,
         items: {
           ...state.items,
-          [action.id]: {
-          ...state.items[action.id],
+          [action._id]: {
+          ...state.items[action._id],
           quantity: action.amt,
           },
         }
@@ -46,7 +49,7 @@ export default function cartItemsReducer(state = initialState, action) {
     case "REMOVE_ITEM": {
       // We cannot alter the state directly; instead we must always return a new state, based on a copy we make of the original:
       let stateCopy = { ...state, items:{...state.items} };
-      delete stateCopy.items[action.id];
+      delete stateCopy.items[action._id];
       return stateCopy;
     }
     case "CLEAR_CART": {
@@ -54,7 +57,6 @@ export default function cartItemsReducer(state = initialState, action) {
     }
     ///statuses
     case 'START-PURCHASE-PROCESS': {
-      console.log('start');
       return {
         ...state,
         status: 'start-purchase',

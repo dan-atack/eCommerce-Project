@@ -1,5 +1,14 @@
-const items = require("../data/items.json");
-const companies = require("../data/companies.json");
+const {getItems} = require("../data/items");
+const {getCompanies} = require("../data/companies");
+
+let items;
+let companies;
+
+const getData = async () => {
+    items = await getItems();
+    companies = await getCompanies();
+}
+getData();
 
 // ********************************************************* //
 // function that returns the products filtered by company ID //
@@ -27,7 +36,7 @@ const getCompanyName = (req) => {
     let companyName;
 
     companies.forEach(company => {
-        if (company.id == companyId) {
+        if (company._id == companyId) {
             companyName = company.name;
         }
     })

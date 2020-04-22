@@ -45,7 +45,7 @@ function ProductDetails() {
   const determineDiscount = () => {
     if (inits !== undefined) {
       const thereIsDiscount = inits.saleItems.filter(
-        (item) => item.id == productId
+        (item) => item._id == productId
       );
       // filtering yields a list, so if this list contains anything then the item is discounted:
       if (thereIsDiscount.length > 0) {

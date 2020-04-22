@@ -72,7 +72,7 @@ const ItemDisplay = () => {
           </InfoBox>
           <Wrapper>
             {pages[currentPage].map((item) => {
-              return <ItemCard key={item.id} product={item} />;
+              return <ItemCard key={item._id} product={item} />;
             })}
           </Wrapper>
           <PageSelectBox style={{ justifyContent: 'space-between' }}>

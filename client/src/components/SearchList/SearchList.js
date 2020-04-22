@@ -12,7 +12,7 @@ const SearchList = ({ returnValues, userInput }) => {
               <>
                 {id < 9 ? (
                   <StyledLi>
-                    <StyledLink key={item.id} to={`/product/${item.id}`}>
+                    <StyledLink key={item._id} to={`/product/${item._id}`}>
                       {item.name.toLowerCase().includes(userInput.toLowerCase()) ? 
                       <>
                       <span>{item.name.slice(0, item.name.toLowerCase().indexOf(userInput.toLowerCase()))}</span>

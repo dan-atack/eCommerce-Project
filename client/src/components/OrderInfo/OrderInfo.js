@@ -20,8 +20,7 @@ const OrderInfo = () => {
       fetch(`/history/${confirmId}`)
         .then((data) => data.json())
         .then((data) => {
-          console.log('data.confirmation (confirmId)', data.confirmation);
-          console.log('data.order ', data.order);
+          console.log(data);
           setOrderInfo(data.order);
           dispatch(clearPurchase());
         })
@@ -39,11 +38,11 @@ const OrderInfo = () => {
         <h2>Order # {confirmId}</h2>
         {orderInfo.cartItems.map((item) => {
           return (
-            <ItemCard key={item.id} COLORS={COLORS}>
+            <ItemCard key={item._id} COLORS={COLORS}>
               <img src={item.imageSrc} alt="item" />
               <InfoDiv>
                 <Title>
-                  <StyledLink to={`/product/${item.id}`}>
+                  <StyledLink to={`/product/${item._id}`}>
                     {item.name}
                   </StyledLink>
                 </Title>

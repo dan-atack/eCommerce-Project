@@ -15,11 +15,14 @@ const CartBar = () => {
 
   //totals up all prices*quantities
   const total = cartItems.reduce((sum, item) => {
-    //removal of "$" & conversion from string to number.
-    return sum + parseFloat(item.price.replace(/[^\d.]/g, '')) * item.quantity;
-  }, 0);
-
-  // Styled components:
+    //removal of "$" & conversion from string to number. 
+    if (item.price != undefined) return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
+    else {return 0}
+  }, 0)
+  // const total = cartItems.reduce((sum, item) => {
+  //   //removal of "$" & conversion from string to number. 
+  //   return (sum + (( parseFloat((item.price).replace(/[^\d.]/g, '')) ) * item.quantity))
+  // }, 0)
 
   //cart is "hidden" off to the left unless containing items
   return (
@@ -39,8 +42,8 @@ const CartBar = () => {
         <CartItems>
           {cartItems.map((item) => (
             <CartItem
-              key={item.id}
-              id={item.id}
+              key={item._id}
+              _id={item._id}
               name={item.name}
               price={item.price}
               quantity={item.quantity} //created and modified in redux.
