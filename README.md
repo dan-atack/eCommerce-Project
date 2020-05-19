@@ -1,54 +1,37 @@
-# Wearables E-Commerce Project
+# Gadget Grotto - Team project
 
-[See the list of TEAMS](__documentation/TEAMS.md)
+This project's objectives was to create an e-commerce website to sell a pre-determined list of gadget items.
+Alongside teammates Daniel Atak, Rony Kordahi, and Craig Nockels, I developed Gadget Grotto!
 
-You will make use of _everything_ that you have learned thus far in the bootcamp to build an e-commerce app that will showcase all of the provided _wearables_ items.
+## Demo
 
-The stack is React.Js, Redux, Node.Js, and styled-components.
+Here's a presentation I gave to our class.
 
-Your node server should be RESTful and follow REST principles, at least to the extent we learned during the bootcamp.
+[![Gadget Grotto demo](https://i.imgur.com/bUE4dHt.png)](https://www.youtube.com/watch?v=ndWxB59rKvc&feature=youtu.be&t=1870)
 
-## Getting Started
+## Technology
 
-<img src="./server/assets/software-dev-path.jpg" style="width: 100%;" />
+Front-end: React, Redux
 
-You have your assignment and your team. What should you do first? This will vary for every team, and even every team member.
+Back-end: Node, Express
 
-**The important thing is to NOT just jump in and start coding!**
+Producivity: Trello
 
-There probably shouldn't be any coding until very near the end of the first day.
+## Features
 
-## Meet your Product Manager!
+- Product display page
+- Filters which apply to all views
+- Type ahead search bar
+- Cart and checkout
+- Server-saved Order History
+- Conditional styling (dark and whacky mode color schemes)
+- Login using AuthO
+- Featured items for sale (based on highest supply)
+- Browse by category or supplier
+- Quantity updates
 
-Each team has been assigned a product manager. This person is in charge of answering questions, guiding you and basically preventing everything from falling apart!
+## Running the project
 
-This person should be prevent for some of your team meetings but not all. PMs are super busy people and have multiple projects, people to manage.
-
-## Planning
-
-1. You will break into 3 groups (with your assigned PM.)
-2. Your PM will answer any initial questions, and give you more information, as required.
-3. Break into a separate meeting with just your team. \_Your PM will bounce from team to team to make sure you're on track.
-4. Time to use the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDA.md)
-
-### First team meeting
-
-It could also be a good/fun idea to give yourselves an original team name. :)
-
-Your first team meeting should start with the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDa.md).
-
-[Successful Software Project Delivery in 10 Steps](https://www.appnovation.com/blog/successful-software-project-delivery-10-steps).
-
-💡 How a project starts is indicative of how it will end.
-
-## Teamwork
-
-The most important aspect of this project is the ability to work in a team. No matter your contribution to the project, yuo should understand the _full_ codebase. This will require that you
-
-- **review** each other's code
-- **ask** questions when you don't understand
-- **comment** your code extensively. _Always go for clarity over brevity._
-
-## GitHub
-
-see the [GITHUB Document](__documentation/GITHUB.md)
+1. Clone the repo
+2. With 2 terminal windows, change directory into client/ and server/.
+3. For each, run command `yarn install`, then `yarn start`.
