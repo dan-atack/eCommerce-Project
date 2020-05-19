@@ -1,0 +1,21 @@
+E-commerce project
+
+This was a group project assigned to us, to be completed within a week. 
+
+The goal was to simulate an e-commerce website using a simulated database. The database was a local json file which was not updated when a user
+purchased an item. The information was updated solely during the server's iteration and reset upon relaunch. 
+
+I personally handled the backend side of the project while my team mates dealt with the frontend side of it. Once the backend was complete I 
+helped complete a few things in the frontend and did major code cleanup/review in the backend and frontend.
+
+The project allows users to login (although logging in does not grant access to any feature other than the profile page). The user's profile 
+page is just a placeholder. Users can search by item name, type, or category. The results of the search will be displayed and can be filtered 
+based on the selection of items on the left. 
+
+The navbar features a dropdown that allows users to quickly display items by category as well. If an item is out of stock, the user can choose
+to display items that are similar. The flavor text for the items is dynamically rendered based on their pricing. 
+
+Clicking on the name of the company displayed on the product detail card will show all the products being sold by the company. 
+
+Users can add any items to their cart, in amounts ranging from 1 to the maximum in stock. Once the purchase is confirmed, a randomly generated
+order confirmation number will appear which can be used to pull up the details under the order history tab.

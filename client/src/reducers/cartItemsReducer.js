@@ -8,8 +8,6 @@ const initialState = {
 export default function cartItemsReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ITEM_TO_CART": {
-      console.log("ADD TO CART", action.item._id)
-
       let qty = 0;
       // clicking add to cart repeatedly increases qty:
       qty = state.items[action.item._id]
