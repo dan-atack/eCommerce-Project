@@ -1,54 +1,49 @@
-# Wearables E-Commerce Project
+# Gadget Grotto: The E-Commerce Site Of Tomorrow
 
-[See the list of TEAMS](__documentation/TEAMS.md)
+### This was a 1-week team project where my colleagues and I made an eCommerce site from scratch, using React, Redux, Node.js, Express and GitHub for version control. The project is a fully functional shopping website inspired by the style of Amazon.com and Walmart, where users can browse items by category, add items to a mock shopping cart, and checkout at the end of their session with a simulated purchase modal. Users also have the option to login with Google's Auth0 to save their account between shopping sessions.
 
-You will make use of _everything_ that you have learned thus far in the bootcamp to build an e-commerce app that will showcase all of the provided _wearables_ items.
+## Features and Technologies:
 
-The stack is React.Js, Redux, Node.Js, and styled-components.
+1. Front-End uses React and Redux to store the customer's purchases in a Cart sidebar.
 
-Your node server should be RESTful and follow REST principles, at least to the extent we learned during the bootcamp.
+<img src="screenshots/Main-Page.png" style="width: 60%;">
 
-## Getting Started
+2. Customer can search for products by name (typeahead function is activated after 3 characters are entered to give suggestions).
 
-<img src="./server/assets/software-dev-path.jpg" style="width: 100%;" />
+<img src="screenshots/Search.png" style="width: 60%;">
 
-You have your assignment and your team. What should you do first? This will vary for every team, and even every team member.
+3. Customers can search for products by category, and have several filter options to narrow their focus.
 
-**The important thing is to NOT just jump in and start coding!**
+<img src="screenshots/Category.png" style="width: 50%;">
+<img src="screenshots/Filter.png" style="width: 50%;">
 
-There probably shouldn't be any coding until very near the end of the first day.
+4. All product data is sent from the server in response to specific requests; server also sends the three items with the highest stock as 'sale' items upon initial load; sale items are marked with a special discount sticker and reduced price.
 
-## Meet your Product Manager!
+<img src="screenshots/Sales.png" style="width: 60%;">
 
-Each team has been assigned a product manager. This person is in charge of answering questions, guiding you and basically preventing everything from falling apart!
+5. Clients can click on an item's card to bring up the item's detail page, which contains additional information on the product as well as a link to the manufacturer's page.
 
-This person should be prevent for some of your team meetings but not all. PMs are super busy people and have multiple projects, people to manage.
+<img src="screenshots/Details.png" style="width: 60%;">
 
-## Planning
+6. When the client clicks the 'Add to Cart' button, the selected item is placed in their shopping cart, which uses Redux to store all cart item data in state and restricts quantity adjustments based on the number of items available in stock:
 
-1. You will break into 3 groups (with your assigned PM.)
-2. Your PM will answer any initial questions, and give you more information, as required.
-3. Break into a separate meeting with just your team. \_Your PM will bounce from team to team to make sure you're on track.
-4. Time to use the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDA.md)
+<img src="screenshots/Simple-Cart.png" style="width: 30%; height: 40%">
+<img src="screenshots/Max-Cart.png" style="width: 30%; height: 40%">
 
-### First team meeting
+7. When shopping is completed, the user can enter their (simulated) credit card information to a purchase modal, and then view an order confirmation page with a unique ID number afterwards.
 
-It could also be a good/fun idea to give yourselves an original team name. :)
+<img src="screenshots/Modal.png" style="width: 60%;">
 
-Your first team meeting should start with the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDa.md).
+8. User can select from a few different colour schemes including 'base', 'dark mode' and 'whacky' circus colours (not recommended):
 
-[Successful Software Project Delivery in 10 Steps](https://www.appnovation.com/blog/successful-software-project-delivery-10-steps).
+<img src="screenshots/Whacky.png" style="width: 60%;">
 
-💡 How a project starts is indicative of how it will end.
+### Technical Challenges Achieved:
 
-## Teamwork
+1. Used Git and GitHub to coordinate work on a 4-person project with multiple pulls/pushes occuring per day and very few merge conflicts.
 
-The most important aspect of this project is the ability to work in a team. No matter your contribution to the project, yuo should understand the _full_ codebase. This will require that you
+2. Used Redux for all state management of cart items, filter and category selections and quantity tracking for items in the cart.
 
-- **review** each other's code
-- **ask** questions when you don't understand
-- **comment** your code extensively. _Always go for clarity over brevity._
+3. Used Styled Components with adjustable colour-theme props to allow for quick changes to the user interface.
 
-## GitHub
-
-see the [GITHUB Document](__documentation/GITHUB.md)
+4. Used Node.js and Express to create a very streamlined server with about a dozen different endpoints each using its own sorting algorithm to deliver the appropriate product info to the Front End.
