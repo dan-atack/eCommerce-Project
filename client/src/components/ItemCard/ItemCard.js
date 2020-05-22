@@ -13,12 +13,8 @@ const ItemCard = ({ product }) => {
   // ensure card has sale item data no matter where it's accessed from:
   const saleIds = useSelector(displaySaleIds);
 
-  const {
-    id,
-    name,
-    price,
-    imageSrc,
-  } = product;
+  const { id, name, price, imageSrc } = product;
+  console.log(product);
 
   let isOnSale = false;
   let discountPrice = 0;
@@ -38,7 +34,7 @@ const ItemCard = ({ product }) => {
       to={`/product/${id}`}
       COLORS={COLORS}
     >
-      <img src={imageSrc} alt="itempic" />
+      <img src={imageSrc} alt='itempic' />
       <div>{name}</div>
       {isOnSale ? (
         <div style={{ display: 'flex' }}>

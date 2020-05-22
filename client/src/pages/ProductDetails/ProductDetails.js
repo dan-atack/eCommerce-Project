@@ -27,6 +27,7 @@ function ProductDetails() {
   React.useEffect(() => {
     fetch(`/item/${productId}`)
       .then((res) => {
+        console.log(res);
         return res.json();
       })
       .then((item) => {
